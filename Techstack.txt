@@ -1,0 +1,34 @@
+https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/
+https://mdbootstrap.com/docs/react/getting-started/installation/ 
+
+Server Hardware: Raspi
+IDE: VSCode with Remote SSH
+Domain Registrar: GoDaddy
+
+Backend:
+- Server: Node.js (with Express.js)
+- Database: SQLite
+
+CMS (instead of managing server backend manually):
+- Strapi.io (Acts as Server backend with integrated SQLiteDB. Handles API Requests and serves content)
+-> Open source Node.js Headless CMS
+-> To create blogposts, add users etc.
+-> Frontend will call strapi backend to retreive content and data.
+
+Frontend:
+- UI: React
+- Styling: Bootstrap
+
+Utilities:
+- Postman (HTTP Client, Testing API endpoints, GET requests etc.)
+
+a) Frontend-Backend Anbindung:
+React (Frontend) to NODE (Backend) via REST calls:
+GET Request sent from React to Node returns JSON
+
+b) Frontend-Backend Anbindung:
+React (Frontend) to STRAPI (Backend) via REST calls:
+GET Request sent from React to STRAPI returns JSON
+
+Backend-Database Anbindung:
+Node Queries DB and gets Data as JSON
