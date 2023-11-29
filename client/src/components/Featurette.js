@@ -11,15 +11,15 @@ function FeaturetteTeaser({ featuredNewsPost, onPostClicked }) {
 
   return (
     <div>
-      <hr className="featurette-divider"/>
+      <hr className="featurette-divider mx-auto"/>
       <Link className="row featurette mx-auto text-decoration-none" to={`/news/${replaceSpacesWithHyphen(featuredNewsPost.attributes.title)}`} onClick={()=>{onPostClicked(featuredNewsPost.id)}} key={featuredNewsPost.attributes.title}>
-        <div className={imgRelPath ? "col-md-7" : "col-md-12"}>
+        <div className={imgRelPath ? "col-md-7 p-0" : "col-md-12 p-0"}>
           <h2 className="featurette-heading fw-normal lh-1">{featuredNewsPost.attributes.title}</h2>
           <p className='pt-2'>{formatPublishedAt(featuredNewsPost.attributes.publishedAt)}</p>
           <p className="featurette-summary">{featuredNewsPost.attributes.summary}</p>
         </div>
         {imgRelPath ?
-          <div className="col-md-5">
+          <div className="col-md-5 p-0">
             <img src={imgPath} className='featurette-image rounded img-fluid mx-auto' alt=''/> 
           </div> : <div/>}
       </Link>

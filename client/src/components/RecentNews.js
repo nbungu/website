@@ -35,11 +35,7 @@ function RecentNews({ onPostClicked }) {
   return (
     <div>
       {!featuredPosts ? <LoadingSpinner message={"Lade News..."}/> :
-        <div className='px-5'>
-          {featuredPosts.map((post) => (
-            <Featurette featuredNewsPost={post} onPostClicked={onPostClicked}/>
-          ))}
-        </div>
+        featuredPosts.map((post) => (<Featurette featuredNewsPost={post} onPostClicked={onPostClicked}/>))
       }
     </div>    
   )

@@ -1,15 +1,18 @@
 // client/src/components/NewsPost.js
 
 import React, { useState, useEffect } from "react";
+//import { useParams } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import LoadingSpinner from "./LoadingSpinner";
 import NewsPostStartingElement from "./NewsPostStartingElement";
 import NewsPostContentElement from "./NewsPostContentElement";
-import NewsPostEndingElement from "./NewsPostEndingElement";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
 
 function NewsPost({ postId }) {
+  
+  // To handle dynamic routing
+  //const { title } = useParams();
   
   // Returns a post by id and with media data
   const queryString = STRAPI_CMS_URL + "/api/posts/" + postId + "?populate=*";
@@ -43,7 +46,6 @@ function NewsPost({ postId }) {
               <p className="lead">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
               <NewsPostContentElement newsPost={post}/>
             </div>
-            
           </div>
         }
 

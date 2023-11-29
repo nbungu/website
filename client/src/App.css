@@ -25,6 +25,8 @@ p {
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 @keyframes gradient {
@@ -89,8 +91,14 @@ p {
 /* FEATURETTES
 -------------------------------------------------- */
     
+    .featurette {
+      padding: 1rem;
+      min-width: 160px;
+      max-width: 960px;
+    }
     .featurette-divider {
       margin: 2rem 0; /* Space out the Bootstrap <hr> more */
+      max-width: 960px;
     }
 
     .featurette-image {
@@ -110,10 +118,6 @@ p {
 
     .featurette:hover {
       transform: scale(1.01);
-    }
-
-    .featurette {
-      max-width: 1080px; /* Limit the maximum width of the grid */
     }
     
     /* RESPONSIVE CSS (@media queries)
@@ -140,9 +144,6 @@ p {
       .featurette-summary {
         font-size: 24px;
       }
-      .featurette-divider {
-        margin: 4rem 0;
-      }
     }
 
 /* TILES CSS
@@ -155,10 +156,10 @@ p {
   gap: 1rem; /* Gap between tiles */
   justify-content: center; /* Center the grid horizontally */
   align-content: center; /* Center the grid vertically */
-  margin: 1rem auto; /* Center the grid on the page */
-  width: 90%;
-  min-width: 240px;
-  max-width: 1080px; /* Limit the maximum width of the grid */
+  margin: 0rem auto; /* Center the grid on the page */
+  padding: 1rem;
+  min-width: 160px;
+  max-width: 960px; /* Limit the maximum width of the grid */
 }
 
 /* Style for the tiles container */
@@ -167,7 +168,10 @@ p {
   gap: 1rem; /* Gap between tiles */
   justify-content: center; /* Center the grid horizontally */
   align-content: center; /* Center the grid vertically */
-  margin: 1rem auto; /* Center the grid on the page */
+  margin: 0rem auto; /* Center the grid on the page */
+  padding: 1rem;
+  min-width: 160px;
+  max-width: 960px;
 }
 
 /* @media queries*/
@@ -175,24 +179,18 @@ p {
 @media (min-width: 961px) {
   .tiles-container-flex {
     grid-template-columns: repeat(4, 1fr); /* Set the desired even number of columns */
-    width: 70%;
-    max-width: 1080px; /* Limit the maximum width of the grid */
   }
 }
 /* When the screen size is 960px or smaller */
 @media (max-width: 960px) {
   .tiles-container-flex {
     grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
-    width: 90%;
-    max-width: 1080px; /* Limit the maximum width of the grid */
   }
 }
 /* When the screen size is 560px or smaller */
 @media (max-width: 560px) {
   .tiles-container-flex {
     grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
-    width: 90%;
-    max-width: 1080px; /* Limit the maximum width of the grid */
   }
 }
 
@@ -214,7 +212,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem;
   padding-bottom: 0rem;
   background-color: #fff;
   border-radius: 0.5rem;
@@ -224,6 +222,8 @@ p {
   position: relative; /* To position the icon */
   cursor: pointer;
   grid-column: span 1;
+  text-decoration: none; /* Remove underlines from links */
+  color: inherit; /* Inherit text color from parent (tile) */
 }
 
 /* Style for individual tiles */
@@ -276,19 +276,6 @@ p {
   margin-top: 0.5rem;
   font-size: 16px; /* Adjust the extra text size */
   color: var(--bg-main-gray); /* Color for the extra text */
-}
-
-/* Style for the tile links */
-.tile-link {
-  text-decoration: none; /* Remove underlines from links */
-  color: inherit; /* Inherit text color from parent (tile) */
-}
-
-/* Glassmorphism */
-.glass-effect { 
-  box-shadow: 0 0 5px 0 ; 
-  background: inherit; 
-  backdrop-filter: blur(10px);
 }
 
 /* NEWS TILE */
@@ -369,7 +356,6 @@ p {
   position: relative;
   height: 0;
 }
-
 .video-responsive iframe {
   left: 0;
   top: 0;
@@ -380,5 +366,12 @@ p {
 
 /* TESTING
 -------------------------------------------------- */
+
+/* Glassmorphism */
+.glass-effect { 
+  box-shadow: 0 0 5px 0 ; 
+  background: inherit; 
+  backdrop-filter: blur(10px);
+}
 
 

@@ -49,12 +49,20 @@ export default function App() {
 
   const [newsPostId, setNewsPostId] = useState(null);
   
+  /*
+  React Router is meant for internal navigation (client-side-routing) within your application
+  and can only redirect to internal routes.
+
+  Trying to access a dynamic route like /posts/postTitleXY, directly from the browser (server-side-routing) doesnt work.
+  -> Implement SSR (server-side-routing)
+  */
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home nodeServerStatus={nodeServerStatus} onPostClicked={setNewsPostId} />}/>
         <Route path="/news" element={<News onPostClicked={setNewsPostId} />}/>
-        <Route path="/news/:id" element={<NewsPost postId={newsPostId}/>} />
+        <Route path="/news/:title" element={<NewsPost postId={newsPostId}/>}/>
         <Route path="/termine" element={<Schedule />}/>
         <Route path="/kontakt" element={<Contact />}/>
         <Route path="/impressum" element={<Impressum />}/>
