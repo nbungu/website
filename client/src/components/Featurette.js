@@ -15,9 +15,8 @@ function FeaturetteTeaser({ featuredNewsPost, onPostClicked }) {
       <Link className="row featurette mx-auto text-decoration-none" to={`/news/${replaceSpacesWithHyphen(featuredNewsPost.attributes.title)}`} onClick={()=>{onPostClicked(featuredNewsPost.id)}} key={featuredNewsPost.attributes.title}>
         <div className={imgRelPath ? "col-md-7" : "col-md-12"}>
           <h2 className="featurette-heading fw-normal lh-1">{featuredNewsPost.attributes.title}</h2>
-          <p>{formatPublishedAt(featuredNewsPost.attributes.publishedAt)}</p>
-          <p className="fs-4 lead">{featuredNewsPost.attributes.summary}</p>
-
+          <p className='pt-2'>{formatPublishedAt(featuredNewsPost.attributes.publishedAt)}</p>
+          <p className="featurette-summary">{featuredNewsPost.attributes.summary}</p>
         </div>
         {imgRelPath ?
           <div className="col-md-5">

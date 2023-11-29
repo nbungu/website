@@ -70,8 +70,9 @@ p {
   font-weight: bold;
 }
 
-/* CAROUSEL
+/* TEXT CAROUSEL
 -------------------------------------------------- */
+    
     
     /* Since positioning the image, we need to help out the caption */
     .carousel-caption {
@@ -84,11 +85,6 @@ p {
     .carousel-item {
       height: 10rem; /*32rem*/
     }
-  
-    .carousel-image {
-      width: 100%;
-      height: 100%;
-    }
     
 /* FEATURETTES
 -------------------------------------------------- */
@@ -99,12 +95,17 @@ p {
 
     .featurette-image {
       max-width: 100%;
-      max-height: 800px;
+      max-height: 640px;
     }
     
     /* Thin out the marketing headings */
     .featurette-heading {
       font-size: 32px;
+    }
+
+    .featurette-summary {
+      font-size: 20px;
+      font-weight: lighter;
     }
 
     .featurette:hover {
@@ -127,17 +128,17 @@ p {
         line-height: 1.4;
       }
       .featurette-heading {
-        font-size: 40px;
+        font-size: 36px;
       }
     }
     /* When the screen size is 62em or bigger */
     @media (min-width: 62em) {
       .featurette-heading {
         margin-top: 0rem;
-        font-size: 50px;
+        font-size: 40px;
       }
-      .featurette-heading-sm {
-        margin-top: 1rem;
+      .featurette-summary {
+        font-size: 24px;
       }
       .featurette-divider {
         margin: 4rem 0;
@@ -317,12 +318,16 @@ p {
 }
 
 .news-tile-image i {
-  top: 8%;
-  left: 88%;
+  top: 10%;
+  left: 85%;
   position: absolute;
   transform: translate(-50%, -50%);
   font-size: 2rem; /* Adjust the extra text size */
   color: red; /* Color for the extra text */
+  background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  border-radius: 20%; /* Make the container circular */
+  display: flex;
+  padding: 0.5rem;
 }
 
 .news-tile-cover {
@@ -334,7 +339,7 @@ p {
 }
 .news-tile-desc {
   position: relative;
-  max-height: 50px;
+  max-height: 70px;
   overflow: hidden;
   padding-right: 0.6rem;
   font-size: 16px;
@@ -344,10 +349,6 @@ p {
   content: '...';
   bottom: 0;
   right: 0;
-}
-.news-tile-link {
-  text-decoration: none;
-  color: inherit;
 }
 .news-tile:hover {
   transform: scale(1.05);

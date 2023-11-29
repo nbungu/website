@@ -11,10 +11,12 @@ import { STRAPI_CMS_URL } from '../utils/Utils.js';
 function News({ onPostClicked }) {
   
   const [posts, setPosts] = useState(null);
+  const [totalNrOfPosts, setTotalNrOfPosts] = useState(0);
   const [counter, setCounter] = useState(6); // Initial State for the counter: Show 9 Posts
 
   // Returns all posts including media data sorted by date
   const queryString = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*&pagination[start]=0&pagination[limit]=" + counter;
+
 
   // GET Request to STRAPI server (backend) at endpoint /api/posts
   const fetchPosts = () => {
@@ -25,7 +27,7 @@ function News({ onPostClicked }) {
         }
         return response.json();
       })
-      .then((result) => setPosts(result.data))
+      .then((result) => {setPosts(result.data); setTotalNrOfPosts(result.meta.pagination.total)})
       .catch((error) => {
         console.error('Error fetching featured posts:', error);
         // You can handle the error here, such as displaying an error message to the user
@@ -58,9 +60,13 @@ function News({ onPostClicked }) {
         }
       </div>
 
-      <div className="row mx-auto p-3">
-        <button className="btn btn-secondary" onClick={showMorePosts}><i class="bi bi-arrow-repeat pe-2"/>Mehr News laden</button>
-      </div>
+      {totalNrOfPosts > counter ?
+        <div className="row mx-auto p-3">
+          <button className="btn btn-secondary" onClick={showMorePosts}><i class="bi bi-arrow-repeat pe-2"/>Mehr News laden</button>
+        </div>
+        :
+        <div/>
+      }
 
       <Footer/>
 

@@ -21,7 +21,7 @@ function NewsTile({ newsPost, onPostClicked }) {
       <span class="badge bg-secondary">{formatPublishedAt(newsPost.attributes.publishedAt)}</span>
       <h2>{newsPost.attributes.title}</h2>
       <p className='news-tile-desc'>{newsPost.attributes.summary}</p>
-      <div className='news-tile-link'>➝</div>
+      <i class="bi bi-arrow-right fs-5"/>
     </Link>
   )
 }

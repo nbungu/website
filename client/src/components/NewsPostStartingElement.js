@@ -49,14 +49,10 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
         const data = await response.json();
         //setPostId(data.id);
     }
-
     updatePost();
 }, [thumbsUpCount, thumbsDownCount]);
 
-  
 
-
-  
   return (
     <div className="row justify-content-between">
 
@@ -72,7 +68,6 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
       </div>
 
     </div>
-
   )
 }
 

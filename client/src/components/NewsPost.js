@@ -4,8 +4,9 @@ import React, { useState, useEffect } from "react";
 import Header from './Header';
 import Footer from './Footer';
 import LoadingSpinner from "./LoadingSpinner";
-import NewsPostContentElement from "./NewsPostContentElement";
 import NewsPostStartingElement from "./NewsPostStartingElement";
+import NewsPostContentElement from "./NewsPostContentElement";
+import NewsPostEndingElement from "./NewsPostEndingElement";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
 
 function NewsPost({ postId }) {
@@ -39,9 +40,10 @@ function NewsPost({ postId }) {
             <NewsPostStartingElement newsPostUpVotes={post.attributes.upvotes} newsPostDownVotes={post.attributes.downvotes} postId={post.id}/>
             <div className="fixed-tile">
               <h1 className="featurette-heading fw-normal lh-1">{post.attributes.title}</h1>
-              <p>Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
+              <p className="lead">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
               <NewsPostContentElement newsPost={post}/>
             </div>
+            
           </div>
         }
 

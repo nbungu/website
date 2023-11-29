@@ -9,8 +9,8 @@ function ImageCarousel({ imagePaths }) {
       
       <div className="carousel-inner">
         {imagePaths.map((imgPath) => (
-          <div className="carousel-item carousel-item h-100 active">
-            <img className='carousel-image rounded' src={imgPath} alt=''/>
+          <div className="carousel-item h-100 active">
+            <img className='img-fluid rounded' src={imgPath} alt=''/>
           </div>
         ))}
       </div>
