@@ -10,8 +10,9 @@ function FeaturetteTeaser({ featuredNewsPost, onPostClicked }) {
   const imgPath = STRAPI_CMS_URL + featuredNewsPost.attributes.titleimage?.data?.attributes.url;
 
   return (
-    <div>
-      <Link className="row featurette mx-auto text-decoration-none border-top border-secondary mt-4" to={`/news/${replaceSpacesWithHyphen(featuredNewsPost.attributes.title)}`} onClick={()=>{onPostClicked(featuredNewsPost.id)}} key={featuredNewsPost.attributes.title}>
+    <div className='featurette mx-auto mt-3'>
+
+      <Link className="row mx-auto text-decoration-none border border-bottom-0 border-dark-subtle rounded p-3" to={`/news/${replaceSpacesWithHyphen(featuredNewsPost.attributes.title)}`} onClick={()=>{onPostClicked(featuredNewsPost.id)}} key={featuredNewsPost.attributes.title}>
         <div className={imgRelPath ? "col-md-7 ps-0 pe-2" : "col-md-12 p-0"}>
           <h1>{featuredNewsPost.attributes.title}</h1>
           <p className='pt-2'>{formatPublishedAt(featuredNewsPost.attributes.publishedAt)}</p>

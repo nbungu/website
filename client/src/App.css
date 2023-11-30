@@ -136,7 +136,11 @@ p {
       max-width: 960px;
     }
     .featurette-image {
-      max-height: 400px;
+      max-height: 320px;
+    }
+        
+    .featurette:hover {
+      transform: scale(1.01);
     }
 
 
@@ -230,6 +234,13 @@ p {
   color: cornflowerblue; /* Color for the extra text */
 }
 
+.button-tile span {
+  top: -0.5rem;
+  right: -0.5rem;
+  position: absolute;
+  display: flex;
+}
+
 /* NEWS TILE */
 .news-tile {
   display: flex;
@@ -283,8 +294,8 @@ p {
 /* NEWS POST
 -------------------------------------------------- */
 .news-post-image {
-  max-height: 800px;
   min-height: 160px;
+  max-height: 720px;
 }
 
 /* YOUTUBE EMBED

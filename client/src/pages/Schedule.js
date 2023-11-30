@@ -1,10 +1,38 @@
 // client/src/pages/Schedule.js
 
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import EventList from '../components/EventList';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { STRAPI_CMS_URL } from '../utils/Utils.js';
 
-function Schedule() {  
+function Schedule() { 
+  
+  // fetches the last two most recent posts in sorted order
+  const queryString = STRAPI_CMS_URL + "/api/events";
+  const [events, setEvents] = useState(null);
+
+  const fetchEvents = () => {
+    return fetch(queryString)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((result) => setEvents(result.data))
+      .catch((error) => {
+        console.error('Error fetching events:', error);
+        // You can handle the error here, such as displaying an error message to the user
+      });
+  };
+
+  // We want fetchPosts() to be executed everytime App component loads
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+  
   return (
     <div className='body-bg'>
 
@@ -16,34 +44,7 @@ function Schedule() {
           
           <div className="fixed-tile">
             <h2>Termine 1. Mannschaft</h2>
-              <div className="d-flex flex-column flex-md-row p-2 gap-4 align-items-center justify-content-center">        
-                <div className="list-group">
-                    <a href="/" className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                      <i className="bi bi-arrow-repeat" style={{fontSize: '1.5rem', color: 'cornflowerblue'}}></i>
-                      <div className="d-flex gap-2 w-100 justify-content-between">
-                        <div>
-                          <h6 className="text-start mb-0">Training</h6>
-                          <p className="text-start mb-0 opacity-75">19:00 - 21:00 Uhr</p>
-                        </div>
-                        <div>
-                          <h6 className="text-nowrap text-end mb-0">Do, 07.10.2023</h6>
-                          <p className="text-nowrap text-end mb-0 opacity-75">Adelberg</p>
-                        </div>                      
-                      </div>
-                    </a>
-                    <a href="/" className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                      <i className="bi bi-arrows-collapse-vertical" style={{fontSize: '1.5rem', color: 'orange'}}></i>
-                      <div className="d-flex gap-2 w-100 justify-content-between">
-                        <div>
-                          <h6 className="text-start mb-0">Freundschaftsspiel</h6>
-                          <p className="text-start mb-0 opacity-75">20:15 - 21:30, Wernau</p>
-                        </div>
-                        <small className="opacity-50 text-nowrap">Di, 31.10.2023</small>
-                      </div>
-                    </a>
-                    
-                  </div>
-              </div>
+            {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={events}/>}            
           </div>
 
           <div className="fixed-tile">
