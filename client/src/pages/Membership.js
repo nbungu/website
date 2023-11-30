@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 function Membership() {
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
 
       <Header currentPage={null}/>
 

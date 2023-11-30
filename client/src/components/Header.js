@@ -15,21 +15,21 @@ function Header({ currentPage }) {
 
         <Link to="/" className='col-md-3 d-flex align-items-center mb-md-0 text-dark text-decoration-none me-3'>
             <img className="header-logo" src={logo} alt="logo"/>
-            <h1 className="header-title">Eisbuaba Adelberg</h1>
+            <h1>Eisbuaba Adelberg</h1>
         </Link>
 
         <ul className="col-md-auto col-12 nav nav-underline justify-content-center mb-md-0">
             <li className='nav-item'>
-                <Link to="/" className={currentPage === "home" ? active : regular}>Home</Link>
+                <Link to="/" className='text-decoration-none'><h2 className={currentPage === "home" ? active : regular}>Home</h2></Link>
             </li>
             <li className='nav-item'>
-                <Link to="/news" className={currentPage === "news" ? active : regular}>News</Link>
+                <Link to="/news" className='text-decoration-none'><h2 className={currentPage === "news" ? active : regular}>News</h2></Link>
             </li>
             <li className='nav-item'>
-                <Link to="/termine" className={currentPage === "schedule" ? active : regular}>Termine</Link>
+                <Link to="/termine" className='text-decoration-none'><h2 className={currentPage === "schedule" ? active : regular}>Termine</h2></Link>
             </li>
             <li className='nav-item'>
-                <Link to="/kontakt" className={currentPage === "contact" ? active : regular}>Kontakt</Link>
+                <Link to="/kontakt" className='text-decoration-none'><h2 className={currentPage === "contact" ? active : regular}>Kontakt</h2></Link>
             </li>
         </ul>
 

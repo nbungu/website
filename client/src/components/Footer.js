@@ -17,9 +17,9 @@ function Footer() {
       <div class="row align-items-center m-0">
         <div className='col-sm-3'></div>
         <div class="col-md-6 px-0 py-3 text-center">
-          <div>© 2023 Eisbuaba Adelberg</div>
+          <p className='text-body-secondary'>© 2023 Eisbuaba Adelberg</p>
         </div>
-        <div class="col-md-3 text-end px-0 py-3">
+        <div class="col-md-3 text-center px-0 py-3">
           <div>
             <button type="button" className="btn btn-secondary rounded-circle ms-2 p-2 lh-1"><i className="bi bi-instagram"/></button>
             <button type="button" className="btn btn-secondary rounded-circle ms-2 p-2 lh-1"><i className="bi bi-facebook"/></button>

@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 function Contact() {
   
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
 
         <Header currentPage={"contact"}/>
 
@@ -47,3 +47,7 @@ function Contact() {
 }
 
 export default Contact
+/**
+
+
+ */

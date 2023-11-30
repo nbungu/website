@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 function Impressum() {
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
       <Header currentPage={null}/>
       <div className='flex-grow-1'>
       Impressum...

@@ -46,7 +46,7 @@ function News({ onPostClicked }) {
   }, [counter]);
   
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
       
       <Header currentPage={"news"}/>
 

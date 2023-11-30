@@ -42,8 +42,8 @@ function NewsPost({ postId }) {
           <div className='tiles-container'>
             <NewsPostStartingElement newsPostUpVotes={post.attributes.upvotes} newsPostDownVotes={post.attributes.downvotes} postId={post.id}/>
             <div className="fixed-tile">
-              <h1 className="featurette-heading fw-normal lh-1">{post.attributes.title}</h1>
-              <p className="lead">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
+              <h1>{post.attributes.title}</h1>
+              <p className="text-body-secondary py-2">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
               <NewsPostContentElement newsPost={post}/>
             </div>
           </div>

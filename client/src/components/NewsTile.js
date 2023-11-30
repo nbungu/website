@@ -15,7 +15,7 @@ function NewsTile({ newsPost, onPostClicked }) {
   return (
     <Link className='news-tile' to={`/news/${replaceSpacesWithHyphen(newsPost.attributes.title)}`} onClick={()=>{onPostClicked(newsPost.id)}} key={newsPost.attributes.title}> 
       <div className='news-tile-image'>
-        {hasYTVideo ? <i class="bi bi-youtube"/> : <div/>} 
+        {hasYTVideo ? <i class="bi bi-youtube"/> : <div/>}
         <img class="news-tile-cover" src={imgRelPath ? imgPath : defaultImg} alt='cover'/>
       </div>      
       <span class="badge bg-secondary">{formatPublishedAt(newsPost.attributes.publishedAt)}</span>

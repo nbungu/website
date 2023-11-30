@@ -11,7 +11,7 @@ import Footer from '../components/Footer.js';
 function Home({ nodeServerStatus, onPostClicked }) {
  
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
 
       <Header currentPage={"home"}/>
 

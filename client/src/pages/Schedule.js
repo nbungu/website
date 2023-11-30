@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 function Schedule() {  
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
 
       <Header currentPage={"schedule"}/>
       

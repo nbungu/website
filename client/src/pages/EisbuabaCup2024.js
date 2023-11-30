@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 function EisbuabaCup2024() {
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
 
       <Header currentPage={null}/>
 

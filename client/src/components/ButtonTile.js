@@ -9,10 +9,10 @@ function ButtonTile({ link, icon, iconColor, header, text, span, badgeText }) {
 
   return (
     <Link className='button-tile' to={link} style={{gridColumn: 'span ' + colSpan}}>
-      {badgeText ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{badgeText}</span> : <div></div>}
+      {badgeText ? <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{badgeText}</span> : <div/>}
       <i className={icon} style={{color: !iconColor ? 'cornflowerblue' : iconColor}}></i>
-      <h2>{header}</h2>
-      <p>{text}</p>
+      <h2 className='mt-1'>{header}</h2>
+      <p className='mt-1'>{text}</p>
     </Link>
   )
 
