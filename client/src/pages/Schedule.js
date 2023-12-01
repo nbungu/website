@@ -10,7 +10,7 @@ import { STRAPI_CMS_URL } from '../utils/Utils.js';
 function Schedule({ onPostClicked }) { 
   
   // fetches the last two most recent posts in sorted order
-  const queryString = STRAPI_CMS_URL + "/api/events?sort=date";
+  const queryString = STRAPI_CMS_URL + "/api/events?populate=*&sort=date";
   const [events, setEvents] = useState(null);
 
   const fetchEvents = () => {
@@ -42,10 +42,10 @@ function Schedule({ onPostClicked }) {
 
         <div className="tiles-container">
           
-          <div className="fixed-tile">
+          <div className="fixed-tile gap-3">
             <h2>Termine 1. Mannschaft</h2>
             {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={events} onPostClicked={onPostClicked}/>}            
-          </div>          
+          </div>
 
         </div>
 

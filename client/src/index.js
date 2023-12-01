@@ -67,7 +67,7 @@ export default function App() {
         <Route path="/kontakt" element={<Contact />}/>
         <Route path="/impressum" element={<Impressum />}/>
         <Route path="/mitgliedschaft" element={<Membership />}/>
-        <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024 />}/>
+        <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024 onPostClicked={setNewsPostId}/>}/>
         <Route path="/nachwuchs" element={<Youth />}/>
       </Routes>
     </BrowserRouter>

@@ -4,6 +4,7 @@ import React from "react";
 import ImageCarousel from "./ImageCarousel";
 import { STRAPI_CMS_URL } from '../utils/Utils';
 import YouTubeEmbed from "./YouTubeEmbed";
+import ImageGallery from "./ImageGallery";
 
 function NewsPostContentElement({ newsPost }) {
   
@@ -27,8 +28,9 @@ function NewsPostContentElement({ newsPost }) {
       {imgRelPath ? <img className="img-fluid news-post-image rounded mt-2" src={imgPath} alt=''/> : <img className="m-0 p-0" alt=''/>}
       {imgRelPath && imageCaption ? <p className="my-2 text-body-secondary">{imageCaption}</p> : <p className="m-0 p-0"></p>}
       {textBlocks ? textBlocks.map((textBlock) => (<p className="text-start mt-3">{textBlock}</p>)) : <p/>}
-      {imgCollection ? <div className="mt-3"><ImageCarousel imagePaths={imgCollection}/></div> : <p/>}
+      {imgCollection ? <div className="mt-3"><ImageGallery imagePaths={imgCollection}/></div> : <p/>}
       {youtTubeVideoUrl ? <div className="mt-3"><YouTubeEmbed videoUrl={youtTubeVideoUrl}/></div> : <p/>}
+
     </div>
   )
 }

@@ -8,9 +8,12 @@ function ImageCarousel({ imagePaths }) {
     <div id="imageCarousel" className="carousel slide" data-bs-ride="carousel">
       
       <div className="carousel-inner">
+        <div className="carousel-item h-100 active">
+          <img className='rounded' src={imagePaths.shift()} alt=''/>
+        </div>
         {imagePaths.map((imgPath) => (
-          <div className="carousel-item h-100 active">
-            <img className='img-fluid rounded' src={imgPath} alt=''/>
+          <div className="carousel-item h-100">
+            <img className='rounded' src={imgPath} alt=''/>
           </div>
         ))}
       </div>
