@@ -13,7 +13,7 @@ function NewsTile({ newsPost, onPostClicked }) {
   const hasYTVideo = newsPost.attributes.youtubeurl;
 
   return (
-    <Link className='news-tile' to={`/news/${replaceSpacesWithHyphen(newsPost.attributes.title)}`} onClick={()=>{onPostClicked(newsPost.id)}} key={newsPost.attributes.title}> 
+    <Link className='news-tile' to={`/news/${newsPost.id}`} onClick={()=>{onPostClicked(newsPost.id)}} key={newsPost.attributes.title}> 
       <div className='news-tile-image'>
         {hasYTVideo ? <i class="bi bi-youtube"/> : <div/>}
         <img class="news-tile-cover" src={imgRelPath ? imgPath : defaultImg} alt='cover'/>

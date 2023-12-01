@@ -10,9 +10,27 @@ function FeaturetteTeaser({ featuredNewsPost, onPostClicked }) {
   const imgPath = STRAPI_CMS_URL + featuredNewsPost.attributes.titleimage?.data?.attributes.url;
 
   return (
-    <div className='featurette mx-auto mt-3'>
+    <div className='featurette mt-3'>
 
-      <Link className="row mx-auto text-decoration-none border border-bottom-0 border-dark-subtle rounded p-3" to={`/news/${replaceSpacesWithHyphen(featuredNewsPost.attributes.title)}`} onClick={()=>{onPostClicked(featuredNewsPost.id)}} key={featuredNewsPost.attributes.title}>
+      <Link className="row mx-auto text-decoration-none border border-bottom-0 border-light rounded p-3" to={`/news/${featuredNewsPost.id}`} onClick={()=>{onPostClicked(featuredNewsPost.id)}} key={featuredNewsPost.attributes.title}>
+        <p>{formatPublishedAt(featuredNewsPost.attributes.publishedAt)}</p>
+        <h1>{featuredNewsPost.attributes.title}</h1>
+        <div className='clearfix'>
+          <img src={imgPath} class="featurette-image rounded col-sm-6 float-md-end ms-md-3 mt-3" alt="..."/>
+          <p className='mt-3'>{featuredNewsPost.attributes.summary}</p>
+        </div>
+      </Link>
+
+    </div>
+  )
+}
+
+export default FeaturetteTeaser
+
+/**
+
+
+<Link className="row mx-auto text-decoration-none border border-bottom-0 border-dark-subtle rounded p-3" to={`/news/${replaceSpacesWithHyphen(featuredNewsPost.attributes.title)}`} onClick={()=>{onPostClicked(featuredNewsPost.id)}} key={featuredNewsPost.attributes.title}>
         <div className={imgRelPath ? "col-md-7 ps-0 pe-2" : "col-md-12 p-0"}>
           <h1>{featuredNewsPost.attributes.title}</h1>
           <p className='pt-2'>{formatPublishedAt(featuredNewsPost.attributes.publishedAt)}</p>
@@ -24,14 +42,5 @@ function FeaturetteTeaser({ featuredNewsPost, onPostClicked }) {
           </div> : <div/>
         }
       </Link>
-    </div>
-  )
-}
 
-export default FeaturetteTeaser
-
-/**
- * 
- * 
-<svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>default title</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
- */
+*/

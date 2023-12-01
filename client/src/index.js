@@ -62,8 +62,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home nodeServerStatus={nodeServerStatus} onPostClicked={setNewsPostId} />}/>
         <Route path="/news" element={<News onPostClicked={setNewsPostId} />}/>
-        <Route path="/news/:title" element={<NewsPost postId={newsPostId}/>}/>
-        <Route path="/termine" element={<Schedule />}/>
+        <Route path="/news/:id" element={<NewsPost postId={newsPostId}/>}/>
+        <Route path="/termine" element={<Schedule onPostClicked={setNewsPostId} />}/>
         <Route path="/kontakt" element={<Contact />}/>
         <Route path="/impressum" element={<Impressum />}/>
         <Route path="/mitgliedschaft" element={<Membership />}/>

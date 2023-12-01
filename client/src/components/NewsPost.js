@@ -8,6 +8,8 @@ import LoadingSpinner from "./LoadingSpinner";
 import NewsPostStartingElement from "./NewsPostStartingElement";
 import NewsPostContentElement from "./NewsPostContentElement";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
+import NewsPostEndingElement from "./NewsPostEndingElement";
+import NewsList from "./NewsList";
 
 function NewsPost({ postId }) {
   
@@ -32,7 +34,7 @@ function NewsPost({ postId }) {
   }, []);
 
   return (
-    <div className='body-bg d-flex flex-column'>
+    <div className='body-bg'>
       
       <Header currentPage={"news"}/>
 
@@ -45,6 +47,10 @@ function NewsPost({ postId }) {
               <h1>{post.attributes.title}</h1>
               <p className="text-body-secondary py-2">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
               <NewsPostContentElement newsPost={post}/>
+            </div>
+            <div className="fixed-tile">
+              <h2>Weitere Artikel</h2>
+              <NewsList/>
             </div>
           </div>
         }

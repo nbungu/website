@@ -12,7 +12,8 @@ import defaultLogo from "../assets/puck.png"
 import { Link } from 'react-router-dom';
 
 
-function EventList({ events }) {
+
+function EventList({ events, onPostClicked  }) {
     
     function getIcon(eventType) {
         switch (eventType) {
@@ -27,38 +28,46 @@ function EventList({ events }) {
     }
 
     return (
-        <div className="d-flex flex-column flex-md-row p-3 gap-4 align-items-center justify-content-center">        
-            <div className="list-group">
-                {
-                    events.map((entry) => (
-                        <div className="list-group-item list-group-item-action py-3" aria-current="true">
-                            <div className='row'>
-                                <div className='col-sm-2'>
+        <div className="list-group w-100 pt-3">
+            {
+                events.map((entry) => (
+                    <div className="list-group-item list-group-item-action p-2" aria-current="true">
+                        
+                        <div class="container-flex">              
+                            <div class="row align-items-top">
+                                <div class="col-auto ms-2 mt-2">
                                     <img src={getIcon(entry.attributes.type)}/>
                                 </div>
-                                <div className='col-sm-10'>
-                                    <div className='row'>
-                                        <div className='col-6 text-start'>
-                                            <h6 className="mb-0">{entry.attributes.type}</h6>
-                                            <p className="mb-0 opacity-75">{entry.attributes.startingtime.slice(0, -7)} - {entry.attributes.endtime.slice(0, -7)} Uhr</p>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col text-start">
+                                            <p className="mb-1 opacity-75">{formatDate(entry.attributes.date)}</p>
+                                            <h3 className="mb-1">{entry.attributes.type}</h3>
                                         </div>
-                                        <div className='col-6 text-end'>
-                                            <h6 className="text-nowrap mb-0">{formatDate(entry.attributes.date)}</h6>
-                                            <p className="text-nowrap mb-0 opacity-75">{entry.attributes.location}</p>
+                                        <div class="col text-end">
+                                            <p className="mb-1 opacity-75"><i class="bi bi-clock-history pe-2"/>{entry.attributes.startingtime?.slice(0, -7)} - {entry.attributes.endtime?.slice(0, -7)}</p>
+                                            <h3 className="mb-1">{entry.attributes.location}</h3>
                                         </div>
-                                        <div className='col-12 text-start'>
-                                            <p className='text-primary'>{entry.attributes.text}</p>
-                                        </div>
-                                        <div className='col-12 text-end'>
-                                            <Link className='btn btn-light' to="/news"><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link>
-                                        </div>              
+                                    </div>
+                                    <div class="row align-items-top">
+                                        {entry.attributes.text ?
+                                            <div class="col text-start">
+                                                <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{entry.attributes.text}</p>
+                                            </div> : <div/>
+                                        }
+                                        {entry.attributes.linkedpostid ?
+                                            <div class="col text-end">
+                                                <Link className='btn btn-outline-primary mt-1' to={`/news/${entry.attributes.linkedpostid}`} onClick={()=>{onPostClicked(entry.attributes.linkedpostid)}} key={entry.attributes.linkedpostid}><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link>
+                                            </div> : <div/>
+                                        }                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    ))
-                }
-            </div>
+
+                    </div>
+                ))
+            }
         </div>
     )
 }
@@ -67,29 +76,42 @@ export default EventList
 
 /**
 
-<a href="/" className="list-group-item list-group-item-action d-flex gap-4 py-3" aria-current="true">
-                        <i className="bi bi-arrow-repeat fs-2" style={{color: 'cornflowerblue'}}></i>
-                        <div className="d-flex gap-5 w-100 justify-content-between">
-                            <div>
-                                <h6 className="text-start mb-0">{entry.attributes.type}</h6>
-                                <p className="text-start mb-0 opacity-75">{entry.attributes.startingtime.slice(0, -7)} - {entry.attributes.endtime.slice(0, -7)} Uhr</p>
+<div className="list-group w-100 py-2">
+            {
+                events.map((entry) => (
+                    <div className="list-group-item list-group-item-action p-2" aria-current="true">
+                        
+                        <div class="container-flex">              
+                            <div class="row align-items-top">
+                                <div class="col-sm-2">
+                                    <img src={getIcon(entry.attributes.type)}/>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-8 col-sm-6 text-start">
+                                            <p className="mb-1 opacity-75">{formatDate(entry.attributes.date)}</p>
+                                            <h3 className="mb-1">{entry.attributes.type}</h3>
+                                        </div>
+                                        <div class="col-4 col-sm-6 text-end">
+                                            <p className="mb-1 opacity-75"><i class="bi bi-clock-history pe-2"/>{entry.attributes.startingtime.slice(0, -7)} - {entry.attributes.endtime.slice(0, -7)} Uhr</p>
+                                            <h3 className="mb-1">{entry.attributes.location}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-top">
+                                        <div class="col-8 col-sm-6 text-start">
+                                            {entry.attributes.text ? <p className='opacity-75 text-primary'><i class="bi bi-info-circle pe-2"/>{entry.attributes.text}</p> : <div/>}
+                                        </div>
+                                        <div class="col-4 col-sm-6 text-end">
+                                            {entry.attributes.linkedpostid ? <Link className='btn btn-primary btn-sm mt-1' to="/news"><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link> : <div/>}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h6 className="text-nowrap text-end mb-0">{formatDate(entry.attributes.date)}</h6>
-                                <p className="text-nowrap text-end mb-0 opacity-75">{entry.attributes.location}</p>
-                            </div>                      
                         </div>
-                    </a>
 
-<a href="/" className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-    <i className="bi bi-arrows-collapse-vertical" style={{fontSize: '1.5rem', color: 'orange'}}></i>
-    <div className="d-flex gap-2 w-100 justify-content-between">
-        <div>
-            <h6 className="text-start mb-0">Freundschaftsspiel</h6>
-            <p className="text-start mb-0 opacity-75">20:15 - 21:30, Wernau</p>
+                    </div>
+                ))
+            }
         </div>
-        <small className="opacity-50 text-nowrap">Di, 31.10.2023</small>
-    </div>
-</a>
 
  */
