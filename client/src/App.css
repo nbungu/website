@@ -73,18 +73,13 @@ p {
 
 .header-bg {
   background-color: white; /* Adjust the color and transparency (0.5 is 50% opaque) */
-  background-image: url('header-bg.webp'); /* Replace with the path to your texture image */
+  background-image: url('./assets/subtle-prism-2.svg'); /* Replace with the path to your texture image */
   background-size: cover; /* Adjust this as needed */
   background-blend-mode: multiply; /* You can experiment with blend modes */
   height: auto;
+  /* background by SVGBackgrounds.com */
 }
 
-.header-link {
-  color: var(--bg-main-gray);
-  text-transform: uppercase;
-  font-weight: bold;
-  margin: 1rem;
-}
 
 /* MAIN SIZING
 -------------------------------------------------- */
@@ -106,17 +101,11 @@ p {
   .tiles-container-flex {
     grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
   }
-  .header-link {
-    margin: 0.6rem;
-  }
 }
 /* When the screen size is 560px or smaller */
 @media (max-width: 560px) {
   .tiles-container-flex {
     grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
-  }
-  .header-link {
-    margin: 0.3rem;
   }
 }
 
@@ -338,7 +327,7 @@ p {
 /* Glassmorphism */
 .glass-effect { 
   box-shadow: 0 0 5px 0 ; 
-  background: inherit; 
+  background: rgba(255, 255, 255, 0.2); /*inherit*/
   backdrop-filter: blur(10px);
 }
 
@@ -348,7 +337,13 @@ p {
 
 .gallery-item img {
   width: 100%;
-  height: 320px;
+  height: 280px;
   object-fit: cover;
 }
+.gallery-item:hover {
+  box-shadow: 0 0 5px 0; 
+  background: inherit; 
+  backdrop-filter: blur(10px);
+}
+
 

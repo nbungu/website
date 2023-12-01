@@ -40,7 +40,7 @@ function EisbuabaCup2024({ onPostClicked }) {
 
       <div className='flex-grow-1'>
 
-        <div className="tiles-container-flex-sm">
+        <div className="tiles-container-flex">
 
            <div className="fixed-tile">
             <h1>Eisbuaba Cup 2024</h1>

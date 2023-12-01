@@ -7,35 +7,52 @@ import logo from "../assets/header-logo.svg";
 
 function Header({ currentPage }) {
     
-    const regular = 'nav-link header-link';
-    const active = 'nav-link header-link active';    
+    const active = 'btn btn-light rounded-pill my-2 px-4 border border-primary border-bottom-0';
+    const regular = 'btn btn-light rounded-pill my-2 px-4 border-0 glass-effect';
+    //{currentPage === "news" ? active : regular}
 
     return (
-    <div className="navbar d-flex flex-wrap align-items-center justify-content-center justify-content-md-between header-bg">
+    <div className="header-bg bg-zig-zag">
 
-        <Link to="/" className='col-md-3 d-flex align-items-center mb-md-0 text-dark text-decoration-none me-3'>
-            <img className="header-logo" src={logo} alt="logo"/>
-            <h1>Eisbuaba Adelberg</h1>
-        </Link>
+        <div className='container-flex'>
 
-        <ul className="col-md-auto col-12 nav nav-underline justify-content-center mb-md-0">
-            <li className='nav-item'>
-                <Link to="/" className='text-decoration-none'><h2 className={currentPage === "home" ? active : regular}>Home</h2></Link>
-            </li>
-            <li className='nav-item'>
-                <Link to="/news" className='text-decoration-none'><h2 className={currentPage === "news" ? active : regular}>News</h2></Link>
-            </li>
-            <li className='nav-item'>
-                <Link to="/termine" className='text-decoration-none'><h2 className={currentPage === "schedule" ? active : regular}>Termine</h2></Link>
-            </li>
-            <li className='nav-item'>
-                <Link to="/kontakt" className='text-decoration-none'><h2 className={currentPage === "contact" ? active : regular}>Kontakt</h2></Link>
-            </li>
-        </ul>
+            <div className='row align-items-center my-1'>
+                
+                <div className='col-auto'>
+                    <Link to="/" className='d-flex align-items-center text-decoration-none'>
+                        <img className="header-logo" src={logo} alt="logo"/>
+                        <h1>Eisbuaba Adelberg</h1>
+                    </Link>
+                </div>
+                
 
-        <div className="col-md-3"/>
+                <div className="col-auto">
+                    <div className='row'>
+                    
+                    <div className='col text-center'>
+                        <Link to="/" className={currentPage === "home" ? active : regular}><h2>Home</h2></Link>
+                    </div>
+                    <div className='col text-center'>
+                        <Link to="/news" className={currentPage === "news" ? active : regular}><h2>News</h2></Link>
+                    </div>
+                    <div className='col text-center'>
+                        <Link to="/termine" className={currentPage === "schedule" ? active : regular}><h2>Termine</h2></Link>      
+                    </div>
+                    <div className='col text-center'>
+                        <Link to="/kontakt" className={currentPage === "contact" ? active : regular}><h2>Kontakt</h2></Link>
+                    </div>
+                        
+                    </div>
+                             
+                        
+                </div>
+
+            </div>
+
+        </div>
         
-      </div>
+        
+    </div>
   )
 }
 

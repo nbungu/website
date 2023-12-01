@@ -14,13 +14,22 @@ function ImageGallery({ imagePaths }) {
     setSelectedImage(null);
     };
 
+    const downloadImage = (imagePath) => {
+        const link = document.createElement('a');
+        link.href = imagePath;
+        link.download = 'downloaded_image.jpg';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+
     return (
 
         <div className="container-flex">
             <div className="row justify-content-center">
                 {imagePaths.map((imagePath, index) => (
                 <div key={index} className="col-6 col-sm-4 p-2">
-                    <div className="gallery-item" onClick={() => openImageModal(imagePath)} style={{ cursor: 'pointer' }}>
+                    <div className="gallery-item rounded" onClick={() => openImageModal(imagePath)} style={{ cursor: 'pointer' }}>
                         <img src={imagePath} alt={`Image ${index + 1}`} className='rounded' />
                     </div>
                 </div>
@@ -31,10 +40,23 @@ function ImageGallery({ imagePaths }) {
                 <div className="modal fade show" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
-                            <div className="modal-body">
+
+                            <div className="row align-items-center justify-content-between p-3">
+
+                                <div className="col-auto">
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={closeImageModal}/>
+                                </div>
+
+                                <div className="col-auto">
+                                    <button type="button" class='btn btn-success' onClick={() => downloadImage(selectedImage)}><i className="bi bi-arrows-fullscreen"/></button>
+                                </div>
+
+                            </div>
+
+                            
+                            <div className="modal-body pt-0">
                                 <img src={selectedImage} alt="Full Size Image" className="img-fluid" />
                             </div>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={closeImageModal}/>
                         </div>
                     </div>
                 </div>
