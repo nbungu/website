@@ -66,18 +66,28 @@ p {
 /* HEADER
 -------------------------------------------------- */
 
-.header-logo {
-  max-height: 56px;
-  margin: 0.5rem; /* 16px = 1rem */
-}
-
-.header-bg {
+.bg-header {
   background-color: white; /* Adjust the color and transparency (0.5 is 50% opaque) */
   background-image: url('./assets/subtle-prism-2.svg'); /* Replace with the path to your texture image */
   background-size: cover; /* Adjust this as needed */
   background-blend-mode: multiply; /* You can experiment with blend modes */
   height: auto;
   /* background by SVGBackgrounds.com */
+}
+
+.header {
+  margin: 0rem auto; /* Center horizontally */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 960px;
+  height: 5rem;
+}
+
+.header-logo {
+  max-height: 5rem;
+  width: auto;
+  padding: 0rem;
+  margin: 0rem; /* Center the grid on the page */
 }
 
 
