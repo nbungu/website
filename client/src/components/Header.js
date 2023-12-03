@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import logo from "../assets/header-logo.svg";
+import logo from "../assets/logo.png";
 
 function Header({ currentPage }) {
     
@@ -13,16 +13,16 @@ function Header({ currentPage }) {
     //{currentPage === "news" ? active : regular}
 
     return (
-        <header className="navbar navbar-expand-md navbar-light bg-light p-0">
+        <header className="navbar navbar-expand-md navbar-light bg-header p-0">
             
             <div className="container header">
-    
-                {/* Buttons in the center */}
-                <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
-                    
-                    {/* Logo on the left */}
-                    <img className='header-logo' src={logo} alt="logo"/>
 
+                {/* Logo on the left */}
+                <Link to='/'><img className='navbar-brand header-logo' src={logo} alt="Logo"/></Link>   
+                
+                <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                    {/* Buttons on the right*/}
                     <div className="navbar-nav gap-3">
                         <Link to="/" className={currentPage === "home" ? active : regular}><h2>Home</h2></Link>
                         <Link to="/news" className={currentPage === "news" ? active : regular}><h2>News</h2></Link>
@@ -31,15 +31,18 @@ function Header({ currentPage }) {
                     </div>
                 </div>
 
-                {/* Burger menu on the right for small screens */}
-                <div class="dropdown">
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="dropdown" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                {/* Burger menu for small screens */}
+                <div class="dropdown dropstart">
+                    
+                    <button className="navbar-toggler glass-effect" type="button" data-toggle="collapse" data-bs-toggle="dropdown" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    
+                    <ul class="dropdown-menu glass-effect text-center mx-3">
+                        <Link to="/" className='dropdown-item py-3 px-5'><h1>Home</h1></Link>
+                        <Link to="/news" className='dropdown-item py-3 px-5'><h1>News</h1></Link>
+                        <Link to="/termine" className='dropdown-item py-3 px-5'><h1>Termine</h1></Link>      
+                        <Link to="/kontakt" className='dropdown-item py-3 px-5'><h1>Kontakt</h1></Link>
                     </ul>
                 </div>
 
@@ -51,7 +54,10 @@ function Header({ currentPage }) {
 export default Header
 
 /*
+<Link to='/' className='navbar-brand'><img src={logo} alt="Logo" width="56" height="56" class="d-inline-block align-text-top"/></Link>
 
+
+<i class="bi bi-house-fill me-3 text-primary fs-3"/>
 <div className="header-bg bg-zig-zag">
 
         <div className='container-flex'>
