@@ -7,6 +7,7 @@ import TextCarousel from '../components/TextCarousel.js';
 import Tiles from '../components/Tiles.js';
 import RecentNews from "../components/RecentNews.js";
 import Footer from '../components/Footer.js';
+import HeaderBanner from "../components/HeaderBanner.js";
 
 function Home({ nodeServerStatus, onPostClicked }) {
  
@@ -14,6 +15,7 @@ function Home({ nodeServerStatus, onPostClicked }) {
     <div className='body-bg'>
 
       <Header currentPage={"home"}/>
+      <HeaderBanner/>
 
       <div className="flex-grow-1">
         <TextCarousel/>

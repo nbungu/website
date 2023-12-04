@@ -2,22 +2,21 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { formatPublishedAt, replaceSpacesWithHyphen, STRAPI_CMS_URL } from '../utils/Utils';
-
+import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
+import defaultImg from '../assets/default-image.png'
 
 function NewsTile({ newsPost, onPostClicked }) {
   
-  const imgRelPath = newsPost.attributes.titleimage.data?.attributes.url;
-  const imgPath = STRAPI_CMS_URL + newsPost.attributes.titleimage.data?.attributes.url;
-  const defaultImg = STRAPI_CMS_URL + "/uploads/ice_rink_698cada73b.png"
+  const imgPathRel = newsPost.attributes.titleimage.data?.attributes.url;
+  const img = STRAPI_CMS_URL + imgPathRel;
   const hasYTVideo = newsPost.attributes.youtubeurl;
 
   return (
     <Link className='news-tile' to={`/news/${newsPost.id}`} onClick={()=>{onPostClicked(newsPost.id)}} key={newsPost.attributes.title}> 
       <div className='news-tile-image'>
         {hasYTVideo ? <i class="bi bi-youtube"/> : <div/>}
-        <img class="news-tile-cover" src={imgRelPath ? imgPath : defaultImg} alt='cover'/>
-      </div>      
+        <img class="news-tile-cover" src={imgPathRel ? img : defaultImg} alt='cover'/>
+      </div>
       <span class="badge bg-secondary">{formatPublishedAt(newsPost.attributes.publishedAt)}</span>
       <h2>{newsPost.attributes.title}</h2>
       <p className='news-tile-desc'>{newsPost.attributes.summary}</p>

@@ -2,22 +2,27 @@
 
 import React from "react";
 import { Link } from 'react-router-dom';
-import ButtonTile from "./ButtonTile";
+import NewsList from "./NewsList";
 
-function NewsPostEndingElement({ previousPostId, nextPostId }) {
+function NewsPostEndingElement() {
   
   return (
-    <div className="row justify-content-between">
-
-      <div className="col-auto">
-        <Link className='btn btn-light' to="/news"><i className="bi bi-arrow-left pe-2"/>Vorheriger Artikel</Link>
+    
+    <div className="tile-container">
+      
+      <div className="fixed-tile">
+        <h2>Weitere Artikel</h2>
+        <NewsList/>
       </div>
 
-      <div className="col-auto">
-        <Link className='btn btn-light' to="/news">Nächster Artikel<i className="bi bi-arrow-right ps-2"/></Link>
+      <div className="row justify-content-between mt-3">
+        <div className="col-auto">
+          <Link className='btn btn-light' to="/news"><i className="bi bi-arrow-left pe-2"/>Alle News</Link>
+        </div>
       </div>
 
     </div>
+
   )
 }
 

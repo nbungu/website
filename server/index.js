@@ -8,25 +8,61 @@
 // localhost:3001 is pi.local:3001 (or IP of Raspberry)
 
 const express = require("express");
+const compression = require("compression"); // reducing the time required for the client to get and load the page
+const helmet = require("helmet"); // Helmet to protect against well known vulnerabilities
+const path = require("path");
 
 // Run server (backend) on Port 3001
 const PORT = process.env.PORT || 3001;
 
+// Create the Express application object
 const app = express();
+
+// Set up rate limiter: maximum of 60 requests per minute
+// express-rate-limit: middleware package that can be used to limit repeated requests to APIs and endpoints
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 60,
+});
+// Apply rate limiter to all requests
+app.use(limiter);
+
+app.use(compression()); // Compress all routes
+
+/* DEPLOY BUILD */
+// Pick up React index.html file
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+// Add helmet to the middleware chain by using 'use'.
+// Set CSP headers to allow our Bootstrap and Jquery to be served
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  }),
+);
+
 
 // Creates endpoint for route localhost:3001/api and handles GET requests to that route
 app.get("/api", (req, res) => {
     res.json({ message: "Backend is ONLINE!" });
 });
 
-// Creates endpoint for route localhost:3001/api and handles GET requests to that route
-app.get("/api/news", (req, res) => {
-  res.json({ message: newsEntries });
-});
-
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+
+// Catch all requests that don't match any route
+// For deployment, The entire React application will serve through the entry point 'client/build/index.html'
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html")
+  );
+});
+
+
 
 // TEST Content from NODE server
 /*
@@ -36,7 +72,12 @@ Strapi has a UI and built in SQLiteDB to store the content
 
 images under client/public/image.jpg
 
-*/
+// Creates endpoint for route localhost:3001/api and handles GET requests to that route
+app.get("/api/news", (req, res) => {
+  res.json({ message: newsEntries });
+});
+
+
 let newsEntries = [
   {
     title: "Breaking News: Exciting Event",
@@ -62,3 +103,4 @@ let newsEntries = [
     summary: "Celebrations ensue as the local sports team secures a historic championship victory.",
     fullText: "The local sports team has emerged victorious in a thrilling championship match. Fans are rejoicing as the team secured a historic win, marking a significant milestone in the city's sports history."
 }];
+*/

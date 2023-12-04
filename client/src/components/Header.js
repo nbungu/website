@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import logo from "../assets/logo.png";
+import logo from "../assets/header-logo-eisbuaba-adelberg.png";
 
 function Header({ currentPage }) {
     
@@ -13,12 +13,12 @@ function Header({ currentPage }) {
     //{currentPage === "news" ? active : regular}
 
     return (
-        <header className="navbar navbar-expand-md navbar-light bg-header p-0">
+        <header className="navbar navbar-expand-md navbar-light header-bg p-0">
             
             <div className="container header">
 
                 {/* Logo on the left */}
-                <Link to='/'><img className='navbar-brand header-logo' src={logo} alt="Logo"/></Link>   
+                <Link to='/'><img className='navbar-brand header-logo' src={logo} alt="Eisbuaba Adelberg Logo"/></Link>   
                 
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
 
@@ -52,56 +52,3 @@ function Header({ currentPage }) {
 }
 
 export default Header
-
-/*
-<Link to='/' className='navbar-brand'><img src={logo} alt="Logo" width="56" height="56" class="d-inline-block align-text-top"/></Link>
-
-
-<i class="bi bi-house-fill me-3 text-primary fs-3"/>
-<div className="header-bg bg-zig-zag">
-
-        <div className='container-flex'>
-
-            <div className='row align-items-center my-1'>
-                
-                <div className='col-auto border'>
-                    <Link to="/" className='text-decoration-none'>
-                        <div className='row align-items-center'>
-                            <img className="col-auto border header-logo pe-0" src={logo} alt="logo"/>
-                            <h1 className='col border pe-0'>Eisbuaba Adelberg</h1>
-                        </div>
-
-                        
-                    </Link>
-                </div>
-                
-
-                <div className="col-auto">
-                    <div className='row px-3'>
-                    
-                        <div className='col text-center'>
-                            <Link to="/" className={currentPage === "home" ? active : regular}><h2>Home</h2></Link>
-                        </div>
-                        <div className='col text-center'>
-                            <Link to="/news" className={currentPage === "news" ? active : regular}><h2>News</h2></Link>
-                        </div>
-                        <div className='col text-center'>
-                            <Link to="/termine" className={currentPage === "schedule" ? active : regular}><h2>Termine</h2></Link>      
-                        </div>
-                        <div className='col text-center'>
-                            <Link to="/kontakt" className={currentPage === "contact" ? active : regular}><h2>Kontakt</h2></Link>
-                        </div>
-                        
-                    </div>
-                             
-                        
-                </div>
-
-            </div>
-
-        </div>
-        
-        
-    </div>
-
-*/

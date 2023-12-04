@@ -9,13 +9,9 @@ import NewsPostStartingElement from "./NewsPostStartingElement";
 import NewsPostContentElement from "./NewsPostContentElement";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
 import NewsPostEndingElement from "./NewsPostEndingElement";
-import NewsList from "./NewsList";
 
 function NewsPost({ postId }) {
-  
-  // To handle dynamic routing
-  //const { title } = useParams();
-  
+   
   // Returns a post by id and with media data
   const queryString = STRAPI_CMS_URL + "/api/posts/" + postId + "?populate=*";
 
@@ -48,10 +44,7 @@ function NewsPost({ postId }) {
               <p className="text-body-secondary py-2">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
               <NewsPostContentElement newsPost={post}/>
             </div>
-            <div className="fixed-tile">
-              <h2>Weitere Artikel</h2>
-              <NewsList/>
-            </div>
+            <NewsPostEndingElement/>
           </div>
         }
 
