@@ -1,82 +1,72 @@
-// /home/pi/website/server/index.js
-
-// How To Run React Front-end + Express Back-end Concurrently
-//https://medium.com/technology-hits/how-to-run-react-front-end-express-back-end-concurrently-22b9922e5df7
+// /home/pi/website/server/server.js
 
 // Generally, in order to run your React app with your Node Express API back-end on your localhost server, you would usually need to run commands like npm start for both the front-end and the back-end.
-
 // localhost:3001 is pi.local:3001 (or IP of Raspberry)
 
 const express = require("express");
+const cors = require("cors");
 const compression = require("compression"); // reducing the time required for the client to get and load the page
 const helmet = require("helmet"); // Helmet to protect against well known vulnerabilities
+const rateLimit = require("express-rate-limit"); // express-rate-limit: middleware package that can be used to limit repeated requests to APIs and endpoints
 const path = require("path");
 
 // Run server (backend) on Port 3001
 const PORT = process.env.PORT || 3001;
 
-// Create the Express application object
-const app = express();
-
 // Set up rate limiter: maximum of 60 requests per minute
-// express-rate-limit: middleware package that can be used to limit repeated requests to APIs and endpoints
-const RateLimit = require("express-rate-limit");
-const limiter = RateLimit({
+const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 60,
 });
-// Apply rate limiter to all requests
-app.use(limiter);
 
+// Create the Express application object
+const app = express();
+
+//app.enable('trust proxy');
+
+/* -----MIDDLEWARES----- */
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '../client/build'))); // Serve static files from the 'build' directory inside the 'client' folder
+app.use(limiter); // Apply rate limiter to all requests
 app.use(compression()); // Compress all routes
-
-/* DEPLOY BUILD */
-// Pick up React index.html file
-app.use(express.static(path.join(__dirname, "../client/build")));
-
-// Add helmet to the middleware chain by using 'use'.
-// Set CSP headers to allow our Bootstrap and Jquery to be served
-app.use(
+app.use( 
   helmet.contentSecurityPolicy({
-    directives: {
-      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
-    },
+    directives: { "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"], },
   }),
 );
 
+/* -----ROUTES----- */
 
 // Creates endpoint for route localhost:3001/api and handles GET requests to that route
 app.get("/api", (req, res) => {
-    res.json({ message: "Backend is ONLINE!" });
+  res.json({ message: "Backend is ONLINE!" });
 });
 
+// Catch all requests that don't match any route
+// For deployment, The entire React application will serve through the entry point 'client/build/index.html'
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+/* -----LISTEN----- */
+
+// if not in production use the port 3000
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
 
-// Catch all requests that don't match any route
-// For deployment, The entire React application will serve through the entry point 'client/build/index.html'
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html")
-  );
-});
+/* TEST Content from NODE server
 
-
-
-// TEST Content from NODE server
-/*
 Deprecated: Use Strapi.io as CMS to handle API endpoint requests and serve Content like below
-
 Strapi has a UI and built in SQLiteDB to store the content
-
-images under client/public/image.jpg
 
 // Creates endpoint for route localhost:3001/api and handles GET requests to that route
 app.get("/api/news", (req, res) => {
   res.json({ message: newsEntries });
 });
-
 
 let newsEntries = [
   {

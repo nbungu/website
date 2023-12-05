@@ -1,9 +1,6 @@
 // client/src/components/NewsList.js
 
 import React from 'react';
-import { formatDate } from '../utils/Utils';
-import { Link } from 'react-router-dom';
-
 
 function NewsList() {
     

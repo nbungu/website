@@ -18,9 +18,11 @@ function Home({ nodeServerStatus, onPostClicked }) {
       <HeaderBanner/>
 
       <div className="flex-grow-1">
+        
         <TextCarousel/>
         <Tiles/>
         <RecentNews onPostClicked={onPostClicked}/>
+        
       </div>
 
       <Footer/>
