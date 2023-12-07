@@ -11,7 +11,10 @@ const rateLimit = require("express-rate-limit"); // express-rate-limit: middlewa
 const path = require("path");
 
 // Run server (backend) on Port 3001
-const PORT = process.env.PORT || 3001;
+//const PORT = process.env.PORT || 3000;
+
+const MODE = process.env.NODE_ENV || "undefined"
+const PORT = MODE === "production" ? 3000 : 3001;
 
 // Set up rate limiter: maximum of 60 requests per minute
 const limiter = rateLimit({
@@ -22,14 +25,13 @@ const limiter = rateLimit({
 // Create the Express application object
 const app = express();
 
-//app.enable('trust proxy');
+app.enable('trust proxy'); // limiter
 
 /* -----MIDDLEWARES----- */
 
-app.use(cors());
-app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/build'))); // Serve static files from the 'build' directory inside the 'client' folder
 app.use(limiter); // Apply rate limiter to all requests
+app.use(cors());
 app.use(compression()); // Compress all routes
 app.use( 
   helmet.contentSecurityPolicy({
@@ -44,6 +46,10 @@ app.get("/api", (req, res) => {
   res.json({ message: "Backend is ONLINE!" });
 });
 
+app.get("/mode", (req, res) => {
+  res.json({ message: `Mode: ${MODE}`});
+});
+
 // Catch all requests that don't match any route
 // For deployment, The entire React application will serve through the entry point 'client/build/index.html'
 app.get('/*', (req, res) => {
@@ -52,9 +58,11 @@ app.get('/*', (req, res) => {
 
 /* -----LISTEN----- */
 
-// if not in production use the port 3000
+// if in production use the port 3000 for server
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+  if (MODE === 'production') console.log(`Server runs in ${MODE} mode and serves static build-files from client folder`);
+  else console.log(`Server running in ${MODE} mode. React frontend runs on separate Port (3000)`);
 });
 
 

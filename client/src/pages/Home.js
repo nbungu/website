@@ -9,7 +9,7 @@ import RecentNews from "../components/RecentNews.js";
 import Footer from '../components/Footer.js';
 import HeaderBanner from "../components/HeaderBanner.js";
 
-function Home({ nodeServerStatus, onPostClicked }) {
+function Home({ nodeServerStatus, nodeServerMode, onPostClicked }) {
  
   return (
     <div className='body-bg'>
@@ -28,8 +28,9 @@ function Home({ nodeServerStatus, onPostClicked }) {
       <Footer/>
  
       <p className="text-center">{nodeServerStatus}</p>
+      <p className="text-center">{nodeServerMode}</p>
       
-    </div>   
+    </div>
   )
 }
 

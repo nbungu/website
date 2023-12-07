@@ -8,6 +8,7 @@ DDNS: No-IP.com
 Backend:
 - Server: Node.js (with Express.js)
 - Database: SQLite
+- Process Manager for deployment: pm2
 
 CMS (instead of managing server backend manually):
 - Strapi.io (Acts as Server backend with integrated SQLiteDB. Handles API Requests and serves content)

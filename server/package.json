@@ -4,14 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
     "server": "node server.js",
     "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build --prefix ../client"
   },
   "keywords": [],
-  "author": "",
+  "author": "Arne Schunter",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.4",
