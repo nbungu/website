@@ -1,6 +1,7 @@
 // client/src/pages/Home.js
 
 import React from "react";
+import { STRAPI_CMS_URL, REACT_MODE } from '../utils/Utils.js';
 
 import Header from '../components/Header.js';
 import TextCarousel from '../components/TextCarousel.js';
@@ -28,7 +29,9 @@ function Home({ nodeServerStatus, nodeServerMode, onPostClicked }) {
       <Footer/>
  
       <p className="text-center">{nodeServerStatus}</p>
-      <p className="text-center">{nodeServerMode}</p>
+      <p className="text-center">{'server mode: ' + nodeServerMode}</p>
+      <p className="text-center">{'strapi url: ' + STRAPI_CMS_URL}</p>
+      <p className="text-center">{'react mode: ' + REACT_MODE}</p>
       
     </div>
   )

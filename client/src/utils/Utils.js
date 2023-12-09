@@ -1,8 +1,7 @@
 // client/src/utils/Utils.js
 
-export const STRAPI_CMS_URL = 'http://localhost:1337' //'http://192.168.0.160:1337';
-//export const REACT_FRONTEND_URL = 'http://192.168.0.150:3000';
-//export const NODEJS_BACKEND_URL = 'http://192.168.0.150:3001';
+export const STRAPI_CMS_URL = process.env.NODE_ENV === "production" ? 'http://[2a02:8070:886:660::c9f8]:1337' : 'http://192.168.0.160:1337'; // or 'localhost'
+export const REACT_MODE = process.env.NODE_ENV;
 
 export function formatDate(inputDate) {
   const dateParts = inputDate.split('-');

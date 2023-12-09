@@ -13,7 +13,7 @@ const path = require("path");
 // Run server (backend) on Port 3001
 //const PORT = process.env.PORT || 3000;
 
-const MODE = process.env.NODE_ENV || "undefined"
+const MODE = process.env.NODE_ENV;
 const PORT = MODE === "production" ? 3000 : 3001;
 
 // Set up rate limiter: maximum of 60 requests per minute
@@ -25,7 +25,8 @@ const limiter = rateLimit({
 // Create the Express application object
 const app = express();
 
-app.enable('trust proxy'); // limiter
+// set this when behind a rp proxy (for express-rate-limit to work properly)
+app.set('trust proxy', 1)
 
 /* -----MIDDLEWARES----- */
 
@@ -47,8 +48,12 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/mode", (req, res) => {
-  res.json({ message: `Mode: ${MODE}`});
+  res.json({ message: `${MODE}`});
 });
+
+// express-rate-limit Test endpoints
+app.get('/ip', (request, response) => response.send(request.ip))
+app.get('/x-forwarded-for', (request, response) => response.send(request.headers['x-forwarded-for']))
 
 // Catch all requests that don't match any route
 // For deployment, The entire React application will serve through the entry point 'client/build/index.html'
