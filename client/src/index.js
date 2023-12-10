@@ -43,7 +43,7 @@ export default function App() {
   const [newsPostId, setNewsPostId] = useState(null);
 
   const fetchServerStatus = () => {
-    return fetch("/api")
+    return fetch("/status")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

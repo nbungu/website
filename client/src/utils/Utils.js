@@ -1,6 +1,6 @@
 // client/src/utils/Utils.js
 
-export const STRAPI_CMS_URL = process.env.NODE_ENV === "production" ? 'http://[2a02:8070:886:660::c9f8]:1337' : 'http://192.168.0.160:1337'; // or 'localhost'
+export const STRAPI_CMS_URL = process.env.REACT_APP_STRAPI_BASE_URL;
 export const REACT_MODE = process.env.NODE_ENV;
 
 export function formatDate(inputDate) {

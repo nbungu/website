@@ -14,7 +14,7 @@ const path = require("path");
 //const PORT = process.env.PORT || 3000;
 
 const MODE = process.env.NODE_ENV;
-const PORT = MODE === "production" ? 3000 : 3001;
+const PORT = process.env.PORT;
 
 // Set up rate limiter: maximum of 60 requests per minute
 const limiter = rateLimit({
@@ -43,7 +43,7 @@ app.use(
 /* -----ROUTES----- */
 
 // Creates endpoint for route localhost:3001/api and handles GET requests to that route
-app.get("/api", (req, res) => {
+app.get("/status", (req, res) => {
   res.json({ message: "Backend is ONLINE!" });
 });
 

@@ -4,10 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "node server.js",
-    "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run build --prefix ../client"
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "node --env-file=development.env server.js",
+    "server:prod": "node --env-file=production.env server.js",
+    "client:dev": "NODE_ENV=development npm start --prefix ../client",
+    "client:prod": "NODE_ENV=production npm run build --prefix ../client"
   },
   "keywords": [],
   "author": "Arne Schunter",
