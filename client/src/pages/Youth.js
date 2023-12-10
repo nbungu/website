@@ -3,9 +3,6 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import testIcon from "../assets/ice-court.png";
-import { Link } from 'react-router-dom';
-import ImageGallery from '../components/ImageGallery';
 
 function Youth() {
 
@@ -17,14 +14,7 @@ function Youth() {
 
       <div className='flex-grow-1'>      
 
-        <div className="tiles-container">
-          <div className='fixed-tile'>
-
-
-
-          </div>
-
-        </div>
+      Nachwuchstraining...
 
       </div> 
 

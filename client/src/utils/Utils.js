@@ -1,8 +1,7 @@
 // client/src/utils/Utils.js
 
-export const STRAPI_CMS_URL = 'http://192.168.0.150:1337';
-export const REACT_FRONTEND_URL = 'http://192.168.0.150:3000';
-export const NODEJS_BACKEND_URL = 'http://192.168.0.150:3001';
+export const STRAPI_CMS_URL = process.env.REACT_APP_STRAPI_BASE_URL;
+export const REACT_MODE = process.env.NODE_ENV;
 
 export function formatDate(inputDate) {
   const dateParts = inputDate.split('-');
@@ -43,8 +42,6 @@ export function extractYouTubeVideoId(url) {
   // If there's a match, return the video ID, otherwise return null
   return match ? match[1] : null;
 }
-
-
 
 export function replaceSpacesWithHyphen(inputString) {
   // Use the replace method with a regular expression to replace spaces with hyphens

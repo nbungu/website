@@ -1,7 +1,6 @@
 // client/src/components/RecentNews.js
 
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import Featurette from "./Featurette.js";
 import LoadingSpinner from "./LoadingSpinner.js";
 import { STRAPI_CMS_URL } from '../utils/Utils.js';

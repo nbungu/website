@@ -1,19 +1,18 @@
 // client/src/components/NewsPostContentElement.js
 
 import React from "react";
-import ImageCarousel from "./ImageCarousel";
-import { STRAPI_CMS_URL } from '../utils/Utils';
 import YouTubeEmbed from "./YouTubeEmbed";
 import ImageGallery from "./ImageGallery";
+import { STRAPI_CMS_URL } from '../utils/Utils';
 
 function NewsPostContentElement({ newsPost }) {
   
-  const imgRelPath = newsPost.attributes.titleimage?.data?.attributes.url;
-  const imgPath = STRAPI_CMS_URL + newsPost.attributes.titleimage?.data?.attributes.url;
+  const imgPathRel = newsPost.attributes.titleimage?.data?.attributes.url;
+  const imgPath = STRAPI_CMS_URL + imgPathRel;
   const imageCaption = newsPost.attributes.titleimagecaption;
   const textBlocks = getTextBlocks(newsPost.attributes.fulltext)
   const imgCollection = getImageArray(newsPost.attributes.imagecollection)
-  const youtTubeVideoUrl = newsPost.attributes.youtubeurl;
+  const ytVideoUrl = newsPost.attributes.youtubeurl;
   
   // returns an array containing only the textblocks from the fullText Array of the JSON
   function getTextBlocks(fullTextArray) {
@@ -25,12 +24,11 @@ function NewsPostContentElement({ newsPost }) {
 
   return (
     <div className="container-flex">
-      {imgRelPath ? <img className="img-fluid news-post-image rounded mt-2" src={imgPath} alt=''/> : <img className="m-0 p-0" alt=''/>}
-      {imgRelPath && imageCaption ? <p className="my-2 text-body-secondary">{imageCaption}</p> : <p className="m-0 p-0"></p>}
-      {textBlocks ? textBlocks.map((textBlock) => (<p className="text-start mt-3">{textBlock}</p>)) : <p/>}
-      {imgCollection ? <div className="mt-3"><ImageGallery imagePaths={imgCollection}/></div> : <p/>}
-      {youtTubeVideoUrl ? <div className="mt-3"><YouTubeEmbed videoUrl={youtTubeVideoUrl}/></div> : <p/>}
-
+      {imgPathRel ? <img className="img-fluid news-post-image rounded mt-2" src={imgPath} alt=''/> : <div className="m-0 p-0"/>}
+      {imgPathRel && imageCaption ? <p className="my-2 text-body-secondary">{imageCaption}</p> : <div className="m-0 p-0"/>}
+      {textBlocks ? textBlocks.map((textBlock) => (<p className="text-start mt-3">{textBlock}</p>)) : <div/>}
+      {imgCollection ? <div className="mt-3"><ImageGallery imagePaths={imgCollection}/></div> : <div/>}
+      {ytVideoUrl ? <div className="mt-3"><YouTubeEmbed videoUrl={ytVideoUrl}/></div> : <div/>}
     </div>
   )
 }

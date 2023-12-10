@@ -57,7 +57,7 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
     <div className="row justify-content-between">
 
       <div className="col-auto">
-        <Link className='btn btn-light' to="/news"><i className="bi bi-arrow-left pe-2"/>Zur Übersicht</Link>
+        <Link className='btn btn-light' to="/news"><i className="bi bi-arrow-left pe-2"/>Alle News</Link>
       </div>
 
       <div className="col-auto">

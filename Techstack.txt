@@ -1,13 +1,14 @@
-https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/
-https://mdbootstrap.com/docs/react/getting-started/installation/ 
 
 Server Hardware: Raspi
 IDE: VSCode with Remote SSH
-Domain Registrar: GoDaddy
+Domain Registrar: GoDaddy (Google-Konto verknüpft); eisbuaba-adelberg.de
+SSL: Lets Encrypt + Certbot
+DDNS: No-IP.com
 
 Backend:
 - Server: Node.js (with Express.js)
 - Database: SQLite
+- Process Manager for deployment: pm2
 
 CMS (instead of managing server backend manually):
 - Strapi.io (Acts as Server backend with integrated SQLiteDB. Handles API Requests and serves content)

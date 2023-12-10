@@ -3,81 +3,52 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import logo from "../assets/header-logo.svg";
+import logo from "../assets/header-logo-eisbuaba-adelberg.png";
 
 function Header({ currentPage }) {
     
-    const active = 'btn btn-light rounded-pill my-2 px-4 border border-primary border-bottom-0';
-    const regular = 'btn btn-light rounded-pill my-2 px-4 border-0 glass-effect';
+    const active = 'btn btn-light rounded-pill px-4 border border-secondary';
+    const regular = 'btn btn-light rounded-pill px-4 border-0 glass-effect';
+    
     //{currentPage === "news" ? active : regular}
 
     return (
-    <div className="header-bg bg-zig-zag">
+        <header className="navbar navbar-expand-md navbar-light header-bg p-0">
+            
+            <div className="container header">
 
-        <div className='container-flex'>
-
-            <div className='row align-items-center my-1'>
+                {/* Logo on the left */}
+                <Link to='/'><img className='navbar-brand header-logo' src={logo} alt="Eisbuaba Adelberg Logo"/></Link>   
                 
-                <div className='col-auto'>
-                    <Link to="/" className='d-flex align-items-center text-decoration-none'>
-                        <img className="header-logo" src={logo} alt="logo"/>
-                        <h1>Eisbuaba Adelberg</h1>
-                    </Link>
-                </div>
-                
+                <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
 
-                <div className="col-auto">
-                    <div className='row'>
-                    
-                    <div className='col text-center'>
+                    {/* Buttons on the right*/}
+                    <div className="navbar-nav gap-3">
                         <Link to="/" className={currentPage === "home" ? active : regular}><h2>Home</h2></Link>
-                    </div>
-                    <div className='col text-center'>
                         <Link to="/news" className={currentPage === "news" ? active : regular}><h2>News</h2></Link>
-                    </div>
-                    <div className='col text-center'>
                         <Link to="/termine" className={currentPage === "schedule" ? active : regular}><h2>Termine</h2></Link>      
-                    </div>
-                    <div className='col text-center'>
                         <Link to="/kontakt" className={currentPage === "contact" ? active : regular}><h2>Kontakt</h2></Link>
                     </div>
-                        
-                    </div>
-                             
-                        
+                </div>
+
+                {/* Burger menu for small screens */}
+                <div class="dropdown dropstart">
+                    
+                    <button className="navbar-toggler glass-effect" type="button" data-toggle="collapse" data-bs-toggle="dropdown" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <ul class="dropdown-menu glass-effect text-center mx-3">
+                        <Link to="/" className='dropdown-item py-3 px-5'><h1>Home</h1></Link>
+                        <Link to="/news" className='dropdown-item py-3 px-5'><h1>News</h1></Link>
+                        <Link to="/termine" className='dropdown-item py-3 px-5'><h1>Termine</h1></Link>      
+                        <Link to="/kontakt" className='dropdown-item py-3 px-5'><h1>Kontakt</h1></Link>
+                    </ul>
                 </div>
 
             </div>
-
-        </div>
-        
-        
-    </div>
+        </header>
   )
 }
 
 export default Header
-
-/*
-
-        <div className="col-md-3 text-end px-3">
-            <div className="d-flex justify-content-end">
-                <div className="p-2">
-                    <button type="button" className="btn btn-secondary rounded-circle p-2 lh-1">
-                        <i className="bi bi-instagram"></i>
-                    </button>
-                </div>
-                <div className="p-2">
-                    <button type="button" className="btn btn-secondary rounded-circle p-2 lh-1">
-                        <i className="bi bi-facebook"></i>
-                    </button>
-                </div>
-                <div className="p-2">
-                    <button type="button" className="btn btn-secondary rounded-circle p-2 lh-1">
-                        <i className="bi bi-envelope-at"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-*/
