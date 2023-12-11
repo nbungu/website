@@ -2,7 +2,7 @@
 For all commands and scripts to work, we need some prerequisites...
 
 ## Assign static IP to Raspberry within the local Network:
-For comfortable SSH and VSCode Remote Explorer access, make the IPv4 of the Raspberry Server static.
+For comfortable **SSH** and **VSCode Remote Explorer** access, make the IPv4 of the Raspberry Server static.
 'Statisches DHCP - Heimnetzwerk' -> pi: 192.168.0.160
 > IPv6 address of the Raspberry Pi is not affected of this setting and will most likely change every 1 - 3 days!
 
@@ -19,6 +19,15 @@ In the following steps we need some server scripts to start the server and the R
 	    "client:prod": "NODE_ENV=production npm run build --prefix ../client"
     },
 
+> websiteCMS/package.json
+
+	"scripts": {
+		"develop": "NODE_ENV=development strapi develop",
+		"start:dev": "NODE_ENV=development strapi start",
+		"start:prod": "NODE_ENV=production strapi start",
+		"build": "NODE_ENV=production strapi build",
+		"strapi": "strapi"
+	},
 
 # Setup Steps for Deployment
 
@@ -204,7 +213,7 @@ Put the Strapi CMS behind the SSL secured HTTPS connection of *https://eisbuaba-
     module.exports  = ({ env }) => ({
 		host:  env('HOST', '0.0.0.0'),
 		port:  env.int('PORT', 1337),
-		url:  'https://eisbuaba-adelberg.de/strapi', // for generating absolute URLs for content based on this URL
+		url:  env('NODE_ENV') === 'development' ? '' : 'https://eisbuaba-adelberg.de/strapi', // for generating absolute URLs for content based on this URL
 		app: {
 			keys:  env.array('APP_KEYS'),
 		},
@@ -212,6 +221,18 @@ Put the Strapi CMS behind the SSL secured HTTPS connection of *https://eisbuaba-
 			populateRelations:  env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
 		},
 	});
+
+...retrieve the value of the 'HOST' environment variable. If the 'HOST' environment variable is not set, it defaults to '0.0.0.0'
+
+It's important to note that this configuration (url etc.) is used by Strapi internally
+and does not affect the reverse proxy configuration in Nginx directly.
+
+The Nginx reverse proxy configuration, as mentioned in the previous response,
+determines how requests to https://eisbuaba-adelberg.de/strapi and its subpaths are handled
+by forwarding them to the specified backend server, in this case, http://127.0.0.1:1337.
+The Strapi url property is more about how Strapi itself constructs URLs for its resources.
+
+Don't add *BASE_URL=https://eisbuaba-adelberg.de/strapi* to the .env file in the websiteCMS root dir.
 
 We are adding **/strapi** to avoid conflicts with requests to the main domain at **/**
 

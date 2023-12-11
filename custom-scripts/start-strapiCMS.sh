@@ -18,10 +18,10 @@ if [ "$choice" == "1" ]; then
 elif [ "$choice" == "2" ]; then
     echo "BUILD + START StrapiCMS for PRODUCTION MODE..."
     # Runs cmds sequentially
-    NODE_ENV=production npm run build && NODE_ENV=production npm run start
+    npm run build && npm run start:prod
 elif [ "$choice" == "3" ]; then
     echo "BUILD StrapiCMS for PRODUCTION MODE..."
-    NODE_ENV=production npm run build
+    npm run build
 else
     echo "Invalid choice. Please enter 1 or 2."
 fi
