@@ -16,7 +16,7 @@ function EisbuabaCup2024({ onPostClicked }) {
   
     // fetches the last two most recent posts in sorted order
     const queryString1 = STRAPI_CMS_URL + "/api/events/6?populate=*";
-    const queryString2 = STRAPI_CMS_URL + "/api/teams?populate=*";
+    const queryString2 = STRAPI_CMS_URL + "/api/teams?filters[active][$eq]=true&populate=*";
     const queryString3 = STRAPI_CMS_URL + "/api/matches?populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&sort=faceoffTime";
     const [event, setEvent] = useState(null);
     const [teams, setTeams] = useState(null);

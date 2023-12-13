@@ -1,11 +1,39 @@
 // client/src/pages/Contact.js
 
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { STRAPI_CMS_URL } from '../utils/Utils.js';
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function Contact() {
   
+    // Returns all posts including media data sorted by date
+    const queryString = STRAPI_CMS_URL + "/api/people";
+
+    // GET Request to STRAPI server (backend) at endpoint /api/posts
+    const [people, setPeople] = useState(null);
+
+    const fetchPeople = () => {
+        return fetch(queryString)
+        .then((response) => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((result) => setPeople(result.data))
+        .catch((error) => {
+            console.error('Error fetching featured posts:', error);
+            // You can handle the error here, such as displaying an error message to the user
+        });
+    };
+
+  // We want fetchCarouselBanners() to be executed everytime App component loads
+  useEffect(() => {
+    fetchPeople();
+  }, []);
+
   return (
     <div className='body-bg'>
 
@@ -21,30 +49,29 @@ function Contact() {
                         <div className="text-start">Grabäckerstr. 5</div>
                         <div className="text-start">73614 Schorndorf-Schlichten</div>
                         <div className="border-bottom"/>
-                        <div className="text-start">https://asv-schlichten.de/</div>
-                        <div className="text-start">info@asv-schlichten.de</div>
+                        
+                        <i class="text-start bi bi-globe2"><a className="text-start ps-2" href="https://asv-schlichten.de/">www.asv-schlichten.de</a></i>
+                        <i class="text-start bi bi-envelope-at"><a className="text-start ps-2">info@asv-schlichten.de</a></i>
+                        
+                        
                     </div>
                 </div>
                 <div className="fixed-tile">
                     <h2>Kontaktpersonen</h2>
+                    
+                    {!people ? <LoadingSpinner message={"Lade Personen..."}/> :
                     <div className="vstack gap-2 p-3">
-
-                        <div className="border">
-                            <div>Max Mustermann</div>
-                            <div>Betreuer</div>
-                            <div>max-mustermann@mailadresse.de</div>
+                        {people.map((person) => (
+                        <div className="border rounded">
+                            <div>{person.attributes.name}</div>
+                            <div>{person.attributes.function}</div>
+                            <div>{person.attributes.mail}</div>
                         </div>
-                        <div className="border">
-                            <div>Max Mustermann</div>
-                            <div>Trainer</div>
-                            <div>max-mustermann@mailadresse.de</div>
-                        </div>
-                        <div className="border">
-                            <div>Max Mustermann</div>
-                            <div>Organisation</div>
-                            <div>max-mustermann@mailadresse.de</div>
-                        </div>
+                        ))}
                     </div>
+                    }
+
+
                 </div>
             </div>
             <div className="tiles-container pt-0">

@@ -41,13 +41,3 @@ function RecentNews({ onPostClicked }) {
 }
 
 export default RecentNews
-
-/*
-
-  const fetchFeaturedPosts = () => {
-    return fetch(queryString)
-      .then((response) => response.json())
-      .then((result) => setFeaturedPosts(result.data))
-  }
-
- */

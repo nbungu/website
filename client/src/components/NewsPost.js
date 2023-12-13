@@ -10,7 +10,7 @@ import NewsPostContentElement from "./NewsPostContentElement";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
 import NewsPostEndingElement from "./NewsPostEndingElement";
 
-function NewsPost({ postId }) {
+function NewsPost({ postId, onPostClicked }) {
    
   // Returns a post by id and with media data
   const queryString = STRAPI_CMS_URL + "/api/posts/" + postId + "?populate=*";
@@ -44,7 +44,7 @@ function NewsPost({ postId }) {
               <p className="text-body-secondary py-2">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
               <NewsPostContentElement newsPost={post}/>
             </div>
-            <NewsPostEndingElement/>
+            <NewsPostEndingElement onPostClicked={onPostClicked}/>
           </div>
         }
 
