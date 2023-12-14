@@ -54,6 +54,7 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
 
 
   return (
+    
     <div className="row justify-content-between">
 
       <div className="col-auto">

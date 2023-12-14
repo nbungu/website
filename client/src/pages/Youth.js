@@ -5,17 +5,25 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { STRAPI_CMS_URL } from '../utils/Utils.js';
 import LoadingSpinner from "../components/LoadingSpinner";
+import EventList from "../components/EventList.js";
 
-function Youth() {
+import logo from "../assets/eisbuaba-cup-logo.png";
+import defaultImg from '../assets/default-image.png'
+
+function Youth({ onPostClicked }) {
 
         // Returns all posts including media data sorted by date
-        const queryString = STRAPI_CMS_URL + "/api/people?filters[function][$contains]=nachwuchs";
+        const queryString1 = STRAPI_CMS_URL + "/api/people?filters[function][$contains]=nachwuchs";
+        const queryString2 = STRAPI_CMS_URL + "/api/events/6?populate=*";
+        const queryString3 = STRAPI_CMS_URL + "/api/teams?filters[active][$eq]=true&populate=*";
 
         // GET Request to STRAPI server (backend) at endpoint /api/posts
         const [people, setPeople] = useState(null);
+        const [event, setEvent] = useState(null);
+        const [teams, setTeams] = useState(null);
     
         const fetchPeople = () => {
-            return fetch(queryString)
+            return fetch(queryString1)
             .then((response) => {
                 if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -28,40 +36,46 @@ function Youth() {
                 // You can handle the error here, such as displaying an error message to the user
             });
         };
+        const fetchTeams = () => {
+            return fetch(queryString3)
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then((result) => setTeams(result.data))
+              .catch((error) => {
+                console.error('Error fetching teams:', error);
+                // You can handle the error here, such as displaying an error message to the user
+              });
+          };
+        const fetchEvent = () => {
+            return fetch(queryString2)
+            .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+            })
+            .then((result) => setEvent([result.data]))
+            .catch((error) => {
+            console.error('Error fetching events:', error);
+            // You can handle the error here, such as displaying an error message to the user
+            });
+        };
     
     // We want fetchCarouselBanners() to be executed everytime App component loads
     useEffect(() => {
     fetchPeople();
+    fetchEvent();
+    fetchTeams();
     }, []);
   
     return (
         <div className='body-bg'>
 
         <Header currentPage={null}/>
-
-        <div class="list-group">
-            <label class="list-group-item d-flex gap-2">
-            <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
-            <span>
-                First radio
-                <small class="d-block text-body-secondary">With support text underneath to add more detail</small>
-            </span>
-            </label>
-            <label class="list-group-item d-flex gap-2">
-            <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios" id="listGroupRadios2" value=""/>
-            <span>
-                Second radio
-                <small class="d-block text-body-secondary">Some other text goes here</small>
-            </span>
-            </label>
-            <label class="list-group-item d-flex gap-2">
-            <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios" id="listGroupRadios3" value=""/>
-            <span>
-                Third radio
-                <small class="d-block text-body-secondary">And we end with another snippet of text</small>
-            </span>
-            </label>
-        </div>
 
         <div class="container my-5">
             <nav aria-label="breadcrumb">
@@ -82,36 +96,74 @@ function Youth() {
             </nav>    
         </div>
 
+        <div class="list-group">
+            <label class="list-group-item d-flex gap-3 border-0">
+                <input class="form-check-input flex-shrink-0 my-auto mx-4 fs-4" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
+                <div className="hstack gap-3">
+                    <img className="rounded-circle" width='64' height='64' src={defaultImg} alt="Team Logo"/>
+                    <h3 className="text-start">Eisbuaba-Adelberg</h3>
+                </div>
+            </label>
+            <label class="list-group-item d-flex gap-3 border-0">
+                <input class="form-check-input flex-shrink-0 my-auto mx-4 fs-4" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
+                <div className="hstack gap-3">
+                    <img className="rounded-circle" width='64' height='64' src={defaultImg} alt="Team Logo"/>
+                    <h3 className="text-start">Eisbuaba-Adelberg</h3>
+                </div>
+            </label>
+        </div>
+
+        {/* VOTING */}
+        <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalTour">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content rounded-4 shadow">
+              <div class="modal-body p-5">
+                  <h2 class="fw-bold mb-0">Wer gewinnt den Cup?</h2>
+
+                  <div class="list-group d-grid gap-4 my-5">
+                    {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
+                      teams.map((team) => (
+                        <label class="list-group-item d-flex gap-3 border-0">
+                        <input class="form-check-input flex-shrink-0 my-auto mx-4 fs-4" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
+                        <div className="hstack gap-3">
+                            <img className="rounded-circle" src={!team.attributes.logo.data ? defaultImg : (STRAPI_CMS_URL + team.attributes.logo.data.attributes.url)} alt="Team Logo"/>
+                            <h3 className="text-start">{team.attributes.name}</h3>
+                        </div>
+                        </label>
+                      ))
+                    }
+                  </div>
+
+                  <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">jetzt abstimmen</button>
+              </div>
+              </div>
+          </div>
+        </div>
+
         <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalTour">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-4 shadow">
                 <div class="modal-body p-5">
                     <h2 class="fw-bold mb-0">Wer gewinnt den Cup?</h2>
 
-                    <ul class="d-grid gap-4 my-5 list-unstyled small">
-                    <li class="d-flex gap-4">
-                        <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"></svg>
-                        <div>
-                        <h5 class="mb-0">Grid view</h5>
-                        Not into lists? Try the new grid view.
-                        </div>
-                    </li>
-                    <li class="d-flex gap-4">
-                        <svg class="bi text-warning flex-shrink-0" width="48" height="48"></svg>
-                        <div>
-                        <h5 class="mb-0">Bookmarks</h5>
-                        Save items you love for easy access later.
-                        </div>
-                    </li>
-                    <li class="d-flex gap-4">
-                        <svg class="bi text-primary flex-shrink-0" width="48" height="48"></svg>
-                        <div>
-                        <h5 class="mb-0">Video embeds</h5>
-                        Share videos wherever you go.
-                        </div>
-                    </li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">Great, thanks!</button>
+                    <div class="list-group d-grid gap-4 my-5">
+                        <label class="list-group-item d-flex gap-3 border-0">
+                            <input class="form-check-input flex-shrink-0 my-auto mx-4 fs-4" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
+                            <div className="hstack gap-3">
+                                <img className="rounded-circle" width='64' height='64' src={defaultImg} alt="Team Logo"/>
+                                <h3 className="text-start">Eisbuaba-Adelberg</h3>
+                            </div>
+                        </label>
+                        <label class="list-group-item d-flex gap-3 border-0">
+                            <input class="form-check-input flex-shrink-0 my-auto mx-4 fs-4" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
+                            <div className="hstack gap-3">
+                                <img className="rounded-circle" width='64' height='64' src={defaultImg} alt="Team Logo"/>
+                                <h3 className="text-start">Eisbuaba-Adelberg</h3>
+                            </div>
+                        </label>
+                    </div>
+
+                    <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">jetzt abstimmen</button>
                 </div>
                 </div>
             </div>
@@ -126,6 +178,30 @@ function Youth() {
                 </p>
                 </div>
             </div>
+        </div>
+
+        {/* OLD JUMBOTRON */}
+        <div class="container my-5">
+          <div class="p-5 text-center bg-body-tertiary rounded-3 video-bg">
+            <img className='bi mt-4 mb-3' width={96} height={96} src={logo} alt="Eisbuaba-Cup Logo"/>
+            <h1 className="mb-2">Eisbuaba Cup 2024</h1>
+            <p class="col-lg-8 mx-auto fs-5 text-muted">
+              Ein Eishockey-Turnier für Hobby-Mannschaften aus der Region. Der 'Eisbuaba Cup 2024' verspricht packende Action, bierliga Eishockey und jede Menge Unterhaltung. Nach einer Gruppenphase wird der Gewinner im Playoff-Modus ermittelt. Die Matchdauer beträgt 2 x 10 Minuten. <a href="/kontakt">Team Anmeldung</a> bis zum 21.02.2024 möglich.
+            </p>
+            <div class="d-inline-flex gap-2 mt-4 mb-5">
+              <button class="d-inline-flex align-items-center btn btn-danger btn-lg px-4 rounded-pill" type="button">
+                Livestream
+                <i className="bi bi-youtube ps-2 fs-4"/>
+              </button>
+              <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
+                Spielplan
+                <i className="bi bi-file-earmark-arrow-down ps-2"/>
+              </button>
+            </div>
+
+            {!event ? <LoadingSpinner message={"Lade Termin..."}/> : <div className="my-4"><EventList events={event} onPostClicked={onPostClicked}/></div>}
+
+          </div>
         </div>
 
         <div className="container">
@@ -173,8 +249,8 @@ function Youth() {
             <h2 class="pb-2 border-bottom">Hanging icons</h2>
             <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div class="col d-flex align-items-start">
-                <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                    <i class="bi bi-0-square-fill"></i>
+                <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
+                    <i class="bi bi-0-square-fill fs-1"></i>
                 </div>
                 <div>
                 <h3 class="fs-2 text-body-emphasis">Featured title</h3>

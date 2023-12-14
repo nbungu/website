@@ -341,7 +341,7 @@ p {
 -------------------------------------------------- */
 .news-post-image {
   min-height: 160px;
-  max-height: 560px;
+  max-height: 520px;
 }
 
 /* YOUTUBE EMBED
@@ -376,7 +376,7 @@ p {
 
 .gallery-item img {
   width: 100%;
-  height: 280px;
+  height: 240px;
   object-fit: cover;
 }
 .gallery-item:hover {

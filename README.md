@@ -3,7 +3,7 @@ For all commands and scripts to work, we need some prerequisites...
 
 ## Assign static IP to Raspberry within the local Network:
 For comfortable **SSH** and **VSCode Remote Explorer** access, make the IPv4 of the Raspberry Server static.
-'Statisches DHCP - Heimnetzwerk' -> pi: 192.168.0.160
+'Statisches DHCP - Heimnetzwerk' -> pi: **192.168.0.160**
 > IPv6 address of the Raspberry Pi is not affected of this setting and will most likely change every 1 - 3 days!
 
 ## Modify Server Scripts in package.json

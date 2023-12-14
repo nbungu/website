@@ -26,9 +26,9 @@ function ImageGallery({ imagePaths }) {
     return (
 
         <div className="container-flex">
-            <div className="row justify-content-center">
+            <div className="row g-3">
                 {imagePaths.map((imagePath, index) => (
-                <div key={index} className="col-6 col-sm-4 p-2">
+                <div key={index} className="col-6 col-md-3">
                     <div className="gallery-item rounded" onClick={() => openImageModal(imagePath)} style={{ cursor: 'pointer' }}>
                         <img src={imagePath} alt={`Image ${index + 1}`} className='rounded' />
                     </div>

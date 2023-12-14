@@ -8,10 +8,10 @@ function EventList({ events, onPostClicked  }) {
     
     function getIcon(eventType) {
         switch (eventType) {
-            case "Training": return "bi bi-arrow-repeat fs-4";
-            case "Heimspiel": return "bi bi-house-fill fs-4";
-            case "Auswärtsspiel": return "bi bi-bus-front-fill fs-4";
-            case "Trainingslager": return "bi bi-backpack2-fill fs-4";
+            case "Training": return "bi bi-arrow-repeat text-success fs-4";
+            case "Heimspiel": return "bi bi-house-fill text-secondary fs-4";
+            case "Auswärtsspiel": return "bi bi-bus-front-fill text-secondary fs-4";
+            case "Trainingslager": return "bi bi-backpack2-fill text-secondary fs-4";
             case "Turnier": return "bi bi-trophy-fill text-warning fs-4";
             case "Eisbuaba-Cup": return "bi bi-trophy-fill text-warning fs-4";
             case "Fest": return "bi bi-cup-straw fs-4";
@@ -33,7 +33,11 @@ function EventList({ events, onPostClicked  }) {
                                 <div class="col">
                                     <div class="row">
                                         <div class="col text-start">
-                                            <p className="mb-1 opacity-75">{formatDate(event.attributes.date)}</p>
+                                            {event.attributes.date ?
+                                                <p className="mb-1 opacity-75">{formatDate(event.attributes.date)}</p> :
+                                                event.attributes.type === 'Training' ? <p className="mb-1 opacity-75">regelmäßiger Termin</p> :
+                                                <p className="mb-1 opacity-75">-</p>
+                                            }
                                             <h3 className="mb-1">{event.attributes.type}</h3>
                                         </div>
                                         <div class="col text-end">
@@ -42,15 +46,15 @@ function EventList({ events, onPostClicked  }) {
                                         </div>
                                     </div>
                                     <div class="row align-items-top">
-                                        {event.attributes.text ?
+                                        {event.attributes.text &&
                                             <div class="col text-start">
                                                 <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{event.attributes.text}</p>
-                                            </div> : <div/>
+                                            </div>
                                         }
-                                        {event.attributes.post?.data ?
+                                        {event.attributes.post?.data &&
                                             <div class="col text-end">
                                                 <Link className='btn btn-outline-primary btn-sm mt-1' to={`/news/${event.attributes.post.data.id}`} onClick={()=>{onPostClicked(event.attributes.post.data.id)}} key={event.attributes.post.data.id}><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link>
-                                            </div> : <div/>
+                                            </div>
                                         }                                        
                                     </div>
                                 </div>
