@@ -6,9 +6,10 @@ import { STRAPI_CMS_URL, REACT_MODE } from '../utils/Utils.js';
 import Header from '../components/Header.js';
 import TextCarousel from '../components/TextCarousel.js';
 import Tiles from '../components/Tiles.js';
-import RecentNews from "../components/RecentNews.js";
 import Footer from '../components/Footer.js';
 import HeaderBanner from "../components/HeaderBanner.js";
+import RecentNewsV2 from "../components/RecentNewsV2.js";
+import { Link } from "react-router-dom";
 
 function Home({ nodeServerStatus, nodeServerMode, onPostClicked }) {
  
@@ -22,7 +23,7 @@ function Home({ nodeServerStatus, nodeServerMode, onPostClicked }) {
         
         <TextCarousel/>
         <Tiles/>
-        <RecentNews onPostClicked={onPostClicked}/>
+        <RecentNewsV2 onPostClicked={onPostClicked}/>
         
       </div>
 

@@ -241,9 +241,7 @@ function Youth({ onPostClicked }) {
               </div>
             </div>
           </div>
-
         </div>
-
 
         <div class="container px-4 py-5" id="hanging-icons">
             <h2 class="pb-2 border-bottom">Hanging icons</h2>

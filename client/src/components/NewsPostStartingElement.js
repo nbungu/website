@@ -73,27 +73,3 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
 }
 
 export default NewsPostStartingElement
-
-/**
-
-    <div className="row">
-
-      <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-
-        <div class="btn-group" role="group" aria-label="Basic outlined">
-          <button type="button" class='btn btn-success' onClick={handleThumbsUpClick}><i className="bi bi-hand-thumbs-up pe-2"/>{thumbsUpCount}</button>
-          <button type="button" class='btn btn-light' onClick={handleThumbsDownClick}><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
-        </div>
-
-      </div>
-
-    </div>
-
-
-      <div className="d-grid gap-2 d-md-flex justify-content-md-start">
- 
-        <button type="button" class='btn btn-light' onClick={handleThumbsDownClick}><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
-
-
-      </div>
- */

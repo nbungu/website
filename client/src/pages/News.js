@@ -60,10 +60,12 @@ function News({ onPostClicked }) {
       <div className="flex-grow-1">
 
         <div className="tiles-container pb-0">
-            <div className="hstack gap-3">
-              <button type="button" class="btn btn-outline-secondary" onClick={switchSortOrderDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
-              <button type="button" class="btn btn-outline-secondary" onClick={switchSortOrderAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
-            </div>
+          <h1 class="mb-2">Alle Beiträge</h1>
+
+          <div className="hstack gap-3">
+            <button type="button" class="btn btn-light" onClick={switchSortOrderDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
+            <button type="button" class="btn btn-light" onClick={switchSortOrderAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
+          </div>
         </div>
 
         {!posts ? <LoadingSpinner message={"Lade News..."}/> :
