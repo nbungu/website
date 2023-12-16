@@ -6,7 +6,7 @@ import LoadingSpinner from "./LoadingSpinner.js";
 
 function TextCarousel() {
   
-  const queryString = STRAPI_CMS_URL + "/api/carousel-banners?sort=publishedAt:desc&pagination[start]=0&pagination[limit]=3";
+  const queryString = STRAPI_CMS_URL + "/api/header-text-slider";
 
   // GET Request to STRAPI server (backend) at endpoint /api/posts
   const [carouselBanners, setCarouselBanners] = useState(null);
@@ -47,24 +47,24 @@ function TextCarousel() {
           <div className="carousel-item active">            
             <div className="container">
               <div className="carousel-caption text-start">
-                <h1>{carouselBanners[0].attributes.title}</h1>
-                <p>{carouselBanners[0].attributes.summary}</p>
+                <h1>{carouselBanners.attributes.title1}</h1>
+                <p>{carouselBanners.attributes.text1}</p>
               </div>
             </div>
           </div>
           <div className="carousel-item">
             <div className="container">
               <div className="carousel-caption text-center">
-                <h1>{carouselBanners[1].attributes.title}</h1>
-                <p>{carouselBanners[1].attributes.summary}</p>
+                <h1>{carouselBanners.attributes.title2}</h1>
+                <p>{carouselBanners.attributes.text2}</p>
               </div>
             </div>
           </div>
           <div className="carousel-item">
             <div className="container">
               <div className="carousel-caption text-end">
-                <h1>{carouselBanners[2].attributes.title}</h1>
-                <p>{carouselBanners[2].attributes.summary}</p>
+                <h1>{carouselBanners.attributes.title3}</h1>
+                <p>{carouselBanners.attributes.text3}</p>
               </div>
             </div>
           </div>

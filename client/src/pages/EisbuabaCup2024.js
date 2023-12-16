@@ -52,8 +52,8 @@ function EisbuabaCup2024({ onPostClicked }) {
         updateTeamVote();
         setHasVoted(true);
         // reset selected
-        setSelectedTeamId(null);
-        setSelectedTeamVotingCount(null);
+        //setSelectedTeamId(null);
+        //setSelectedTeamVotingCount(null);
         // Update list entries
         fetchTeams();
         fetchHighestVoting();
@@ -160,30 +160,33 @@ function EisbuabaCup2024({ onPostClicked }) {
             <div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
               <div class="col d-flex align-items-start">
                   <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
-                      <i class="bi bi-clock fs-1"></i>
+                    <i class="bi bi-clock fs-1"></i>
                   </div>
                   <div>
-                  <h3 class="fs-2 text-body-emphasis">Wann und Wo?</h3>
-                  <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                    <h3 class="fs-2 text-body-emphasis">Wann und Wo?</h3>
+                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
                   </div>
               </div>
               <div class="col d-flex align-items-start">
                   <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
-                      <i class="bi bi-pencil-square fs-1"></i>
+                    <i class="bi bi-pencil-square fs-1"></i>
                   </div>
                   <div>
-                  <h3 class="fs-2 text-body-emphasis">Anmeldung</h3>
-                  <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with.</p>
-                  <p>Kontakt: <a href="#">Mail@Addresse.de</a> TODO copy on click</p>
+                    <h3 class="fs-2 text-body-emphasis">Anmeldung</h3>
+                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with.</p>
+                    <div class="input-group flex-nowrap mt-2">
+                        <span class="input-group-text"><i class="bi bi-envelope-at"/></span>
+                        <span class="input-group-text">info@asv-schlichten.de</span>
+                    </div>
                   </div>
               </div>
               <div class="col d-flex align-items-start">
                   <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
-                      <i class="bi bi-crosshair fs-1"></i>
+                    <i class="bi bi-crosshair fs-1"></i>
                   </div>
                   <div>
-                  <h3 class="fs-2 text-body-emphasis">Spielmodus</h3>
-                  <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                    <h3 class="fs-2 text-body-emphasis">Spielmodus</h3>
+                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
                   </div>
               </div>
               
@@ -193,7 +196,7 @@ function EisbuabaCup2024({ onPostClicked }) {
         {/* VOTING & ERGEBNISSE */}
         <div className="tiles-container-flex-sm pt-0">      
            
-          <div className="fixed-tile gap-5">
+          <div className="fixed-tile gap-4">
             <h2>Wer gewinnt den Cup?</h2>            
             <div class="list-group d-grid gap-3">
               {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
@@ -212,7 +215,7 @@ function EisbuabaCup2024({ onPostClicked }) {
               }
             </div>
 
-            <button type="button" class="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>Jetzt Abstimmen!</button>
+            <button type="button" class="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>
 
           </div> 
 

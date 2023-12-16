@@ -44,34 +44,50 @@ function Contact() {
             <div className="tiles-container-flex-sm">                
                 <div className="fixed-tile gap-3">
                     <h2>Verein</h2>
-                    <div className="vstack gap-2">
-                        <p className="text-start">1. Athletiksportverein Schlichten e.V.</p>
-                        <p className="text-start">Grabäckerstr. 5</p>
-                        <p className="text-start">73614 Schorndorf-Schlichten</p>
-                        <div className="border-bottom"/>
+                    <div className="container-flex">
                         
-                        <i class="text-start bi bi-globe2"><a className="text-start text-primary ps-2" href="https://asv-schlichten.de/">www.asv-schlichten.de</a></i>
-                        <i class="text-start bi bi-envelope-at"><a className="text-start text-primary ps-2">info@asv-schlichten.de</a></i>
-                        
-                        
+                        <div className="col">
+                            <div className="vstack gap-1 mb-3">
+                                <p>1. Athletiksportverein Schlichten e.V.</p>
+                                <p>Grabäckerstr. 5</p>
+                                <p>73614 Schorndorf-Schlichten</p>
+                            </div>
+
+                            <div class="input-group flex-nowrap mb-3">
+                                <span class="input-group-text"><i class="bi bi-envelope-at"/></span>
+                                <span class="input-group-text w-100">info@asv-schlichten.de</span>
+                            </div>
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text"><i class="bi bi-globe2"/></span>
+                                <span class="input-group-text w-100"><a className="text-start text-primary" href="https://asv-schlichten.de/">https://asv-schlichten.de</a></span>
+                            </div>
+                        </div>
                     </div>
+
+
+                    
+
                 </div>
                 <div className="fixed-tile gap-3">
                     <h2>Kontaktpersonen</h2>
                     
                     {!people ? <LoadingSpinner message={"Lade Personen..."}/> :
-                    <div className="vstack gap-3">
+                    <div className="list-group w-100">
                         {people.map((person) => (
-                        <div className="vstack gap-1 border rounded p-1">
-                            <h3>{person.attributes.name}</h3>
-                            <p>{person.attributes.function}</p>
-                            <p>{person.attributes.mail}</p>
-                            {person.attributes.infotext && <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{person.attributes.infotext}</p>}
-                        </div>
-                        ))}
+                        <div className="list-group-item list-group-item-action p-2" aria-current="true">
+                            <div className="hstack">
+                                <img class="rounded-circle img-fluid me-4 ms-3" src="https://github.com/mdo.png" alt=""/>
+                                <div className="vstack text-start">
+                                    <h3>{person.attributes.name}</h3>
+                                    <p>{person.attributes.function}</p>
+                                    <p>{person.attributes.mail}</p>
+                                    {person.attributes.infotext && <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{person.attributes.infotext}</p>}
+                                </div>
+                            </div>
+                            
+                        </div>))}
                     </div>
                     }
-
 
                 </div>
             </div>

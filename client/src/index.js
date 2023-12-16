@@ -38,8 +38,7 @@ export default function App() {
   // the current value and the setter-function.
   // Initial value of 'nodeServerStatus' is 'offline'
   // use the setter function when changing the value
-  const [nodeServerStatus, setNodeServerStatus] = useState("offline");
-  const [nodeServerMode, setNodeServerMode] = useState("-");
+  const [nodeServerStatus, setNodeServerStatus] = useState(null);
   const [newsPostId, setNewsPostId] = useState(null);
 
   const fetchServerStatus = () => {
@@ -56,27 +55,12 @@ export default function App() {
         // You can handle the error here, such as displaying an error message to the user
       });
   };
-  const fetchServerMode = () => {
-    return fetch("/mode")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((result) => setNodeServerMode(result.message))
-      .catch((error) => {
-        console.error('Error fetching events:', error);
-        // You can handle the error here, such as displaying an error message to the user
-      });
-  };
-
+  
   // GET Request to NODE server (backend) at endpoint /api
   // Any API requests made from this frontend (localhost:3000) will be proxied to localhost:3001 (node backend)
   // Change Proxy-Settings in client/package.json
   useEffect(() => {
     fetchServerStatus()
-    fetchServerMode()
   }, []);
 
   
@@ -91,7 +75,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home nodeServerStatus={nodeServerStatus} nodeServerMode={nodeServerMode} onPostClicked={setNewsPostId} />}/>
+        <Route path="/" element={<Home onPostClicked={setNewsPostId} />}/>
+        <Route path="/*" element={<Home onPostClicked={setNewsPostId} />}/>
         <Route path="/news" element={<News onPostClicked={setNewsPostId} />}/>
         <Route path="/news/:id" element={<NewsPost postId={newsPostId}/>}/>
         <Route path="/termine" element={<Schedule onPostClicked={setNewsPostId} />}/>

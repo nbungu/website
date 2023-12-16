@@ -27,8 +27,8 @@ function NewsPostContentElement({ newsPost }) {
       {imgPathRel ? <img className="img-fluid news-post-image rounded mt-2" src={imgPath} alt=''/> : <div className="m-0 p-0"/>}
       {imgPathRel && imageCaption ? <p className="my-2 text-body-secondary">{imageCaption}</p> : <div className="m-0 p-0"/>}
       {textBlocks && textBlocks.map((textBlock) => (<p className="text-start mt-3">{textBlock}</p>))}
-      {imgCollection && <div className="mt-3"><ImageGallery imagePaths={imgCollection}/></div>}
-      {ytVideoUrl && <div className="mt-3"><YouTubeEmbed videoUrl={ytVideoUrl}/></div>}
+      {imgCollection && <div className="mt-5"><ImageGallery imagePaths={imgCollection}/></div>}
+      {ytVideoUrl && <div className="mt-5"><YouTubeEmbed videoUrl={ytVideoUrl}/></div>}
     </div>
   )
 }

@@ -36,12 +36,7 @@ function NewsPostEndingElement({ onPostClicked }) {
     
     <div className="tile-container">
       
-      <div className="fixed-tile">
-        <h2>Weitere Artikel</h2>
-        {!posts ? <LoadingSpinner message={"Lade News Liste..."}/> : <NewsList newsPosts={posts} onPostClicked={onPostClicked}/>}
-      </div>
-
-      <div className="row justify-content-between mt-3">
+      <div className="row justify-content-between">
         <div className="col-auto">
           <Link className='btn btn-light' to="/news"><i className="bi bi-arrow-left pe-2"/>Alle News</Link>
         </div>
@@ -53,3 +48,12 @@ function NewsPostEndingElement({ onPostClicked }) {
 }
 
 export default NewsPostEndingElement
+
+/**
+
+      <div className="fixed-tile gap-3">
+        <h2>Weitere Artikel</h2>
+        {!posts ? <LoadingSpinner message={"Lade News Liste..."}/> : <NewsList newsPosts={posts} onPostClicked={onPostClicked}/>}
+      </div>
+
+ */

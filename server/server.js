@@ -10,9 +10,6 @@ const helmet = require("helmet"); // Helmet to protect against well known vulner
 const rateLimit = require("express-rate-limit"); // express-rate-limit: middleware package that can be used to limit repeated requests to APIs and endpoints
 const path = require("path");
 
-// Run server (backend) on Port 3001
-//const PORT = process.env.PORT || 3000;
-
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT;
 
@@ -44,11 +41,7 @@ app.use(
 
 // Creates endpoint for route localhost:3001/api and handles GET requests to that route
 app.get("/status", (req, res) => {
-  res.json({ message: "Backend is ONLINE!" });
-});
-
-app.get("/mode", (req, res) => {
-  res.json({ message: `${MODE}`});
+  res.json({ message: status });
 });
 
 // express-rate-limit Test endpoints
@@ -80,30 +73,11 @@ Strapi has a UI and built in SQLiteDB to store the content
 app.get("/api/news", (req, res) => {
   res.json({ message: newsEntries });
 });
-
-let newsEntries = [
-  {
-    title: "Breaking News: Exciting Event",
-    titleLink: "exciting-event",
-    imagePath: "./images/DSC_0262-1.jpg",
-    date: "01.02.2023",
-    summary: "A major event is happening in the city, drawing crowds from all around.",
-    fullText: "In a surprising turn of events, a spectacular festival is taking place in the heart of the city. The streets are filled with joyous celebrations, live performances, and a variety of activities for people of all ages."
-  },
-  {
-    title: "New Scientific Discovery Unveiled",
-    titleLink: "New-Scientific-Discovery-Unveiled",
-    date: "01.02.2023",
-    imagePath: "./images/DSC_0263-2.jpg",
-    summary: "Scientists make groundbreaking discovery in the field of technology.",
-    fullText: "In a recent breakthrough, scientists have unveiled a new technological advancement that promises to revolutionize the way we interact with machines. The discovery is expected to have far-reaching implications for various industries."
-  },
-  {
-    title: "Local Sports Team Wins Championship",
-    titleLink: "Local-Sports-Team-Wins-Championship",
-    date: "01.02.2023",
-    imagePath: "./images/DSC_0264-3.jpg",
-    summary: "Celebrations ensue as the local sports team secures a historic championship victory.",
-    fullText: "The local sports team has emerged victorious in a thrilling championship match. Fans are rejoicing as the team secured a historic win, marking a significant milestone in the city's sports history."
-}];
 */
+
+let status =
+  {
+    serverMode: MODE,
+    serverPort: PORT,
+    frontendBuildPath: path.join(__dirname, '../client/build/index.html'),
+  };

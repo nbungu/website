@@ -21,7 +21,7 @@ function Youth({ onPostClicked }) {
         const [people, setPeople] = useState(null);
         const [event, setEvent] = useState(null);
         const [teams, setTeams] = useState(null);
-    
+
         const fetchPeople = () => {
             return fetch(queryString1)
             .then((response) => {
@@ -71,12 +71,13 @@ function Youth({ onPostClicked }) {
     fetchEvent();
     fetchTeams();
     }, []);
-  
+
     return (
         <div className='body-bg'>
 
         <Header currentPage={null}/>
 
+        {/* BREADCRUMBS */}
         <div class="container my-5">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
@@ -94,23 +95,6 @@ function Youth({ onPostClicked }) {
                 </li>
                 </ol>
             </nav>    
-        </div>
-
-        <div class="list-group">
-            <label class="list-group-item d-flex gap-3 border-0">
-                <input class="form-check-input flex-shrink-0 my-auto mx-4 fs-4" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
-                <div className="hstack gap-3">
-                    <img className="rounded-circle" width='64' height='64' src={defaultImg} alt="Team Logo"/>
-                    <h3 className="text-start">Eisbuaba-Adelberg</h3>
-                </div>
-            </label>
-            <label class="list-group-item d-flex gap-3 border-0">
-                <input class="form-check-input flex-shrink-0 my-auto mx-4 fs-4" type="radio" name="listGroupRadios" id="listGroupRadios1" value=""/>
-                <div className="hstack gap-3">
-                    <img className="rounded-circle" width='64' height='64' src={defaultImg} alt="Team Logo"/>
-                    <h3 className="text-start">Eisbuaba-Adelberg</h3>
-                </div>
-            </label>
         </div>
 
         {/* VOTING */}
