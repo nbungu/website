@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   
   return (
-    <div className="px-5 pt-2">
+    <div className="px-5 pt-2 z-3">
 
       <ul className="nav justify-content-center border-bottom border-secondary px-0 py-3">
         <li className="nav-item">

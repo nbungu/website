@@ -7,8 +7,8 @@ import { STRAPI_CMS_URL } from '../utils/Utils.js';
 import LoadingSpinner from "../components/LoadingSpinner";
 import EventList from "../components/EventList.js";
 
-import logo from "../assets/eisbuaba-cup-logo.png";
 import defaultImg from '../assets/default-image.png'
+import video from '../assets/video-playback-vertical.mp4'
 
 function Youth({ onPostClicked }) {
 
@@ -167,7 +167,7 @@ function Youth({ onPostClicked }) {
         {/* OLD JUMBOTRON */}
         <div class="container my-5">
           <div class="p-5 text-center bg-body-tertiary rounded-3 video-bg">
-            <img className='bi mt-4 mb-3' width={96} height={96} src={logo} alt="Eisbuaba-Cup Logo"/>
+            <img className='bi mt-4 mb-3' width={96} height={96} alt="Eisbuaba-Cup Logo"/>
             <h1 className="mb-2">Eisbuaba Cup 2024</h1>
             <p class="col-lg-8 mx-auto fs-5 text-muted">
               Ein Eishockey-Turnier für Hobby-Mannschaften aus der Region. Der 'Eisbuaba Cup 2024' verspricht packende Action, bierliga Eishockey und jede Menge Unterhaltung. Nach einer Gruppenphase wird der Gewinner im Playoff-Modus ermittelt. Die Matchdauer beträgt 2 x 10 Minuten. <a href="/kontakt">Team Anmeldung</a> bis zum 21.02.2024 möglich.

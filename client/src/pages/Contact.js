@@ -54,7 +54,7 @@ function Contact() {
                             </div>
 
                             <div class="input-group flex-nowrap mb-3">
-                                <span class="input-group-text"><i class="bi bi-envelope-at"/></span>
+                                <span class="input-group-text"><i class="bi bi-envelope"/></span>
                                 <span class="input-group-text w-100">info@asv-schlichten.de</span>
                             </div>
                             <div class="input-group flex-nowrap">
@@ -63,9 +63,6 @@ function Contact() {
                             </div>
                         </div>
                     </div>
-
-
-                    
 
                 </div>
                 <div className="fixed-tile gap-3">
@@ -79,8 +76,8 @@ function Contact() {
                                 <img class="rounded-circle img-fluid me-4 ms-3" src="https://github.com/mdo.png" alt=""/>
                                 <div className="vstack text-start">
                                     <h3>{person.attributes.name}</h3>
-                                    <p>{person.attributes.function}</p>
-                                    <p>{person.attributes.mail}</p>
+                                    <p className="opacity-75">{person.attributes.function}</p>
+                                    {person.attributes.mail && <p><i class="bi bi-envelope pe-2"/>{person.attributes.mail}</p>} 
                                     {person.attributes.infotext && <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{person.attributes.infotext}</p>}
                                 </div>
                             </div>

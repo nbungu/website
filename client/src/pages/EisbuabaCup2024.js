@@ -3,23 +3,21 @@
 import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import EventList from '../components/EventList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { STRAPI_CMS_URL } from '../utils/Utils.js';
 
-import logo from "../assets/eisbuaba-cup-logo.png";
 import defaultImg from '../assets/default-image.png'
 import MatchList from "../components/MatchList.js";
 import ProgressBar from "../components/ProgressBar.js";
 
-
-function EisbuabaCup2024({ onPostClicked }) {
+function EisbuabaCup2024() {
     // fetches the last two most recent posts in sorted order
-    const queryString1 = STRAPI_CMS_URL + "/api/events/6?populate=*";
+    const queryString1 = STRAPI_CMS_URL + "/api/eisbuaba-cup-page?populate=*";
     const queryString2 = STRAPI_CMS_URL + "/api/teams?filters[active][$eq]=true&populate=*";
     const queryString3 = STRAPI_CMS_URL + "/api/matches?populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&sort=faceoffTime";
     const queryString4 = STRAPI_CMS_URL + "/api/teams?fields[0]=votingCount&sort[0]=votingCount:desc&pagination[start]=0&pagination[limit]=1"
-    const [event, setEvent] = useState(null);
+    
+    const [pageContent, setPageContent] = useState(null);
     const [teams, setTeams] = useState(null);
     const [hasVoted, setHasVoted] = useState(false);
     const [matches, setMatches] = useState(null);
@@ -59,7 +57,7 @@ function EisbuabaCup2024({ onPostClicked }) {
         fetchHighestVoting();
     };
   
-    const fetchEvent = () => {
+    const fetchPageContent = () => {
       return fetch(queryString1)
         .then((response) => {
           if (!response.ok) {
@@ -67,7 +65,7 @@ function EisbuabaCup2024({ onPostClicked }) {
           }
           return response.json();
         })
-        .then((result) => setEvent([result.data]))
+        .then((result) => setPageContent(result.data))
         .catch((error) => {
           console.error('Error fetching events:', error);
           // You can handle the error here, such as displaying an error message to the user
@@ -118,7 +116,7 @@ function EisbuabaCup2024({ onPostClicked }) {
   
     // We want fetchPosts() etc. to be executed everytime App component loads
     useEffect(() => {
-      fetchEvent();
+      fetchPageContent();
       fetchTeams();
       fetchMatches();
       fetchHighestVoting();
@@ -134,18 +132,20 @@ function EisbuabaCup2024({ onPostClicked }) {
 
         {/* FULL WIDTH JUMBOTRON */}
         <div class="mt-5">
-            <div class="p-5 text-center bg-body-tertiary shadow">
+            <div class="text-center bg-body-tertiary shadow p-5">
                 <div class="container">
-                  <img className='bi p-2' width={128} height={128} src={logo} alt="Eisbuaba-Cup Logo"/>
-                  <h3 class="fs-2 text-body-emphasis p-1">Eisbuaba Cup 2024</h3>
-                  <p class="col-lg-8 mx-auto lead p-1">
-                  Ein Eishockey-Turnier für Hobby-Mannschaften aus der Region. Der 'Eisbuaba Cup 2024' verspricht packende Action, bierliga Eishockey und jede Menge Unterhaltung.
-                  </p>
+                  {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+                  <>
+                  <img className='bi p-2' width={128} height={128} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
+                  <h3 class="fs-2 text-body-emphasis p-1">{pageContent.attributes.title}</h3>
+                  <p class="col-lg-8 mx-auto lead p-1">{pageContent.attributes.summary}</p>
+                  </>
+                  }
                   <div class="d-inline-flex gap-2 p-3">
-                    <button class="d-inline-flex align-items-center btn btn-danger btn-lg px-4 rounded-pill" type="button">
+                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} class="d-inline-flex align-items-center btn btn-danger btn-lg px-4 rounded-pill" type="button">
                       Livestream
                       <i className="bi bi-youtube ps-2 fs-4"/>
-                    </button>
+                    </a>
                     <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
                       Spielplan
                       <i className="bi bi-file-earmark-arrow-down ps-2"/>
@@ -164,7 +164,8 @@ function EisbuabaCup2024({ onPostClicked }) {
                   </div>
                   <div>
                     <h3 class="fs-2 text-body-emphasis">Wann und Wo?</h3>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                    {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+                    <p>{pageContent.attributes.description1}</p>}
                   </div>
               </div>
               <div class="col d-flex align-items-start">
@@ -173,10 +174,11 @@ function EisbuabaCup2024({ onPostClicked }) {
                   </div>
                   <div>
                     <h3 class="fs-2 text-body-emphasis">Anmeldung</h3>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with.</p>
+                    {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+                    <p>{pageContent.attributes.description2}</p>}
                     <div class="input-group flex-nowrap mt-2">
-                        <span class="input-group-text"><i class="bi bi-envelope-at"/></span>
-                        <span class="input-group-text">info@asv-schlichten.de</span>
+                        <span class="input-group-text bg-transparent border-secondary"><i class="bi bi-envelope-at"/></span>
+                        <span class="input-group-text bg-transparent text-primary border-secondary">info@asv-schlichten.de</span>
                     </div>
                   </div>
               </div>
@@ -186,7 +188,8 @@ function EisbuabaCup2024({ onPostClicked }) {
                   </div>
                   <div>
                     <h3 class="fs-2 text-body-emphasis">Spielmodus</h3>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                    {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+                    <p>{pageContent.attributes.description3}</p>}
                   </div>
               </div>
               
@@ -235,3 +238,12 @@ function EisbuabaCup2024({ onPostClicked }) {
 }
 
 export default EisbuabaCup2024
+
+/*
+import video from '../assets/video-playback-vertical.mp4'
+
+<video className="video-background" id="video" loop="" muted="" data-autoplay="">
+  <source src={video} type="video/mp4"/>
+</video>
+
+*/
