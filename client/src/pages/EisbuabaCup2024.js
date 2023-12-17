@@ -31,7 +31,8 @@ function EisbuabaCup2024() {
     };
 
     const handleVoteButtonClick = () => {
-        // PUT request using fetch with async/await
+        if (selectedTeamId) {
+      // PUT request using fetch with async/await
         async function updateTeamVote() {
           const requestOptions = {
             method: 'PUT',
@@ -46,15 +47,17 @@ function EisbuabaCup2024() {
           };
           const response = await fetch(STRAPI_CMS_URL + '/api/teams/' + selectedTeamId, requestOptions);
           const data = await response.json();
+
+          await fetchTeams();
+          await fetchHighestVoting();
         }
         updateTeamVote();
         setHasVoted(true);
         // reset selected
-        //setSelectedTeamId(null);
-        //setSelectedTeamVotingCount(null);
+        setSelectedTeamId(null);
+        setSelectedTeamVotingCount(null);
         // Update list entries
-        fetchTeams();
-        fetchHighestVoting();
+      }
     };
   
     const fetchPageContent = () => {
@@ -136,7 +139,7 @@ function EisbuabaCup2024() {
                 <div class="container">
                   {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                   <>
-                  <img className='bi p-2' width={128} height={128} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
+                  <img className='bi p-2' width={200} height={200} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
                   <h3 class="fs-2 text-body-emphasis p-1">{pageContent.attributes.title}</h3>
                   <p class="col-lg-8 mx-auto lead p-1">{pageContent.attributes.summary}</p>
                   </>
@@ -177,8 +180,8 @@ function EisbuabaCup2024() {
                     {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                     <p>{pageContent.attributes.description2}</p>}
                     <div class="input-group flex-nowrap mt-2">
-                        <span class="input-group-text bg-transparent border-secondary"><i class="bi bi-envelope-at"/></span>
-                        <span class="input-group-text bg-transparent text-primary border-secondary">info@asv-schlichten.de</span>
+                        <span class="input-group-text bg-transparent border-dark"><i class="bi bi-envelope-at"/></span>
+                        <span class="input-group-text bg-transparent border-dark">info@asv-schlichten.de</span>
                     </div>
                   </div>
               </div>

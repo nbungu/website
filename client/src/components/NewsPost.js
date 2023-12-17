@@ -53,7 +53,7 @@ function NewsPost({ postId, onPostClicked }) {
 
       <div className="container-sm p-3">
 
-        <div className="row g-4">
+        <div className="row g-5">
 
           <div class="col-lg-9">
             {!post ? <LoadingSpinner/> :
