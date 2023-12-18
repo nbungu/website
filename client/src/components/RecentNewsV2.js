@@ -35,6 +35,7 @@ function RecentNewsV2({ onPostClicked }) {
   return (
     <div className="tiles-container">
       <h1 class="mb-2">Neueste Beiträge</h1>
+      
       {!featuredPosts ? <LoadingSpinner message={"Lade News..."}/> :
         featuredPosts.map((post) => (         
           <div class="row">

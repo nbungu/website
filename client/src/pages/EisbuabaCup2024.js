@@ -31,8 +31,8 @@ function EisbuabaCup2024() {
     };
 
     const handleVoteButtonClick = () => {
-        if (selectedTeamId) {
-      // PUT request using fetch with async/await
+      if (selectedTeamId) {
+        // PUT request using fetch with async/await
         async function updateTeamVote() {
           const requestOptions = {
             method: 'PUT',
@@ -179,10 +179,6 @@ function EisbuabaCup2024() {
                     <h3 class="fs-2 text-body-emphasis">Anmeldung</h3>
                     {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                     <p>{pageContent.attributes.description2}</p>}
-                    <div class="input-group flex-nowrap mt-2">
-                        <span class="input-group-text bg-transparent border-dark"><i class="bi bi-envelope-at"/></span>
-                        <span class="input-group-text bg-transparent border-dark">info@asv-schlichten.de</span>
-                    </div>
                   </div>
               </div>
               <div class="col d-flex align-items-start">

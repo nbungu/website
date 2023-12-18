@@ -13,8 +13,8 @@ function NewsPost({ postId, onPostClicked }) {
    
   // Returns the currently shown post by id and with media data
   const queryString = STRAPI_CMS_URL + "/api/posts/" + postId + "?populate=*";
-  // Returns all posts including media data sorted by date
-  const queryString2 = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*"
+  // Returns 6 posts including media data sorted by date
+  const queryString2 = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*&pagination[start]=0&pagination[limit]=6"
 
   // GET Request to STRAPI server (backend) at endpoint /api/posts
   const [post, setPost] = useState(null);
