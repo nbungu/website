@@ -80,13 +80,13 @@ function NewsPost({ postId }) {
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <Link onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
+                      <a href='#' onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
                         <img className="col d-none d-sm-block test-img rounded" src={STRAPI_CMS_URL + post.attributes.titleimage?.data?.attributes.url} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>
                           <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>
                         </div>
-                      </Link>
+                      </a>
                     ))}
                   </li>
                 }                  
