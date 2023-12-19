@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../utils/Utils';
 
-function EventList({ events, onPostClicked  }) {
+function EventList({ events }) {
     
     function getIcon(eventType) {
         switch (eventType) {
@@ -53,7 +53,7 @@ function EventList({ events, onPostClicked  }) {
                                         }
                                         {event.attributes.post?.data &&
                                             <div class="col text-end">
-                                                <Link className='btn btn-outline-primary btn-sm mt-1' to={`/news/${event.attributes.post.data.id}`} onClick={()=>{onPostClicked(event.attributes.post.data.id)}} key={event.attributes.post.data.id}><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link>
+                                                <Link to={`/news/${event.attributes.post.data.id}`} className='btn btn-outline-primary btn-sm mt-1'><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link>
                                             </div>
                                         }                                        
                                     </div>

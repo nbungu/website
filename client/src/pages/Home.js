@@ -10,7 +10,7 @@ import Footer from '../components/Footer.js';
 import HeaderBanner from "../components/HeaderBanner.js";
 import RecentNewsV2 from "../components/RecentNewsV2.js";
 
-function Home({ onPostClicked, testData }) {
+function Home() {
  
   /*const [postIds, setPostIds] = useState(null);
 
@@ -47,7 +47,7 @@ function Home({ onPostClicked, testData }) {
         
         <TextCarousel/>
         <Tiles/>
-        <RecentNewsV2 onPostClicked={onPostClicked}/>
+        <RecentNewsV2/>
         
       </div>
 

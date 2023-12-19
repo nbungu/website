@@ -7,7 +7,7 @@ import EventList from '../components/EventList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { STRAPI_CMS_URL } from '../utils/Utils.js';
 
-function Schedule({ onPostClicked }) { 
+function Schedule() { 
   
   // fetches the last two most recent posts in sorted order
   const queryString = STRAPI_CMS_URL + "/api/events?populate=*&sort=date";
@@ -44,7 +44,7 @@ function Schedule({ onPostClicked }) {
           
           <div className="fixed-tile gap-3">
             <h2>Termine 1. Mannschaft</h2>
-            {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={events} onPostClicked={onPostClicked}/>}            
+            {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={events}/>}            
           </div>
 
         </div>

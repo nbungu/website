@@ -8,7 +8,7 @@ import NewsTile from '../components/NewsTile';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { STRAPI_CMS_URL } from '../utils/Utils.js';
 
-function News({ onPostClicked }) {
+function News() {
   
   const [posts, setPosts] = useState(null);
   const [totalNrOfPosts, setTotalNrOfPosts] = useState(0);
@@ -71,7 +71,7 @@ function News({ onPostClicked }) {
         {!posts ? <LoadingSpinner message={"Lade News..."}/> :
           <div className="tiles-container-flex">
             {posts.map((post) => (
-              <NewsTile newsPost={post} onPostClicked={onPostClicked}/>
+              <NewsTile newsPost={post}/>
             ))}
           </div>
         }

@@ -4,7 +4,7 @@ import React from 'react';
 import { formatPublishedAt } from '../utils/Utils';
 import { Link } from 'react-router-dom';
 
-function NewsList({ newsPosts, onPostClicked }) { 
+function NewsList({ newsPosts }) { 
     
     return (
         <div className="d-flex flex-column flex-md-row p-2 gap-4 align-items-center justify-content-center">

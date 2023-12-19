@@ -9,6 +9,9 @@ import NewsPostContentElement from "./NewsPostContentElement";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
 import { Link } from "react-router-dom";
 
+// Keep onPostClicked for this Component to Re-Render. 
+// necessary to reload this component but with another postId
+// Triggered from within this component by the More Posts List
 function NewsPost({ postId, onPostClicked }) {
    
   // Returns the currently shown post by id and with media data
@@ -55,6 +58,7 @@ function NewsPost({ postId, onPostClicked }) {
 
         <div className="row g-5">
 
+          {/* NEWS POST CONTENT */}
           <div class="col-lg-9">
             {!post ? <LoadingSpinner/> :
               <div className='vstack gap-3'>
@@ -68,6 +72,7 @@ function NewsPost({ postId, onPostClicked }) {
             }
           </div>
 
+          {/* MORE POSTS LIST */}
           <div class="col-lg-3">
             <div className="position-sticky">
               <h1 className="pb-3">Weitere Beiträge</h1>

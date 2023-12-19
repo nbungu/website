@@ -6,7 +6,7 @@ import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils.js';
 import { Link } from "react-router-dom";
 import defaultImg from '../assets/default-image.png'
 
-function RecentNewsV2({ onPostClicked }) {  
+function RecentNewsV2() {  
 
     // fetches the last two most recent posts in sorted order
     const queryString = STRAPI_CMS_URL + "/api/posts?populate=*&sort=publishedAt:desc&pagination[start]=0&pagination[limit]=2";
@@ -46,7 +46,7 @@ function RecentNewsV2({ onPostClicked }) {
                   <h3 class="mb-0">{post.attributes.title}</h3>
                   <div class="mb-1 text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</div>
                   <p class="card-text mb-auto">{post.attributes.summary}</p>
-                  <Link class="icon-link gap-1 icon-link-hover stretched-link" to={`/news/${post.id}`} onClick={()=>{onPostClicked(post.id)}}>
+                  <Link to={`/news/${post.id}`} class="icon-link gap-1 icon-link-hover stretched-link">
                     Continue reading
                     <i class="bi bi-chevron-right"></i>
                   </Link>

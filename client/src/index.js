@@ -41,7 +41,8 @@ export default function App() {
   // the current value and the setter-function.
   // Initial value of 'newsPostId' is 'null'
   // use the setter function when changing the value
-  const [newsPostId, setNewsPostId] = useState(null);
+  
+  //const [newsPostId, setNewsPostId] = useState(null);
   const [postIds, setPostIds] = useState(null);
 
   // useEffect with an empty dependency array ('[]'), will run once,
@@ -78,17 +79,17 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home onPostClicked={setNewsPostId}/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/*" element={<NotFound/>}/>
-        <Route path="/news" element={<News onPostClicked={setNewsPostId} />}/>
+        <Route path="/news" element={<News/>}/>
         {postIds && postIds.map((id) => (
           <Route path={"/news/"+id} element={<NewsPost postId={id}/>}/>
         ))}
-        <Route path="/termine" element={<Schedule onPostClicked={setNewsPostId} />}/>
-        <Route path="/kontakt" element={<Contact />}/>
+        <Route path="/termine" element={<Schedule/>}/>
+        <Route path="/kontakt" element={<Contact/>}/>
         <Route path="/impressum" element={<Impressum />}/>
         <Route path="/mitgliedschaft" element={<Membership />}/>
-        <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024 onPostClicked={setNewsPostId}/>}/>
+        <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024/>}/>
         <Route path="/nachwuchs" element={<Youth />}/>
       </Routes>
     </BrowserRouter>
