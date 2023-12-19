@@ -40,7 +40,7 @@ function NewsPost({ postId, onPostClicked }) {
       });
   };
 
-  // We want fetchPost() to be executed everytime App component loads
+  // empty dependency array: useEffect will run once, immediately after the component is mounted (the first render of the component)
   useEffect(() => {
     fetchPost();
     fetchFeaturedPosts();
@@ -75,13 +75,13 @@ function NewsPost({ postId, onPostClicked }) {
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <a class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                        <img className="col d-none d-sm-block test-img" src="https://github.com/mdo.png" alt=""/>
+                      <Link to={`/news/${post.id}`} onClick={()=>{onPostClicked(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
+                        <img className="col d-none d-sm-block test-img" src={STRAPI_CMS_URL + post.attributes.titleimage?.data?.attributes.url} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>
                           <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>
                         </div>
-                      </a>
+                      </Link>
                     ))}
                   </li>
                 }                  

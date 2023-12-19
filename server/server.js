@@ -39,7 +39,7 @@ app.use(
 
 /* -----ROUTES----- */
 
-// Creates endpoint for route localhost:3001/api and handles GET requests to that route
+// Creates endpoint for route localhost:3001/status and handles GET requests to that route
 app.get("/status", (req, res) => {
   res.json({ message: status });
 });
@@ -56,7 +56,7 @@ app.get('/*', (req, res) => {
 
 /* -----LISTEN----- */
 
-// if in production use the port 3000 for server
+// if in production use the port 3000 for server otherwise 3001
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
   if (MODE === 'production') console.log(`Server runs in ${MODE} mode and serves static build-files from client folder`);

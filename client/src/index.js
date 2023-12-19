@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom/client';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { disableReactDevTools } from '@fvilers/disable-react-devtools'; 
 
@@ -19,7 +20,9 @@ import Impressum from './pages/Impressum';
 import Membership from './pages/Membership';
 import EisbuabaCup2024 from './pages/EisbuabaCup2024';
 import Youth from "./pages/Youth";
+import NotFound from './pages/NotFound';
 import NewsPost from "./components/NewsPost";
+import { STRAPI_CMS_URL } from "./utils/Utils";
 
 if (process.env.NODE_ENV === 'production') disableReactDevTools();
 
@@ -36,31 +39,31 @@ export default function App() {
   // Usecase: Trigger re-renders of Components if a value changes
   // The 'useState' function returns an array with two elements:
   // the current value and the setter-function.
-  // Initial value of 'nodeServerStatus' is 'offline'
+  // Initial value of 'newsPostId' is 'null'
   // use the setter function when changing the value
-  const [nodeServerStatus, setNodeServerStatus] = useState(null);
   const [newsPostId, setNewsPostId] = useState(null);
+  const [postIds, setPostIds] = useState(null);
 
-  const fetchServerStatus = () => {
-    return fetch("/status")
+  // useEffect with an empty dependency array ('[]'), will run once,
+  // immediately after the component is mounted (after the first render of the component)
+  useEffect(() => {
+    async function fetchTest() {
+      return fetch(STRAPI_CMS_URL + "/api/posts?fields[0]=id")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
-      .then((result) => setNodeServerStatus(result.message))
+      .then((result) => {
+        const arrayOfIds = result.data.map(item => item.id);
+        setPostIds(arrayOfIds)})
       .catch((error) => {
-        console.error('Error fetching events:', error);
+        console.error('Error fetching post ids:', error);
         // You can handle the error here, such as displaying an error message to the user
       });
-  };
-  
-  // GET Request to NODE server (backend) at endpoint /api
-  // Any API requests made from this frontend (localhost:3000) will be proxied to localhost:3001 (node backend)
-  // Change Proxy-Settings in client/package.json
-  useEffect(() => {
-    fetchServerStatus()
+    }
+    fetchTest();
   }, []);
 
   
@@ -75,10 +78,12 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home onPostClicked={setNewsPostId} />}/>
-        <Route path="/*" element={<Home onPostClicked={setNewsPostId} />}/>
+        <Route path="/" element={<Home onPostClicked={setNewsPostId}/>}/>
+        <Route path="/*" element={<NotFound/>}/>
         <Route path="/news" element={<News onPostClicked={setNewsPostId} />}/>
-        <Route path="/news/:id" element={<NewsPost postId={newsPostId}/>}/>
+        {postIds && postIds.map((id) => (
+          <Route path={"/news/"+id} element={<NewsPost postId={id}/>}/>
+        ))}
         <Route path="/termine" element={<Schedule onPostClicked={setNewsPostId} />}/>
         <Route path="/kontakt" element={<Contact />}/>
         <Route path="/impressum" element={<Impressum />}/>
@@ -89,3 +94,32 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+/**
+<Route path="/news/:id" element={<NewsPost postId={newsPostId}/>}/>
+<Route path="/*" element={<Home onPostClicked={setNewsPostId} />}/>        
+
+const queryString = STRAPI_CMS_URL + "/api/posts?fields[0]=id";
+        const [postIds, setPostIds] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+        const fetchPostIds = () => {
+          return fetch(queryString)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((result) => setPostIds(result.data))
+            .catch((error) => {
+              console.error('Error fetching post ids:', error);
+              // You can handle the error here, such as displaying an error message to the user
+            });
+        };
+
+        {postIds && postIds.map((id) => (
+          <Route path={"/news/"+id} element={<NewsPost postId={id}/>}/>
+        ))}
+
+        <Route path="/news/:id" element={<NewsPost postId={newsPostId}/>}/>
+ */
