@@ -12,16 +12,16 @@ import { Link } from "react-router-dom";
 // Keep onPostClicked for this Component to Re-Render. 
 // necessary to reload this component but with another postId
 // Triggered from within this component by the More Posts List
-function NewsPost({ postId, onPostClicked }) {
-   
-  // Returns the currently shown post by id and with media data
-  const queryString = STRAPI_CMS_URL + "/api/posts/" + postId + "?populate=*";
-  // Returns 6 posts including media data sorted by date
-  const queryString2 = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*&pagination[start]=0&pagination[limit]=6"
+function NewsPost({ postId }) {
 
-  // GET Request to STRAPI server (backend) at endpoint /api/posts
+  const [selectedPostId, setSelectedPostId] = useState(postId);
   const [post, setPost] = useState(null);
   const [featuredPosts, setFeaturedPosts] = useState(null);
+
+  // Returns the currently shown post by id and with media data
+  const queryString = STRAPI_CMS_URL + "/api/posts/" + selectedPostId + "?populate=*";
+  // Returns 6 posts including media data sorted by date
+  const queryString2 = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*&pagination[start]=0&pagination[limit]=6"
 
   const fetchPost = () => {
     return fetch(queryString)
@@ -47,7 +47,7 @@ function NewsPost({ postId, onPostClicked }) {
   useEffect(() => {
     fetchPost();
     fetchFeaturedPosts();
-  }, []);
+  }, [selectedPostId]);
 
   return (
     <div className='body-bg'>
@@ -80,8 +80,8 @@ function NewsPost({ postId, onPostClicked }) {
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <Link to={`/news/${post.id}`} onClick={()=>{onPostClicked(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
-                        <img className="col d-none d-sm-block test-img" src={STRAPI_CMS_URL + post.attributes.titleimage?.data?.attributes.url} alt=""/>
+                      <Link onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
+                        <img className="col d-none d-sm-block test-img rounded" src={STRAPI_CMS_URL + post.attributes.titleimage?.data?.attributes.url} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>
                           <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>

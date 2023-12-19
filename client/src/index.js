@@ -42,7 +42,7 @@ export default function App() {
   // Initial value of 'newsPostId' is 'null'
   // use the setter function when changing the value
   
-  //const [newsPostId, setNewsPostId] = useState(null);
+  const [newsPostId, setNewsPostId] = useState(null);
   const [postIds, setPostIds] = useState(null);
 
   // useEffect with an empty dependency array ('[]'), will run once,

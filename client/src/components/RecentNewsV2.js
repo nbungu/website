@@ -59,7 +59,7 @@ function RecentNewsV2() {
           </div>
         ))
       }
-      <Link className="btn btn-secondary" to="/news"><i class="bi bi-arrow-repeat pe-2"/>Mehr News laden</Link>
+      <Link className="btn btn-light" to="/news"><i class="bi bi-arrow-repeat pe-2"/>Mehr News laden</Link>
     </div>    
   )
 }
