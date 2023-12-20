@@ -51,7 +51,7 @@ function RecentNewsV2() {
                     <i class="bi bi-chevron-right"></i>
                   </Link>
                 </div>
-                <div class="col-auto d-none d-lg-block test">
+                <div class="col-auto d-none d-md-block test">
                   <img src={post.attributes.titleimage.data.attributes.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt="..."/>
                 </div>
               </div>           

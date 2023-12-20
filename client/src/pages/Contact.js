@@ -73,7 +73,7 @@ function Contact() {
                         {people.map((person) => (
                         <div className="list-group-item list-group-item-action p-2" aria-current="true">
                             <div className="hstack">
-                                <img class="rounded-circle img-fluid me-4 ms-3" src="https://github.com/mdo.png" alt=""/>
+                                <img class="rounded-circle test-img-square me-4 ms-3" src="https://github.com/mdo.png" alt=""/>
                                 <div className="vstack text-start">
                                     <h3>{person.attributes.name}</h3>
                                     <p className="opacity-75">{person.attributes.function}</p>

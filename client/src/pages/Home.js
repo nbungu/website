@@ -23,7 +23,7 @@ function Home() {
         <TextCarousel/>
         <Tiles/>
         <RecentNewsV2/>
-        
+
       </div>
 
       <Footer/>

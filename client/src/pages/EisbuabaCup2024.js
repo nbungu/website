@@ -14,7 +14,7 @@ function EisbuabaCup2024() {
     // fetches the last two most recent posts in sorted order
     const queryString1 = STRAPI_CMS_URL + "/api/eisbuaba-cup-page?populate=*";
     const queryString2 = STRAPI_CMS_URL + "/api/teams?filters[active][$eq]=true&populate=*";
-    const queryString3 = STRAPI_CMS_URL + "/api/matches?populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&sort=faceoffTime";
+    const queryString3 = STRAPI_CMS_URL + "/api/matches?filters[matchtype][$eq]=Eisbuaba-Cup&populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&sort=faceoffTime";
     const queryString4 = STRAPI_CMS_URL + "/api/teams?fields[0]=votingCount&sort[0]=votingCount:desc&pagination[start]=0&pagination[limit]=1"
     
     const [pageContent, setPageContent] = useState(null);
@@ -102,7 +102,7 @@ function EisbuabaCup2024() {
           // You can handle the error here, such as displaying an error message to the user
         });
     };
-    const fetchMatches = () => {
+    const fetchCupMatches = () => {
       return fetch(queryString3)
         .then((response) => {
           if (!response.ok) {
@@ -121,7 +121,7 @@ function EisbuabaCup2024() {
     useEffect(() => {
       fetchPageContent();
       fetchTeams();
-      fetchMatches();
+      fetchCupMatches();
       fetchHighestVoting();
 
     }, []);

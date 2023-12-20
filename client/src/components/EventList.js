@@ -9,8 +9,7 @@ function EventList({ events }) {
     function getIcon(eventType) {
         switch (eventType) {
             case "Training": return "bi bi-arrow-repeat text-success fs-4";
-            case "Heimspiel": return "bi bi-house-fill text-secondary fs-4";
-            case "Auswärtsspiel": return "bi bi-bus-front-fill text-secondary fs-4";
+            case "Nachwuchstraining": return "bi bi-arrow-repeat text-success fs-4";
             case "Trainingslager": return "bi bi-backpack2-fill text-secondary fs-4";
             case "Turnier": return "bi bi-trophy-fill text-warning fs-4";
             case "Eisbuaba-Cup": return "bi bi-trophy-fill text-warning fs-4";
@@ -35,7 +34,7 @@ function EventList({ events }) {
                                         <div class="col text-start">
                                             {event.attributes.date ?
                                                 <p className="mb-1 opacity-75">{formatDate(event.attributes.date)}</p> :
-                                                event.attributes.type === 'Training' ? <p className="mb-1 opacity-75">regelmäßiger Termin</p> :
+                                                event.attributes.type === 'Training' || event.attributes.type === 'Nachwuchstraining' ? <p className="mb-1 opacity-75">regelmäßiger Termin</p> :
                                                 <p className="mb-1 opacity-75">-</p>
                                             }
                                             <h3 className="mb-1">{event.attributes.type}</h3>
@@ -46,9 +45,9 @@ function EventList({ events }) {
                                         </div>
                                     </div>
                                     <div class="row align-items-top">
-                                        {event.attributes.text &&
+                                        {event.attributes.infotext &&
                                             <div class="col text-start">
-                                                <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{event.attributes.text}</p>
+                                                <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{event.attributes.infotext}</p>
                                             </div>
                                         }
                                         {event.attributes.post?.data &&
