@@ -75,12 +75,12 @@ function NewsPost({ postId }) {
           {/* MORE POSTS LIST */}
           <div class="col-lg-3">
             <div className="position-sticky">
-              <h1 className="pb-3">Weitere Beiträge</h1>
+              <h1 className="mb-2">Weitere Beiträge</h1>
               <ul class="list-unstyled">
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <a href='#' onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
+                      <a href='#' onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
                         <img className="col d-none d-sm-block test-img rounded" src={STRAPI_CMS_URL + post.attributes.titleimage?.data?.attributes.url} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>

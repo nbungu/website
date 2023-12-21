@@ -4,7 +4,7 @@
   --bg-main-gray:#2a2a2a;
   --bg-light-gray:#2a2a2a7c;
   --bg-main-blue1: #8ae1f5;
-  --bg-main-blue2:#1991d0;
+  --bg-main-blue2:#7fbacc;
   --bg-main-blue3:#b9dfe9;
   --bg-light-green:#c7ffee;
   --bg-light-red:#ffe1e0;
@@ -424,26 +424,42 @@ p {
 }
 
 .match-bg-home-win {
-  background: linear-gradient(90deg, var(--bg-light-green), white, white, white, white, var(--bg-light-red));
+  background: linear-gradient(90deg, var(--bg-main-blue3), white,  var(--bg-main-blue1), var(--bg-main-blue3));
   height: 100%;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-.match-bg-home-loose {
-  background: linear-gradient(90deg, var(--bg-light-red), white, white, white, white, var(--bg-light-green));
-  height: 100%;
+.test-bg {
+  background: linear-gradient(90deg, var(--bg-main-blue2), transparent, transparent,  transparent, transparent, var(--bg-main-blue2));
+  min-height: 100vh;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-.match-bg-draw {
-  background: linear-gradient(90deg, var(--bg-light-orange), white,  white, white, white, var(--bg-light-orange));
-  height: 100%;
-  width: 100%;
+
+.score-decor {
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  display: block;
+  width: 35%;
+  inset-inline-start: 0;
+  inset-block: 0;
+  background-color: var(--bg-main-blue1);
+  clip-path: polygon(0 0, 79% 0, 100% 100%, 0% 100%);
 }
+
+.score-decor-r {
+  overflow: hidden;
+  position: absolute;
+  display: block;
+  width: 35%;
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  inset-block: 0;
+  background-color: var(--bg-light-green);
+  clip-path: polygon(21% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+

@@ -48,7 +48,7 @@ function EisbuabaCup2024() {
           const response = await fetch(STRAPI_CMS_URL + '/api/teams/' + selectedTeamId, requestOptions);
           const data = await response.json();
 
-          await fetchTeams();
+          await fetchActiveTeams();
           await fetchHighestVoting();
         }
         updateTeamVote();
@@ -74,7 +74,7 @@ function EisbuabaCup2024() {
           // You can handle the error here, such as displaying an error message to the user
         });
     };
-    const fetchTeams = () => {
+    const fetchActiveTeams = () => {
       return fetch(queryString2)
         .then((response) => {
           if (!response.ok) {
@@ -117,13 +117,12 @@ function EisbuabaCup2024() {
         });
     };
   
-    // We want fetchPosts() etc. to be executed everytime App component loads
+    // We want fetchXY() etc. to be executed everytime App component loads
     useEffect(() => {
       fetchPageContent();
-      fetchTeams();
+      fetchActiveTeams();
       fetchCupMatches();
       fetchHighestVoting();
-
     }, []);
 
   return (
@@ -144,12 +143,12 @@ function EisbuabaCup2024() {
                   <p class="col-lg-8 mx-auto lead p-1">{pageContent.attributes.summary}</p>
                   </>
                   }
-                  <div class="d-inline-flex gap-2 p-3">
-                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} class="d-inline-flex align-items-center btn btn-danger btn-lg px-4 rounded-pill" type="button">
+                  <div class="row gap-3 p-3 justify-content-center">
+                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} class="col-sm-4 btn btn-danger btn-lg px-4 rounded-pill" type="button">
                       Livestream
                       <i className="bi bi-youtube ps-2 fs-4"/>
                     </a>
-                    <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
+                    <button class="col-sm-4 btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
                       Spielplan
                       <i className="bi bi-file-earmark-arrow-down ps-2"/>
                     </button>

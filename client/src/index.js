@@ -21,6 +21,8 @@ import Membership from './pages/Membership';
 import EisbuabaCup2024 from './pages/EisbuabaCup2024';
 import Youth from "./pages/Youth";
 import NotFound from './pages/NotFound';
+import Sponsors from './pages/Sponsors';
+import About from './pages/About';
 import NewsPost from "./components/NewsPost";
 import { STRAPI_CMS_URL } from "./utils/Utils";
 
@@ -91,6 +93,8 @@ export default function App() {
         <Route path="/mitgliedschaft" element={<Membership />}/>
         <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024/>}/>
         <Route path="/nachwuchs" element={<Youth />}/>
+        <Route path="/sponsoren" element={<Sponsors />}/>
+        <Route path="/about" element={<About />}/>
       </Routes>
     </BrowserRouter>
   );

@@ -8,8 +8,8 @@ function EventList({ events }) {
     
     function getIcon(eventType) {
         switch (eventType) {
-            case "Training": return "bi bi-arrow-repeat text-success fs-4";
-            case "Nachwuchstraining": return "bi bi-arrow-repeat text-success fs-4";
+            case "Training": return "bi bi-cone-striped text-success fs-4";
+            case "Nachwuchstraining": return "bi bi-cone-striped text-success fs-4";
             case "Trainingslager": return "bi bi-backpack2-fill text-secondary fs-4";
             case "Turnier": return "bi bi-trophy-fill text-warning fs-4";
             case "Eisbuaba-Cup": return "bi bi-trophy-fill text-warning fs-4";
@@ -22,7 +22,7 @@ function EventList({ events }) {
         <div className="list-group w-100">
             {
                 events.map((event) => (
-                    <div className="list-group-item list-group-item-action p-2" aria-current="true">
+                    <div className="list-group-item list-group-item-action px-3 py-2" aria-current="true">
                         
                         <div class="container-flex">              
                             <div class="row align-items-top">
@@ -34,7 +34,7 @@ function EventList({ events }) {
                                         <div class="col text-start">
                                             {event.attributes.date ?
                                                 <p className="mb-1 opacity-75">{formatDate(event.attributes.date)}</p> :
-                                                event.attributes.type === 'Training' || event.attributes.type === 'Nachwuchstraining' ? <p className="mb-1 opacity-75">regelmäßiger Termin</p> :
+                                                event.attributes.recurringDate ? <p className="mb-1 opacity-75">{'Jeden '+event.attributes.recurringDate}</p> :
                                                 <p className="mb-1 opacity-75">-</p>
                                             }
                                             <h3 className="mb-1">{event.attributes.type}</h3>

@@ -6,29 +6,20 @@ import { STRAPI_CMS_URL, formatDate } from '../utils/Utils';
 
 function MatchList({ matches }) {
     
-    // Function to handle button click
-    const setBg = (goalsHome, goalsAway, hasFinished) => {    
-        if (!hasFinished) return ''
-        if (goalsHome > goalsAway) return 'match-bg-home-win'
-        else if (goalsHome < goalsAway) return 'match-bg-home-loose'
-        else if (goalsHome === goalsAway) return 'match-bg-draw'
-        else return 'match-bg-draw'
-    };
-
     return (
         <div className="list-group w-100">
             {
                 matches.map((match) => (
-                    <div className={'list-group-item list-group-item-action p-2 '+ setBg(match.attributes.goalsHome, match.attributes.goalsAway, match.attributes.hasFinished)} aria-current="true">
+                    <div className='list-group-item list-group-item-action py-2 px-3' aria-current="true">
                         
                         <div class="container-flex">              
 
-                            <div class="row align-items-center justify-content-between">
+                            <div class="row mx-auto align-items-center justify-content-between">
 
                                 <div class="col text-center">
-                                    <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
-                                    <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamHome.data.attributes.name}</h3>
-                                    <p className='d-sm-none pt-1'>{match.attributes.teamHome.data.attributes.shortname}</p>
+                                        <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
+                                        <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamHome.data.attributes.name}</h3>
+                                        <h3 className='d-sm-none pt-2'>{match.attributes.teamHome.data.attributes.shortname}</h3>
                                 </div>
 
                                 <div class="col text-center">
@@ -41,16 +32,17 @@ function MatchList({ matches }) {
                                     {!match.attributes.hasFinished &&
                                         <div class="row align-items-top justify-content-center pt-2">
                                             <div className='col-auto'>
-                                                <span className="badge rounded-pill bg-light text-secondary">{'Anpfiff ' + match.attributes.faceoffTime.slice(11,16)}</span>
+                                                <span className="badge rounded-pill bg-light text-primary
+                                                ">{'Anpfiff ' + match.attributes.faceoffTime.slice(11,16)}</span>
                                             </div>
                                         </div>
                                     }
                                 </div>
 
                                 <div class="col text-center">
-                                    <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
-                                    <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamAway.data.attributes.name}</h3>
-                                    <p className='d-sm-none pt-1'>{match.attributes.teamAway.data.attributes.shortname}</p>
+                                        <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
+                                        <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamAway.data.attributes.name}</h3>
+                                        <h3 className='d-sm-none pt-2'>{match.attributes.teamAway.data.attributes.shortname}</h3>
                                 </div>
                             </div>
                             {match.attributes.infotext && 
@@ -74,9 +66,22 @@ export default MatchList
 /*
 
     <div class="col text-center">
-        <p>{formatDate(match.attributes.date)}</p>
-        <p>{match.attributes.startingTime.slice(0, -7)}</p>
+        <div className='score-decor-r ps-4 py-3'> 
+            <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
+            <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamAway.data.attributes.name}</h3>
+            <h3 className='d-sm-none pt-2'>{match.attributes.teamAway.data.attributes.shortname}</h3>
+        </div>
     </div>
 
+
+        // Function to handle button click
+    const setBg = (goalsHome, goalsAway, hasFinished) => {    
+        if (!hasFinished) return ''
+        if (goalsHome > goalsAway) return 'match-bg-home-win'
+        else if (goalsHome < goalsAway) return 'match-bg-home-loose'
+        else if (goalsHome === goalsAway) return 'match-bg-draw'
+        else return 'match-bg-draw'
+    };
+    //+ setBg(match.attributes.goalsHome, match.attributes.goalsAway, match.attributes.hasFinished)
 
 */

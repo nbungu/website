@@ -32,6 +32,10 @@ function TextCarousel() {
   }, []);
 
   return (
+    <div className="tiles-container">
+
+
+    
     <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
       
       <div className="carousel-indicators m-0">
@@ -83,6 +87,7 @@ function TextCarousel() {
         <span className="visually-hidden">Next</span>
       </button>
 
+    </div>
     </div>
   )
 }
