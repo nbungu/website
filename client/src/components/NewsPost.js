@@ -1,13 +1,16 @@
 // client/src/components/NewsPost.js
 
 import React, { useState, useEffect } from "react";
+import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
+import { Link } from "react-router-dom";
+
 import Header from './Header';
 import Footer from './Footer';
 import LoadingSpinner from "./LoadingSpinner";
 import NewsPostStartingElement from "./NewsPostStartingElement";
 import NewsPostContentElement from "./NewsPostContentElement";
-import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
-import { Link } from "react-router-dom";
+
+import defaultImg from '../assets/default-image.png'
 
 // Keep onPostClicked for this Component to Re-Render. 
 // necessary to reload this component but with another postId
@@ -81,7 +84,7 @@ function NewsPost({ postId }) {
                   <li>
                     {featuredPosts.map((post) => (
                       <a href='#' onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
-                        <img className="col d-none d-sm-block test-img rounded" src={STRAPI_CMS_URL + post.attributes.titleimage?.data?.attributes.url} alt=""/>
+                        <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>
                           <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>

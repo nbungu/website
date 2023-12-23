@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { STRAPI_CMS_URL, formatDate } from '../utils/Utils';
+import { Link } from 'react-router-dom';
 
 
-function MatchList({ matches }) {
+function MatchList({ matches, showLinkedPosts }) {
     
     return (
         <div className="list-group w-100">

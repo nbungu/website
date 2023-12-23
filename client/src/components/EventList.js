@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../utils/Utils';
 
-function EventList({ events }) {
+function EventList({ events, showLinkedPosts }) {
     
     function getIcon(eventType) {
         switch (eventType) {
@@ -50,11 +50,11 @@ function EventList({ events }) {
                                                 <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{event.attributes.infotext}</p>
                                             </div>
                                         }
-                                        {event.attributes.post?.data &&
+                                        {event.attributes.post?.data && showLinkedPosts &&
                                             <div class="col text-end">
                                                 <Link to={`/news/${event.attributes.post.data.id}`} className='btn btn-outline-primary btn-sm mt-1'><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link>
                                             </div>
-                                        }                                        
+                                        }
                                     </div>
                                 </div>
                             </div>

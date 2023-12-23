@@ -87,7 +87,7 @@ function Schedule() {
             <button type="button" class="btn btn-light" onClick={switchSortOrderEventsDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
             <button type="button" class="btn btn-light" onClick={switchSortOrderEventsAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
           </div>
-          {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={events}/>}
+          {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={events} showLinkedPosts={true}/>}
           <h1 className="my-2">Spiele</h1>
           <div className="hstack gap-3">
             <button type="button" class="btn btn-light" onClick={switchSortOrderMatchesDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>

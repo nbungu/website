@@ -47,12 +47,12 @@ function RecentNewsV2() {
                   <div class="mb-1 text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</div>
                   <p class="card-text mb-auto">{post.attributes.summary}</p>
                   <Link to={`/news/${post.id}`} class="icon-link gap-1 icon-link-hover stretched-link">
-                    Continue reading
+                    Weiterlesen
                     <i class="bi bi-chevron-right"></i>
                   </Link>
                 </div>
                 <div class="col-auto d-none d-md-block test">
-                  <img src={post.attributes.titleimage.data.attributes.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt="..."/>
+                  <img src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt="..."/>
                 </div>
               </div>           
             </div>

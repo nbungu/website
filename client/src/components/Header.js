@@ -24,10 +24,9 @@ function Header({ currentPage }) {
 
                     {/* Buttons on the right*/} 
                     <div className="navbar-nav gap-3">
+                        <Link to="/" className={currentPage === "home" ? active : regular}><h2>Home</h2></Link>
                         <Link to="/news" className={currentPage === "news" ? active : regular}><h2>News</h2></Link>
                         <Link to="/termine" className={currentPage === "schedule" ? active : regular}><h2>Termine</h2></Link>      
-                        <Link to="/about" className={currentPage === "about" ? active : regular}><h2>Team</h2></Link>
-                        <Link to="/sponsoren" className={currentPage === "sponsors" ? active : regular}><h2>Sponsoren</h2></Link>
                         <Link to="/kontakt" className={currentPage === "contact" ? active : regular}><h2>Kontakt</h2></Link>
                     </div>
                 </div>
@@ -40,10 +39,9 @@ function Header({ currentPage }) {
                     </button>
                     
                     <ul class="dropdown-menu glass-effect text-center mx-3">
+                        <Link to="/" className='dropdown-item py-3 px-5'><h1>Home</h1></Link>
                         <Link to="/news" className='dropdown-item py-3 px-5'><h1>News</h1></Link>
                         <Link to="/termine" className='dropdown-item py-3 px-5'><h1>Termine</h1></Link>      
-                        <Link to="/about" className='dropdown-item py-3 px-5'><h1>Team</h1></Link>
-                        <Link to="/sponsoren" className='dropdown-item py-3 px-5'><h1>Sponsoren</h1></Link>
                         <Link to="/kontakt" className='dropdown-item py-3 px-5'><h1>Kontakt</h1></Link>
                     </ul>
                 </div>
