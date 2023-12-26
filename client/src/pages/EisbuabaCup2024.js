@@ -4,16 +4,17 @@ import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { STRAPI_CMS_URL } from '../utils/Utils.js';
-
-import defaultImg from '../assets/default-image.png'
 import MatchList from "../components/MatchList.js";
 import ProgressBar from "../components/ProgressBar.js";
+
+import { STRAPI_CMS_URL } from '../utils/Utils.js';
+import defaultImg from '../assets/default-image.webp'
+
 
 function EisbuabaCup2024() {
     // fetches the last two most recent posts in sorted order
     const queryString1 = STRAPI_CMS_URL + "/api/eisbuaba-cup-page?populate=*";
-    const queryString2 = STRAPI_CMS_URL + "/api/teams?filters[active][$eq]=true&populate=*";
+    const queryString2 = STRAPI_CMS_URL + "/api/teams?filters[isEisbuabacupTeam][$eq]=true&populate=*";
     const queryString3 = STRAPI_CMS_URL + "/api/matches?filters[matchtype][$eq]=Eisbuaba-Cup&populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&sort=faceoffTime";
     const queryString4 = STRAPI_CMS_URL + "/api/teams?fields[0]=votingCount&sort[0]=votingCount:desc&pagination[start]=0&pagination[limit]=1"
     

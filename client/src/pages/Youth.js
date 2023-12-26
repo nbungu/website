@@ -7,8 +7,7 @@ import { STRAPI_CMS_URL } from '../utils/Utils.js';
 import LoadingSpinner from "../components/LoadingSpinner";
 import EventList from "../components/EventList.js";
 
-import defaultImg from '../assets/default-image.png'
-import video from '../assets/video-playback-vertical.mp4'
+import defaultImg from '../assets/default-image.webp'
 
 function Youth({ onPostClicked }) {
 

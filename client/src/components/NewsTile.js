@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
 
-import defaultImg from '../assets/default-image.png'
+import defaultImg from '../assets/default-image.webp'
 
 function NewsTile({ newsPost }) {
   

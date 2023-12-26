@@ -8,6 +8,7 @@ import EventList from "./EventList";
 import MatchList from "./MatchList";
 
 import { STRAPI_CMS_URL } from '../utils/Utils';
+import RichTextBlocks from "./RichTextBlocks";
 
 function NewsPostContentElement({ newsPost }) {
   
@@ -18,7 +19,6 @@ function NewsPostContentElement({ newsPost }) {
   const imgPath = STRAPI_CMS_URL + imgPathRel;
   const imageCaption = newsPost.attributes.titleimagecaption;
   const fullText = newsPost.attributes.fulltext;
-
   const imgCollection = getImageArray(newsPost.attributes.imagecollection);
   const ytVideoUrl = newsPost.attributes.youtubeurl;
   const linkedEventId = newsPost.attributes.event?.data?.id;
@@ -72,52 +72,9 @@ function NewsPostContentElement({ newsPost }) {
     <div className="container-flex">
       {linkedEvent && <div className="mt-3"><EventList events={linkedEvent}/></div>}
       {linkedMatch && <div className="mt-3"><MatchList matches={linkedMatch}/></div>}
-
       {imgPathRel && <img className="img-fluid news-post-image rounded mt-3" src={imgPath} alt=''/>}
-      {imgPathRel && imageCaption ? <p className="text-body-secondary mt-2">{imageCaption}</p> : <div className="m-0 p-0"/>}
-
-      {fullText && fullText.map(textBlock => {
-        if (textBlock.type === 'paragraph') {
-          return (
-            <p className="text-start mt-3">
-              {textBlock.children.map(e => {
-                if (e.type === 'text') {
-                  return (
-                    <span className={`${e.bold && 'fw-bold'} ${e.italic && 'fst-italic'}`}>{e.text}</span>
-                  )
-                }
-                else if (e.type === 'link') { 
-                  return (
-                    <a href={e.url} className={`${e.children[0].bold && 'fw-bold'} ${e.children[0].italic && 'fst-italic'}`}>{e.children[0].text}</a>
-                  )
-                }
-              }
-              )}
-            </p>
-          );
-        }
-        else if (textBlock.type === 'heading') {
-          const HeadingComponent = `h${textBlock.level}`;
-          return (
-            <HeadingComponent className={`text-start mt-3`}>
-              {textBlock.children.map(e => {
-                if (e.type === 'text') {
-                  return (
-                    <span className={`${e.bold && 'fw-bold'} ${e.italic && 'fst-italic'}`}>{e.text}</span>
-                  )
-                }
-                else if (e.type === 'link') { 
-                  return (
-                    <a href={e.url} className={`${e.children[0].bold && 'fw-bold'} ${e.children[0].italic && 'fst-italic'}`}>{e.children[0].text}</a>
-                  )
-                }
-              }
-              )}
-            </HeadingComponent>
-          );
-        }
-        })
-      }
+      {imgPathRel && imageCaption && <p className="text-body-secondary mt-2">{imageCaption}</p>}
+      {fullText && <div className="mt-3"><RichTextBlocks richtext={fullText}/></div>}
       {imgCollection && <div className="mt-3"><ImageGallery imagePaths={imgCollection}/></div>}
       {ytVideoUrl && <div className="mt-3"><YouTubeEmbed videoUrl={ytVideoUrl}/></div>}
     </div>

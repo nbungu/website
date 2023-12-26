@@ -11,7 +11,7 @@ import MatchList from "../components/MatchList.js";
 function Schedule() { 
   
   const [sortOrderEvents, setSortOrderEvents] = useState('asc');
-  const [sortOrderMatches, setSortOrderMatches] = useState('asc');
+  const [sortOrderMatches, setSortOrderMatches] = useState('desc');
   const [events, setEvents] = useState(null);
   const [matches, setMatches] = useState(null);
 

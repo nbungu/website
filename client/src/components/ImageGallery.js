@@ -5,58 +5,88 @@ import React, { useState } from 'react';;
 function ImageGallery({ imagePaths }) {  
  
     const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(null);
+    const maxIndexNr = imagePaths.length - 1;
 
-    const openImageModal = (imagePath) => {
-    setSelectedImage(imagePath);
+    const openImageModal = (imagePath, index) => {
+        setSelectedImage(imagePath);
+        setSelectedIndex(index);
     };
 
     const closeImageModal = () => {
-    setSelectedImage(null);
+        setSelectedImage(null);
     };
 
-    const downloadImage = (imagePath) => {
+    const prevImage = () => {
+        const index = selectedIndex === 0 ? maxIndexNr : selectedIndex - 1;
+        setSelectedImage(imagePaths[index]);
+        setSelectedIndex(index);
+    };
+    const nextImage = () => {
+        const index = selectedIndex === maxIndexNr ? 0 : selectedIndex + 1;
+        setSelectedImage(imagePaths[index]);
+        setSelectedIndex(index);
+    };
+
+    const setToFullscreen = (imagePath) => {
         const link = document.createElement('a');
         link.href = imagePath;
         link.download = 'downloaded_image.jpg';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-      };
+    };
 
     return (
-
         <div className="container-flex">
+            {/* IMAGE GALLERY */}
             <div className="row g-3">
                 {imagePaths.map((imagePath, index) => (
                 <div key={index} className="col-6 col-md-3">
-                    <div className="gallery-item rounded" onClick={() => openImageModal(imagePath)} style={{ cursor: 'pointer' }}>
-                        <img src={imagePath} alt={`Image ${index + 1}`} className='rounded' />
+                    <div className="gallery-item rounded" onClick={() => openImageModal(imagePath, index)} style={{ cursor: 'pointer' }}>
+                        <img src={imagePath} alt={`Tile ${index + 1}`} className='rounded' />
                     </div>
                 </div>
                 ))}
             </div>
 
+            {/* IMAGE POPOVER */}
             {selectedImage && (
                 <div className="modal fade show" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
-                    <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-dialog modal-dialog-centered modal-xl p-3">
+                        {/* POPOVER CONTENT */}
                         <div className="modal-content">
 
-                            <div className="row align-items-center justify-content-between p-3">
+                            <div className="row align-items-center justify-content-between m-3 g-0">
 
                                 <div className="col-auto">
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={closeImageModal}/>
+                                    <button type="button" className="btn-close px-2" data-bs-dismiss="modal" aria-label="Close" onClick={closeImageModal}></button>
                                 </div>
-
+                                
                                 <div className="col-auto">
-                                    <button type="button" class='btn btn-success' onClick={() => downloadImage(selectedImage)}><i className="bi bi-arrows-fullscreen"/></button>
+                                    <div className='hstack gap-3'>
+                                        <a className='btn btn-outline-primary' href={selectedImage} download><i className="bi bi-download"/></a>
+                                        <button type="button" class='btn btn-outline-dark'><i className="bi bi-share-fill"/></button>
+                                        <a class='btn btn-success' href={selectedImage}><i className="bi bi-arrows-fullscreen"/></a>
+                                    </div>
+                                    
                                 </div>
 
                             </div>
-
                             
-                            <div className="modal-body pt-0">
-                                <img src={selectedImage} alt="Full Size Image" className="img-fluid" />
+                            <div className="modal-body py-0">
+                                <div className='container-flex'>
+                                    <img src={selectedImage} className="img-fluid" style={{ maxHeight: '75vh' }} alt="Full Size"/>
+                                </div>
                             </div>
+
+                            <div className='row align-items-center justify-content-center m-3'>
+                                    <div className='col-auto'>
+                                        <button type="button" class='btn btn-outline-dark mx-3' onClick={() => prevImage()}><i className="bi bi-chevron-left"/></button>
+                                        <button type="button" class='btn btn-outline-dark mx-3' onClick={() => nextImage()}><i className="bi bi-chevron-right"/></button>
+                                    </div>                                    
+                                </div>
+
                         </div>
                     </div>
                 </div>
@@ -66,3 +96,9 @@ function ImageGallery({ imagePaths }) {
 }
 
 export default ImageGallery
+
+/*
+
+
+
+*/

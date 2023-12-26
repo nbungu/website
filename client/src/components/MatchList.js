@@ -2,8 +2,6 @@
 
 import React from 'react';
 import { STRAPI_CMS_URL, formatDate } from '../utils/Utils';
-import { Link } from 'react-router-dom';
-
 
 function MatchList({ matches, showLinkedPosts }) {
     
@@ -24,20 +22,21 @@ function MatchList({ matches, showLinkedPosts }) {
                                 </div>
 
                                 <div class="col text-center">
-                                <p className='opacity-75 pb-2'>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
+ 
+                                    <p className='opacity-75 pb-2'>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
       
                                     {match.attributes.hasFinished ? <h1>{match.attributes.goalsHome} - {match.attributes.goalsAway}</h1> : <h1>vs.</h1>}
                                     
-                                    {match.attributes.hasFinished && <p className='pb-2'>Beendet</p>}
-
-                                    {!match.attributes.hasFinished &&
-                                        <div class="row align-items-top justify-content-center pt-2">
-                                            <div className='col-auto'>
-                                                <span className="badge rounded-pill bg-light text-primary
-                                                ">{'Anpfiff ' + match.attributes.faceoffTime.slice(11,16)}</span>
-                                            </div>
+  
+                                    <div class="row align-items-top justify-content-center pt-2">
+                                        <div className='col-auto'>
+                                            {!match.attributes.hasFinished ?
+                                                <span className="badge rounded-pill bg-light text-primary">{'Anpfiff ' + match.attributes.faceoffTime.slice(11,16)}</span> :
+                                                <span class="badge rounded-pill text-bg-warning opacity-75">Beendet</span>
+                                            }
                                         </div>
-                                    }
+                                    </div>
+                                    
                                 </div>
 
                                 <div class="col text-center">

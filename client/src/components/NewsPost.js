@@ -10,7 +10,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import NewsPostStartingElement from "./NewsPostStartingElement";
 import NewsPostContentElement from "./NewsPostContentElement";
 
-import defaultImg from '../assets/default-image.png'
+import defaultImg from '../assets/default-image.webp'
 
 // Keep onPostClicked for this Component to Re-Render. 
 // necessary to reload this component but with another postId
