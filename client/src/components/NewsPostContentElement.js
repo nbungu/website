@@ -75,6 +75,7 @@ function NewsPostContentElement({ newsPost }) {
       {imgPathRel && <img className="img-fluid news-post-image rounded mt-3" src={imgPath} alt=''/>}
       {imgPathRel && imageCaption && <p className="text-body-secondary mt-2">{imageCaption}</p>}
       {fullText && <div className="mt-3"><RichTextBlocks richtext={fullText}/></div>}
+      {imgCollection && <h1 className="text-start mb-2 mt-3">{'Gallerie ('+imgCollection.length+')'}</h1>}
       {imgCollection && <div className="mt-3"><ImageGallery imagePaths={imgCollection}/></div>}
       {ytVideoUrl && <div className="mt-3"><YouTubeEmbed videoUrl={ytVideoUrl}/></div>}
     </div>

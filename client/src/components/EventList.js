@@ -8,8 +8,8 @@ function EventList({ events, showLinkedPosts }) {
     
     function getIcon(eventType) {
         switch (eventType) {
-            case "Training": return "bi bi-cone-striped text-success fs-4";
-            case "Nachwuchstraining": return "bi bi-cone-striped text-success fs-4";
+            case "Training": return "bi bi-people-fill text-secondary fs-4";
+            case "Nachwuchstraining": return "bi bi-person-arms-up text-secondary fs-4";
             case "Trainingslager": return "bi bi-backpack2-fill text-secondary fs-4";
             case "Turnier": return "bi bi-trophy-fill text-warning fs-4";
             case "Eisbuaba-Cup": return "bi bi-trophy-fill text-warning fs-4";

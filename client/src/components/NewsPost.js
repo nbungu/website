@@ -83,7 +83,7 @@ function NewsPost({ postId }) {
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <a href='#' onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
+                      <a href={'/news/'+post.id} onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
                         <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>
@@ -119,21 +119,12 @@ export default NewsPost
 
 /**
 
-
-      <div className="flex-grow-1">
-
-        {!post ? <LoadingSpinner/> :
-          <div className='tiles-container'>
-            <NewsPostStartingElement newsPostUpVotes={post.attributes.upvotes} newsPostDownVotes={post.attributes.downvotes} postId={post.id}/>
-            <div className="fixed-tile">
-              <h1>{post.attributes.title}</h1>
-              <p className="text-body-secondary py-2">Veröffentlicht am: {formatPublishedAt(post.attributes.publishedAt)}</p>
-              <NewsPostContentElement newsPost={post}/>
-            </div>
-            <NewsPostEndingElement onPostClicked={onPostClicked}/>
-          </div>
-        }
-
-      </div>
+<Link to={'/news/'+post.id} onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
+  <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
+  <div class="col-sm-8">
+    <h6 class="mb-0">{post.attributes.title}</h6>
+    <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>
+  </div>
+</Link>
 
  */

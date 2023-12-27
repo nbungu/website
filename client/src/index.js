@@ -19,7 +19,6 @@ import Contact from './pages/Contact';
 import Impressum from './pages/Impressum';
 import Membership from './pages/Membership';
 import EisbuabaCup2024 from './pages/EisbuabaCup2024';
-import Youth from "./pages/Youth";
 import NotFound from './pages/NotFound';
 import Sponsors from './pages/Sponsors';
 import About from './pages/About';
@@ -44,7 +43,6 @@ export default function App() {
   // Initial value of 'newsPostId' is 'null'
   // use the setter function when changing the value
   
-  const [newsPostId, setNewsPostId] = useState(null);
   const [postIds, setPostIds] = useState(null);
 
   // useEffect with an empty dependency array ('[]'), will run once,
@@ -92,7 +90,6 @@ export default function App() {
         <Route path="/impressum" element={<Impressum />}/>
         <Route path="/mitgliedschaft" element={<Membership />}/>
         <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024/>}/>
-        <Route path="/nachwuchs" element={<Youth />}/>
         <Route path="/sponsoren" element={<Sponsors />}/>
         <Route path="/about" element={<About />}/>
       </Routes>

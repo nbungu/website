@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { STRAPI_CMS_URL, formatDate } from '../utils/Utils';
+import { Link } from 'react-router-dom';
 
-function MatchList({ matches, showLinkedPosts }) {
+function MatchList({ matches, showExtendedInfos }) {
     
     return (
         <div className="list-group w-100">
@@ -14,7 +15,7 @@ function MatchList({ matches, showLinkedPosts }) {
                         <div class="container-flex">              
 
                             <div class="row mx-auto align-items-center justify-content-between">
-
+                               
                                 <div class="col text-center">
                                         <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
                                         <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamHome.data.attributes.name}</h3>
@@ -23,11 +24,8 @@ function MatchList({ matches, showLinkedPosts }) {
 
                                 <div class="col text-center">
  
-                                    <p className='opacity-75 pb-2'>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
-      
+                                    {!showExtendedInfos && <p className='opacity-75 pb-2'>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>}
                                     {match.attributes.hasFinished ? <h1>{match.attributes.goalsHome} - {match.attributes.goalsAway}</h1> : <h1>vs.</h1>}
-                                    
-  
                                     <div class="row align-items-top justify-content-center pt-2">
                                         <div className='col-auto'>
                                             {!match.attributes.hasFinished ?
@@ -40,14 +38,21 @@ function MatchList({ matches, showLinkedPosts }) {
                                 </div>
 
                                 <div class="col text-center">
-                                        <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
-                                        <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamAway.data.attributes.name}</h3>
-                                        <h3 className='d-sm-none pt-2'>{match.attributes.teamAway.data.attributes.shortname}</h3>
+                                    <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
+                                    <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamAway.data.attributes.name}</h3>
+                                    <h3 className='d-sm-none pt-2'>{match.attributes.teamAway.data.attributes.shortname}</h3>
                                 </div>
+
+                                {showExtendedInfos && 
+                                <div class="d-none d-sm-block col-sm-2 text-center bg-light border rounded p-3">
+                                    <p><i class="bi bi-calendar-week mx-1"></i>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
+                                    <p><i class="bi bi-geo-alt-fill mx-1"></i>{match.attributes.location}</p>
+                                    {match.attributes.post?.data && <Link to={`/news/${match.attributes.post.data.id}`} className='btn btn-outline-primary btn-sm mt-2'><i className="bi bi-arrow-right pe-2"/>Spielbericht</Link>}
+                                </div>}
                             </div>
                             {match.attributes.infotext && 
-                                <div class="row align-items-center pt-2">
-                                    <div className='col-12 text-center'>
+                                <div class="row align-items-center pt-1">
+                                    <div className='col-12 text-start'>
                                         <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{match.attributes.infotext}</p>
                                     </div>
                                 </div>

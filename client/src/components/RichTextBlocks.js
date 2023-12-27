@@ -24,6 +24,9 @@ function RichTextBlocks({ richtext }) {
                     <a href={e.url} className={`${e.children[0].bold && 'fw-bold'} ${e.children[0].italic && 'fst-italic'}`}>{e.children[0].text}</a>
                   )
                 }
+                else {
+                  return (<p></p>)
+                }
               }
               )}
             </p>
@@ -45,10 +48,16 @@ function RichTextBlocks({ richtext }) {
                     <a href={e.url} className={`${e.children[0].bold && 'fw-bold'} ${e.children[0].italic && 'fst-italic'}`}>{e.children[0].text}</a>
                   )
                 }
+                else {
+                  return (<p></p>)
+                }
               }
               )}
             </HeadingComponent>
           );
+        }
+        else {
+          return (<p></p>)
         }
         })
       } 

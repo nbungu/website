@@ -362,8 +362,7 @@ p {
   position: absolute;
 }
 
-/* TESTING
--------------------------------------------------- */
+
 
 /* Glassmorphism */
 .glass-effect { 
@@ -387,6 +386,8 @@ p {
   backdrop-filter: blur(10px);
 }
 
+/* TESTING
+-------------------------------------------------- */
 .test {
   width: 280px;
   height: 250px;
@@ -411,55 +412,23 @@ p {
   object-fit: cover;
 }
 
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+/* VIDEO PLAYBACK
+-------------------------------------------------- */
+.background-overlay {
   height: 100%;
+  left: 0px;
+  margin-bottom: -100%;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+}
+.video-playback {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
   object-fit: cover;
   opacity: 0.6;
-  z-index: -1;
   mix-blend-mode:hard-light; /* Use the multiply blend mode for the opacity gradient effect */
 }
-
-.match-bg-home-win {
-  background: linear-gradient(90deg, var(--bg-main-blue3), white,  var(--bg-main-blue1), var(--bg-main-blue3));
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.test-bg {
-  background: linear-gradient(90deg, var(--bg-main-blue2), transparent, transparent,  transparent, transparent, var(--bg-main-blue2));
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.score-decor {
-  overflow: hidden;
-  position: absolute;
-  display: block;
-  width: 35%;
-  inset-inline-start: 0;
-  inset-block: 0;
-  background-color: var(--bg-main-blue1);
-  clip-path: polygon(0 0, 79% 0, 100% 100%, 0% 100%);
-}
-
-.score-decor-r {
-  overflow: hidden;
-  position: absolute;
-  display: block;
-  width: 35%;
-  inset-inline-start: auto;
-  inset-inline-end: 0;
-  inset-block: 0;
-  background-color: var(--bg-light-green);
-  clip-path: polygon(21% 0%, 100% 0%, 100% 100%, 0% 100%);
-}
-

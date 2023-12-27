@@ -17,7 +17,7 @@ function Schedule() {
 
   // fetches the last two most recent posts in sorted order
   const queryString = STRAPI_CMS_URL + "/api/events?populate=*&sort=date:" + sortOrderEvents;
-  const queryString2 = STRAPI_CMS_URL + "/api/matches?populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&sort=faceoffTime:" + sortOrderMatches;
+  const queryString2 = STRAPI_CMS_URL + "/api/matches?populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&populate[post][fields][0]=id&sort=faceoffTime:" + sortOrderMatches;
 
   const fetchEvents = () => {
     return fetch(queryString)
@@ -93,7 +93,7 @@ function Schedule() {
             <button type="button" class="btn btn-light" onClick={switchSortOrderMatchesDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
             <button type="button" class="btn btn-light" onClick={switchSortOrderMatchesAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
           </div>
-          {!matches ? <LoadingSpinner message={"Lade Matches..."}/> : <MatchList matches={matches}/>}
+          {!matches ? <LoadingSpinner message={"Lade Matches..."}/> : <MatchList matches={matches} showExtendedInfos={true}/>}
         </div>
 
       </div>

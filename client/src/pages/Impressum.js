@@ -44,18 +44,11 @@ function Impressum() {
         <div className="tiles-container">
               
           <div className="fixed-tile">
-            <h2>Impressum</h2>
-            {!pageContent ? <LoadingSpinner message={"Lade Impressum..."}/> : <RichTextBlocks richtext={pageContent.attributes.impressum}/>}
+            {!pageContent ? <LoadingSpinner message={"Lade Impressum..."}/> : <div className="w-100"><RichTextBlocks richtext={pageContent.attributes.impressum}/></div>}
           </div>
 
           <div className='fixed-tile'>
-            <h2>Datenschutzerklärung</h2>
-            {!pageContent ? <LoadingSpinner message={"Lade Impressum..."}/> : <RichTextBlocks richtext={pageContent.attributes.datenschutz}/>}
-          </div>
-
-          <div className="fixed-tile">
-            <h2>Haftungsausschluss</h2>
-            {!pageContent ? <LoadingSpinner message={"Lade Impressum..."}/> : <RichTextBlocks richtext={pageContent.attributes.haftung}/>}
+            {!pageContent ? <LoadingSpinner message={"Lade Datenschutz und Haftungsausschluss..."}/> : <div className="w-100"><RichTextBlocks richtext={pageContent.attributes.datenschutz}/></div>}
           </div>
 
         </div>

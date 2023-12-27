@@ -55,7 +55,7 @@ function Contact() {
 
                             <div class="input-group flex-nowrap mb-3">
                                 <span class="input-group-text"><i class="bi bi-envelope"/></span>
-                                <span class="input-group-text w-100">info@asv-schlichten.de</span>
+                                <span class="input-group-text w-100">eis-buaba@asv-schlichten.de</span>
                             </div>
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text"><i class="bi bi-globe2"/></span>
