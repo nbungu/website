@@ -9,6 +9,19 @@ For comfortable **SSH** and **VSCode Remote Explorer** access, make the IPv4 of 
 ## Modify Server Scripts in package.json
 In the following steps we need some server scripts to start the server and the React frontend in different Modes, based on development or produciton stage. PM2 will also be using some of those.
 
+## When cloning repo of the Website and StrapiCMS
+For each of the following directories, reinstall node_modules, since they are not being tracked by git:
+- website/server
+- website/client
+- websiteCMS
+
+	npm i
+
+This reinstalls the node modules based on the specified package.json file(s)
+
+## Install nvm to manage installation of specific Node versions
+
+
 > website/server/package.json
 
     "scripts": {
