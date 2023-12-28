@@ -8,15 +8,15 @@ import NewsTile from '../components/NewsTile';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { STRAPI_CMS_URL } from '../utils/Utils.js';
 
-function News({ onPostClicked }) {
+function News() {
   
   const [posts, setPosts] = useState(null);
   const [totalNrOfPosts, setTotalNrOfPosts] = useState(0);
+  const [sortOrder, setSortOrder] = useState('desc');
   const [counter, setCounter] = useState(6); // Initial State for the counter: Show 9 Posts
 
   // Returns all posts including media data sorted by date
-  const queryString = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*&pagination[start]=0&pagination[limit]=" + counter;
-
+  const queryString = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:"+sortOrder+"&populate=*&pagination[start]=0&pagination[limit]=" + counter;
 
   // GET Request to STRAPI server (backend) at endpoint /api/posts
   const fetchPosts = () => {
@@ -38,12 +38,19 @@ function News({ onPostClicked }) {
   const showMorePosts = () => {    
     setCounter(counter + 4); // Show 6 more posts
   };
+  // Function to handle button click
+  const switchSortOrderDesc = () => {    
+    setSortOrder('desc');
+  };
+  const switchSortOrderAsc = () => {    
+    setSortOrder('asc');
+  };
 
   // We want fetchPosts() to be executed everytime App component loads
-  // The effect will run whenever the 'counter' state changes
+  // The effect will run whenever the 'counter' and the 'sortOrder' state changes
   useEffect(() => {
     fetchPosts();
-  }, [counter]);
+  }, [counter, sortOrder]);
   
   return (
     <div className='body-bg'>
@@ -51,10 +58,20 @@ function News({ onPostClicked }) {
       <Header currentPage={"news"}/>
 
       <div className="flex-grow-1">
+
+        <div className="tiles-container pb-0">
+          <h1 class="mb-2">Alle Beiträge</h1>
+
+          <div className="hstack gap-3">
+            <button type="button" class="btn btn-light" onClick={switchSortOrderDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
+            <button type="button" class="btn btn-light" onClick={switchSortOrderAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
+          </div>
+        </div>
+
         {!posts ? <LoadingSpinner message={"Lade News..."}/> :
           <div className="tiles-container-flex">
             {posts.map((post) => (
-              <NewsTile newsPost={post} onPostClicked={onPostClicked}/>
+              <NewsTile newsPost={post}/>
             ))}
           </div>
         }

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { STRAPI_CMS_URL } from '../utils/Utils';
+import { STRAPI_CMS_URL, copyTextToClipboard } from '../utils/Utils';
 
 function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId }) {
   
@@ -10,6 +10,8 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
   const [thumbsDownCount, setThumbsDownCount] = useState(newsPostDownVotes);
   const [votedUp, setVotedUp] = useState(false);
   const [votedDown, setVotedDown] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const copyText = 'https://www.eisbuaba-adelberg.de/news/'+postId;
 
   const handleThumbsUpClick = () => {
     if (!votedUp && !votedDown) {
@@ -31,6 +33,22 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
       setVotedDown(false);
     }
   };
+
+  // onClick handler function for the copy button
+  const handleCopyClick = () => {
+    // Asynchronously call copyTextToClipboard
+    copyTextToClipboard(copyText)
+      .then(() => {
+        // If successful, update the isCopied state value
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 1500);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   useEffect(() => {
     // PUT request using fetch with async/await
@@ -54,16 +72,18 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
 
 
   return (
+    
     <div className="row justify-content-between">
 
-      <div className="col-auto">
-        <Link className='btn btn-light' to="/news"><i className="bi bi-arrow-left pe-2"/>Alle News</Link>
+      <div className="col-auto pe-0">
+        <Link className='btn btn-light' to="/news" title="Zurück zur News-Übersicht"><i className="bi bi-arrow-left pe-2"/>Alle News</Link>
       </div>
 
       <div className="col-auto">
         <div class="btn-group" role="group" aria-label="Basic outlined">
-          <button type="button" class='btn btn-success' onClick={handleThumbsUpClick}><i className="bi bi-hand-thumbs-up pe-2"/>{thumbsUpCount}</button>
-          <button type="button" class='btn btn-light' onClick={handleThumbsDownClick}><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
+          <button type="button" class='btn btn-outline-dark' onClick={handleCopyClick} title="Link-Addresse zu diesem Artikel kopieren"><i className="bi bi-link-45deg pe-2"/>{isCopied ? 'Kopiert!' : 'Kopieren'}</button>
+          <button type="button" class='btn btn-success' onClick={handleThumbsUpClick} title="Schön, dass es dir gefällt!"><i className="bi bi-hand-thumbs-up pe-2"/>{thumbsUpCount}</button>
+          <button type="button" class='btn btn-light' onClick={handleThumbsDownClick} title="Wirklich? :("><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
         </div>
       </div>
 
@@ -72,27 +92,3 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
 }
 
 export default NewsPostStartingElement
-
-/**
-
-    <div className="row">
-
-      <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-
-        <div class="btn-group" role="group" aria-label="Basic outlined">
-          <button type="button" class='btn btn-success' onClick={handleThumbsUpClick}><i className="bi bi-hand-thumbs-up pe-2"/>{thumbsUpCount}</button>
-          <button type="button" class='btn btn-light' onClick={handleThumbsDownClick}><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
-        </div>
-
-      </div>
-
-    </div>
-
-
-      <div className="d-grid gap-2 d-md-flex justify-content-md-start">
- 
-        <button type="button" class='btn btn-light' onClick={handleThumbsDownClick}><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
-
-
-      </div>
- */

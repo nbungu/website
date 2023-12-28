@@ -47,3 +47,24 @@ export function replaceSpacesWithHyphen(inputString) {
   // Use the replace method with a regular expression to replace spaces with hyphens
   return inputString.replace(/ /g, '-');
 }
+
+export async function copyTextToClipboard(text) {
+  if ('clipboard' in navigator) {
+    return await navigator.clipboard.writeText(text);
+  } else {
+    return document.execCommand('copy', true, text);
+  }
+}
+
+export function getInitials(name) {
+  // Split the name into words
+  const words = name.split(' ');
+
+  // Get the first letter of each word
+  const initials = words.map(word => word.charAt(0));
+
+  // Combine the initials
+  const result = initials.join('');
+
+  return result;
+}

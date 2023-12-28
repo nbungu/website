@@ -2,9 +2,13 @@
 
 :root {
   --bg-main-gray:#2a2a2a;
+  --bg-light-gray:#2a2a2a7c;
   --bg-main-blue1: #8ae1f5;
-  --bg-main-blue2:#1991d0;
+  --bg-main-blue2:#7fbacc;
   --bg-main-blue3:#b9dfe9;
+  --bg-light-green:#c7ffee;
+  --bg-light-red:#ffe1e0;
+  --bg-light-orange:#fff5e0;
   --easing-easeInOut: cubic-bezier(0.65,0,0.35,1);
 }
 
@@ -49,6 +53,11 @@ p {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  z-index: -1;
+}
+
+.bg-transparent {
+  background: transparent;
 }
 
 @keyframes gradient {
@@ -72,6 +81,7 @@ p {
   padding-right: 1rem;
   max-width: 960px;
   height: 5rem;
+  z-index: 99;
 }
 
 .header-bg {
@@ -79,6 +89,7 @@ p {
   background-size: cover; /* Adjust this as needed */
   background-blend-mode: multiply; /* You can experiment with blend modes */
   height: auto;
+  z-index: 99;
   /* background by https://bgjar.com/meteor */
 }
 
@@ -88,15 +99,6 @@ p {
   padding: 0.5rem;
   margin: 0rem; /* Center the grid on the page */
 }
-
-.header-banner-temp {
-  margin: 0rem auto; /* Center horizontally */
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 960px;
-  height: auto;
-}
-
 
 /* MAIN SIZING
 -------------------------------------------------- */
@@ -125,8 +127,8 @@ p {
     grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
   }
 }
-/* When the screen size is 560px or smaller */
-@media (max-width: 560px) {
+/* When the screen size is 600px or smaller */
+@media (max-width: 640px) {
   .tiles-container-flex {
     grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
   }
@@ -169,7 +171,7 @@ p {
     }
     .featurette-image {
       max-width: 100%;
-      max-height: 320px;
+      max-height: 240px;
       object-fit: cover;
     }
     .featurette:hover {
@@ -323,7 +325,7 @@ p {
 }
 .news-tile-desc {
   position: relative;
-  max-height: 68px;
+  max-height: 72px;
   overflow: hidden;
   padding-right: 0.5rem;
 }
@@ -341,7 +343,7 @@ p {
 -------------------------------------------------- */
 .news-post-image {
   min-height: 160px;
-  max-height: 640px;
+  max-height: 600px;
 }
 
 /* YOUTUBE EMBED
@@ -360,8 +362,7 @@ p {
   position: absolute;
 }
 
-/* TESTING
--------------------------------------------------- */
+
 
 /* Glassmorphism */
 .glass-effect { 
@@ -376,7 +377,7 @@ p {
 
 .gallery-item img {
   width: 100%;
-  height: 280px;
+  height: 240px;
   object-fit: cover;
 }
 .gallery-item:hover {
@@ -385,4 +386,59 @@ p {
   backdrop-filter: blur(10px);
 }
 
+/* TESTING
+-------------------------------------------------- */
+.test {
+  width: 280px;
+  height: 250px;
+  overflow: 'hidden';
+}
 
+.test img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.test-img {
+  height: 80px;
+  min-width: 80px;
+  object-fit: cover;
+}
+
+.test-img-square {
+  min-height: 56px;
+  min-width: 56px;
+  object-fit: cover;
+}
+
+.contact-circle {
+  width: 56px;
+  height: 56px;
+  background-color: var(--bg-light-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* VIDEO PLAYBACK
+-------------------------------------------------- */
+.background-overlay {
+  height: 100%;
+  left: 0px;
+  margin-bottom: -100%;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+}
+.video-playback {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  object-fit: cover;
+  opacity: 0.6;
+  mix-blend-mode:hard-light; /* Use the multiply blend mode for the opacity gradient effect */
+}

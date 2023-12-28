@@ -18,16 +18,16 @@ function Header({ currentPage }) {
             <div className="container header">
 
                 {/* Logo on the left */}
-                <Link to='/'><img className='navbar-brand header-logo' src={logo} alt="Eisbuaba Adelberg Logo"/></Link>   
+                <Link to='/'><img className='navbar-brand header-logo' src={logo} alt="Eisbuaba Adelberg Logo" title="Zur Startseite"/></Link>   
                 
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
 
-                    {/* Buttons on the right*/}
+                    {/* Buttons on the right*/} 
                     <div className="navbar-nav gap-3">
-                        <Link to="/" className={currentPage === "home" ? active : regular}><h2>Home</h2></Link>
-                        <Link to="/news" className={currentPage === "news" ? active : regular}><h2>News</h2></Link>
-                        <Link to="/termine" className={currentPage === "schedule" ? active : regular}><h2>Termine</h2></Link>      
-                        <Link to="/kontakt" className={currentPage === "contact" ? active : regular}><h2>Kontakt</h2></Link>
+                        <Link to="/" className={currentPage === "home" ? active : regular} title="Zur Startseite"><h2>Home</h2></Link>
+                        <Link to="/news" className={currentPage === "news" ? active : regular} title="News-Artikel, Spielberichte..."><h2>News</h2></Link>
+                        <Link to="/termine" className={currentPage === "schedule" ? active : regular} title="Events, Spieltermine, Trainingstermine..."><h2>Termine</h2></Link>      
+                        <Link to="/kontakt" className={currentPage === "contact" ? active : regular} title="Kontaktpersonen, Anfahrt zur Eishalle"><h2>Kontakt</h2></Link>
                     </div>
                 </div>
 
