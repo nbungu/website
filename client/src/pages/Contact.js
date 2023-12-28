@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { STRAPI_CMS_URL } from '../utils/Utils.js';
+import { STRAPI_CMS_URL, getInitials } from '../utils/Utils.js';
 import LoadingSpinner from "../components/LoadingSpinner";
 
 function Contact() {
   
     // Returns all posts including media data sorted by date
-    const queryString = STRAPI_CMS_URL + "/api/people";
+    const queryString = STRAPI_CMS_URL + "/api/people?populate=thumbnail";
 
     // GET Request to STRAPI server (backend) at endpoint /api/posts
     const [people, setPeople] = useState(null);
@@ -73,10 +73,10 @@ function Contact() {
                         {people.map((person) => (
                         <div className="list-group-item list-group-item-action p-2" aria-current="true">
                             <div className="hstack">
-                                <img class="rounded-circle test-img-square me-4 ms-3" src="https://github.com/mdo.png" alt=""/>
+                                {person.attributes.thumbnail.data ? <img class="rounded-circle test-img-square me-4 ms-3" src={person.attributes.thumbnail.data.attributes.url} alt="Contact Thumbnail"/> : <div className="contact-circle me-4 ms-3"><h3 className="text-light">{getInitials(person.attributes.name)}</h3></div>}
                                 <div className="vstack text-start">
                                     <h3>{person.attributes.name}</h3>
-                                    <p className="opacity-75">{person.attributes.function}</p>
+                                    {person.attributes.role && <p className="opacity-75">{person.attributes.role}</p>}
                                     {person.attributes.mail && <p><i class="bi bi-envelope pe-2"/>{person.attributes.mail}</p>} 
                                     {person.attributes.infotext && <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{person.attributes.infotext}</p>}
                                 </div>

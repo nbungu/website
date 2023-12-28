@@ -55,3 +55,16 @@ export async function copyTextToClipboard(text) {
     return document.execCommand('copy', true, text);
   }
 }
+
+export function getInitials(name) {
+  // Split the name into words
+  const words = name.split(' ');
+
+  // Get the first letter of each word
+  const initials = words.map(word => word.charAt(0));
+
+  // Combine the initials
+  const result = initials.join('');
+
+  return result;
+}

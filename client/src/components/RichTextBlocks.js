@@ -17,7 +17,6 @@ function RichTextBlocks({ richtext }) {
                   return (
                     <span className={`${e.bold && 'fw-bold'} ${e.italic && 'fst-italic'}`}>{e.text === "" ? "\u00A0" : e.text}</span>
                   )
-                  {/* Empty paragraph with non-breaking space: "\u00A0" to avoid collapsing of empty lines*/}
                 }
                 else if (e.type === 'link') { 
                   return (
@@ -41,7 +40,6 @@ function RichTextBlocks({ richtext }) {
                   return (
                     <span className={`${e.bold && 'fw-bold'} ${e.italic && 'fst-italic'}`}>{e.text === "" ? "\u00A0" : e.text}</span>
                   )
-                  {/* Empty paragraph with non-breaking space: "\u00A0" to avoid collapsing of empty lines*/}
                 }
                 else if (e.type === 'link') { 
                   return (

@@ -412,6 +412,16 @@ p {
   object-fit: cover;
 }
 
+.contact-circle {
+  width: 56px;
+  height: 56px;
+  background-color: var(--bg-light-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* VIDEO PLAYBACK
 -------------------------------------------------- */
 .background-overlay {

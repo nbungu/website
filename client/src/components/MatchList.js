@@ -10,21 +10,20 @@ function MatchList({ matches, showExtendedInfos }) {
         <div className="list-group w-100">
             {
                 matches.map((match) => (
-                    <div className='list-group-item list-group-item-action py-2 px-3' aria-current="true">
+                    <div className='list-group-item list-group-item-action p-2' aria-current="true">
                         
                         <div class="container-flex">              
 
                             <div class="row mx-auto align-items-center justify-content-between">
-                               
+                                {/* HOME TEAM COL */}
                                 <div class="col text-center">
-                                        <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
-                                        <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamHome.data.attributes.name}</h3>
-                                        <h3 className='d-sm-none pt-2'>{match.attributes.teamHome.data.attributes.shortname}</h3>
+                                    <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
+                                    <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamHome.data.attributes.name}</h3>
+                                    <h3 className='d-sm-none pt-2'>{match.attributes.teamHome.data.attributes.shortname}</h3>
                                 </div>
-
-                                <div class="col text-center">
- 
-                                    {!showExtendedInfos && <p className='opacity-75 pb-2'>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>}
+                                {/* CENTER COL */}
+                                <div class="col-auto text-center">
+                                    <p className={showExtendedInfos ? 'd-sm-none opacity-75 pb-2' : 'opacity-75 pb-2'}>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
                                     {match.attributes.hasFinished ? <h1>{match.attributes.goalsHome} - {match.attributes.goalsAway}</h1> : <h1>vs.</h1>}
                                     <div class="row align-items-top justify-content-center pt-2">
                                         <div className='col-auto'>
@@ -33,10 +32,9 @@ function MatchList({ matches, showExtendedInfos }) {
                                                 <span class="badge rounded-pill text-bg-warning opacity-75">Beendet</span>
                                             }
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
-
+                                {/* AWAY TEAM COL */}
                                 <div class="col text-center">
                                     <img className="rounded-circle test-img-square mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
                                     <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamAway.data.attributes.name}</h3>
@@ -44,7 +42,7 @@ function MatchList({ matches, showExtendedInfos }) {
                                 </div>
 
                                 {showExtendedInfos && 
-                                <div class="d-none d-sm-block col-sm-2 text-center bg-light border rounded p-3">
+                                <div class="d-none d-sm-block col-sm-3 text-center bg-light border rounded p-3">
                                     <p><i class="bi bi-calendar-week mx-1"></i>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
                                     <p><i class="bi bi-geo-alt-fill mx-1"></i>{match.attributes.location}</p>
                                     {match.attributes.post?.data && <Link to={`/news/${match.attributes.post.data.id}`} className='btn btn-outline-primary btn-sm mt-2'><i className="bi bi-arrow-right pe-2"/>Spielbericht</Link>}
