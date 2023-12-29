@@ -11,9 +11,9 @@ In the following steps we need some server scripts to start the server and the R
 
 ## When cloning repo of the Website and StrapiCMS
 For each of the following directories, reinstall node_modules, since they are not being tracked by git:
-- website/server
-- website/client
-- websiteCMS
+- website/server (in EisbuabaAdelberg Repo)
+- website/client (in EisbuabaAdelberg Repo)
+- websiteCMS (in strapiCMS Repo)
 
 	npm i
 

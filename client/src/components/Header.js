@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import logo from "../assets/header-logo-eisbuaba-adelberg.png";
+import headerLogo from "../assets/eisbuaba-adelberg-logo-192.png";
 
 function Header({ currentPage }) {
     
@@ -18,7 +18,7 @@ function Header({ currentPage }) {
             <div className="container header">
 
                 {/* Logo on the left */}
-                <Link to='/'><img className='navbar-brand header-logo' src={logo} alt="Eisbuaba Adelberg Logo" title="Zur Startseite"/></Link>   
+                <Link to='/'><img className='navbar-brand header-logo' src={headerLogo} alt="Eisbuaba Adelberg Logo" title="Zur Startseite"/></Link>   
                 
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
 

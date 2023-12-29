@@ -16,7 +16,7 @@ if [ "$choice" == "D1" ]; then
     npm run dev
 elif [ "$choice" == "D2" ]; then
     echo "START Strapi in DEVELOPMENT MODE"
-    cd ~/websiteCMS || exit 1
+    cd ~/strapiCMS || exit 1
     npm run develop
 elif [ "$choice" == "B1" ]; then
     echo "BUILD Website for DEPLOYMENT"
@@ -24,7 +24,7 @@ elif [ "$choice" == "B1" ]; then
     npm run client:prod
 elif [ "$choice" == "B2" ]; then
     echo "BUILD Strapi for DEPLOYMENT"
-    cd ~/websiteCMS || exit 1
+    cd ~/strapiCMS || exit 1
     npm run build
 elif [ "$choice" == "S" ]; then
     echo "DEPLOY Website + Strapi using PM2"

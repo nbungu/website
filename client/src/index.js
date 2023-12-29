@@ -6,7 +6,7 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 // Styling
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './index.css';
 import './App.css';

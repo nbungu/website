@@ -4,12 +4,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import asvFavicon from '../assets/asv-schlichten-favicon.ico'
 
-
 function Footer() {
   
   return (
     <div className="px-5 py-2 z-3">
-
+     
       <ul className="nav justify-content-center border-bottom border-secondary px-0 py-3">
         <li className="nav-item">
           <Link to="/impressum" className="nav-link text-body-secondary">Impressum</Link>
@@ -24,9 +23,9 @@ function Footer() {
         </div>
         <div class="col-md-3 text-center">
           <div>
-            <button type="button" className="btn btn-secondary rounded-circle ms-2 p-2 lh-1"><i className="bi bi-instagram"/></button>
-            <button type="button" className="btn btn-secondary rounded-circle ms-2 p-2 lh-1"><i className="bi bi-facebook"/></button>
-            <button type="button" className="btn btn-secondary rounded-circle ms-2 p-2 lh-1"><i className="bi bi-envelope-at"/></button>
+            <a href='#' className="btn btn-secondary rounded-circle ms-2 p-2 lh-1"><i className="bi bi-instagram"/></a>
+            <a href='#' className="btn btn-secondary rounded-circle ms-2 p-2 lh-1"><i className="bi bi-facebook"/></a>
+            <button type="button" className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="eis-buaba@asv-schlichten.de"><i className="bi bi-envelope-at"/></button>
           </div>
         </div>
       </div>
