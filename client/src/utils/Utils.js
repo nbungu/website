@@ -68,3 +68,20 @@ export function getInitials(name) {
 
   return result;
 }
+
+export function getFirstName(fullName) {
+  // Split the full name into an array of words
+  const nameArray = fullName.split(' ');
+
+  // Take the first element of the array as the first name
+  const firstName = nameArray[0];
+
+  // If there is a second word, append its first character with a dot
+  if (nameArray.length > 1) {
+    const secondWordInitial = nameArray[1].charAt(0);
+    return `${firstName} ${secondWordInitial}.`;
+  }
+
+  // If there is only one word, return it as is
+  return firstName;
+}

@@ -6,7 +6,7 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 // Styling
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './index.css';
 import './App.css';
@@ -42,12 +42,13 @@ export default function App() {
   // use the setter function when changing the value
   
   const [postIds, setPostIds] = useState(null);
+  const maxCount = 200;
 
   // useEffect with an empty dependency array ('[]'), will run once,
   // immediately after the component is mounted (after the first render of the component)
   useEffect(() => {
-    async function fetchTest() {
-      return fetch(STRAPI_CMS_URL + "/api/posts?fields[0]=id")
+    async function fetchAllPostIds() {
+      return fetch(STRAPI_CMS_URL + '/api/posts?fields[0]=id&pagination[pageSize]='+maxCount)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -62,7 +63,7 @@ export default function App() {
         // You can handle the error here, such as displaying an error message to the user
       });
     }
-    fetchTest();
+    fetchAllPostIds();
   }, []);
 
   

@@ -9,12 +9,12 @@ import LoadingSpinner from "../components/LoadingSpinner";
 function Contact() {
   
     // Returns all posts including media data sorted by date
-    const queryString = STRAPI_CMS_URL + "/api/people?populate=thumbnail";
+    const queryString = STRAPI_CMS_URL + "/api/managers?populate=thumbnail";
 
     // GET Request to STRAPI server (backend) at endpoint /api/posts
-    const [people, setPeople] = useState(null);
+    const [managers, setManagers] = useState(null);
 
-    const fetchPeople = () => {
+    const fetchManagers = () => {
         return fetch(queryString)
         .then((response) => {
             if (!response.ok) {
@@ -22,16 +22,16 @@ function Contact() {
             }
             return response.json();
         })
-        .then((result) => setPeople(result.data))
+        .then((result) => setManagers(result.data))
         .catch((error) => {
-            console.error('Error fetching featured posts:', error);
+            console.error('Error fetching managers:', error);
             // You can handle the error here, such as displaying an error message to the user
         });
     };
 
   // We want fetchCarouselBanners() to be executed everytime App component loads
   useEffect(() => {
-    fetchPeople();
+    fetchManagers();
   }, []);
 
   return (
@@ -68,17 +68,17 @@ function Contact() {
                 <div className="fixed-tile gap-3">
                     <h2>Kontaktpersonen</h2>
                     
-                    {!people ? <LoadingSpinner message={"Lade Personen..."}/> :
+                    {!managers ? <LoadingSpinner message={"Lade Personen..."}/> :
                     <div className="list-group w-100">
-                        {people.map((person) => (
+                        {managers.map((manager) => (
                         <div className="list-group-item list-group-item-action p-2" aria-current="true">
                             <div className="hstack">
-                                {person.attributes.thumbnail.data ? <img class="rounded-circle test-img-square me-4 ms-3" src={person.attributes.thumbnail.data.attributes.url} alt="Contact Thumbnail"/> : <div className="contact-circle me-4 ms-3"><h3 className="text-light">{getInitials(person.attributes.name)}</h3></div>}
+                                {manager.attributes.thumbnail.data ? <img class="contact-circle me-4 ms-3" src={manager.attributes.thumbnail.data.attributes.url} alt="Contact Thumbnail"/> : <div className="contact-circle me-4 ms-3"><h3 className="text-light">{getInitials(manager.attributes.name)}</h3></div>}
                                 <div className="vstack text-start">
-                                    <h3>{person.attributes.name}</h3>
-                                    {person.attributes.role && <p className="opacity-75">{person.attributes.role}</p>}
-                                    {person.attributes.mail && <p><i class="bi bi-envelope pe-2"/>{person.attributes.mail}</p>} 
-                                    {person.attributes.infotext && <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{person.attributes.infotext}</p>}
+                                    <h3>{manager.attributes.name}</h3>
+                                    {manager.attributes.role && <p className="opacity-75">{manager.attributes.role}</p>}
+                                    {manager.attributes.mail && <p><i class="bi bi-envelope pe-2"/>{manager.attributes.mail}</p>} 
+                                    {manager.attributes.infotext && <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{manager.attributes.infotext}</p>}
                                 </div>
                             </div>
                             
