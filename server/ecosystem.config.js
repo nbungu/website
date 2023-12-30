@@ -13,7 +13,7 @@ module.exports = {
         // Runs Strapi CMS server (Build Strapi before!)
         {
             name: 'strapi-cms',
-            script: 'npm run start:prod --prefix ../../websiteCMS',
+            script: 'npm run start:prod --prefix ../../strapiCMS',
             instances: 1,
             autorestart: true,
             watch: false,
