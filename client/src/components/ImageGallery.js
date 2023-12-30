@@ -1,6 +1,6 @@
 // client/src/components/ImageGallery.js
 
-import React, { useState } from 'react';;
+import React, { useState } from 'react';
 
 function ImageGallery({ imagePaths }) {  
  

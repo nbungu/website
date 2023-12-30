@@ -1,20 +1,65 @@
 // client/src/components/PlayerPill.js
 
-import React from 'react';
-import { getInitials } from '../utils/Utils.js';
+import React, { useState } from 'react';
+import { STRAPI_CMS_URL, getInitials, getFirstName } from '../utils/Utils.js';
 
-function PlayerPill({ player, colorTheme }) {
-  
+function PlayerPill({ player, colorTheme, icon }) {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const imgPath = player.attributes.thumbnail?.data && STRAPI_CMS_URL + player.attributes.thumbnail.data.attributes.url;
+
   return (
-    <span class={"badge d-flex align-items-center p-1 pe-2 bg-"+colorTheme+"-subtle border border-"+colorTheme+"-subtle rounded-pill"}>
-      {player.attributes.thumbnail?.data ? <img class="rounded-circle" width="56" height="56" src={player.attributes.thumbnail.data.attributes.url} alt="Player Thumbnail"/> : <div className="contact-circle"><h3 className="text-light">{getInitials(player.attributes.name)}</h3></div>}
-            
-      <div className='vstack text-start gap-2 my-auto'>
-        <p className={'text-'+colorTheme+'-emphasis mx-2'}>{player.attributes.name}</p>
-        {player.attributes.positionDetailed && <p className={'text-'+colorTheme+'-emphasis opacity-50 mx-2'}>{player.attributes.positionDetailed}</p>}
-      </div>   
-      {player.attributes.jerseynumber > 0 && <h2 className={'mx-1'}>{'#'+player.attributes.jerseynumber}</h2>}
-    </span>
+    <>
+      <span class={"player-pill badge p-1 pe-2 bg-"+colorTheme+"-subtle border border-"+colorTheme+"-subtle rounded-pill"} onClick={() => setIsModalOpen(true)}>
+        {imgPath ? <img class="player-circle" src={imgPath} alt="Player Thumbnail"/> : <div className="player-circle"><h3 className="text-light">{getInitials(player.attributes.name)}</h3></div>}
+              
+        <div className='vstack text-start gap-2 my-auto'>
+          <p className={'text-'+colorTheme+'-emphasis mx-2'}>{getFirstName(player.attributes.name)}</p>
+          {player.attributes.positionDetailed && <p className={'text-'+colorTheme+'-emphasis opacity-50 mx-2'}>{player.attributes.positionDetailed}</p>}
+        </div>   
+
+      </span>
+
+      {/* PLAYER POPVER */}
+      {isModalOpen &&      
+        <div className="modal fade show" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow">
+
+              <div class={"modal-header border-bottom-0 bg-" + colorTheme + '-subtle rounded-4 rounded-bottom-0'}>
+                <h1 class="modal-title fs-5">Spielerkarte</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setIsModalOpen(false)}></button>
+              </div>
+              
+              <div class="modal-body p-0">
+
+                <div className='row mx-auto'>
+                  <div className='col-auto bg-dark px-3 py-4'>
+                    <div className='vstack gap-4'>
+                      
+                      <h1 className='fw-bold text-light'><i class={"bi " + icon + ' pe-3'}/>{(player.attributes.jerseynumber ? ('#' + player.attributes.jerseynumber) : (player.attributes.jerseynumber === 0 ? '#00' : '-'))}</h1>
+                      <h1 className='text-start text-light'>{player.attributes.position}</h1>
+                      <h3 className='text-start text-light opacity-75'>{player.attributes.positionDetailed}</h3>
+                    </div>
+                  </div>
+                  <div className='col p-0'>
+                    <img class="img-fluid" src={imgPath} alt="Player Thumbnail Big"/>
+                  </div>
+                </div> 
+
+                <div className={'row mx-auto justify-content-center align-items-center border-top py-3 bg-' + colorTheme + '-subtle rounded-4 rounded-top-0'}>
+                  <div className='col'>
+                    <h1>{player.attributes.name}</h1>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      }
+    </>
   )
 }
 

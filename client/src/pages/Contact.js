@@ -73,7 +73,7 @@ function Contact() {
                         {managers.map((manager) => (
                         <div className="list-group-item list-group-item-action p-2" aria-current="true">
                             <div className="hstack">
-                                {manager.attributes.thumbnail.data ? <img class="rounded-circle test-img-square me-4 ms-3" src={manager.attributes.thumbnail.data.attributes.url} alt="Contact Thumbnail"/> : <div className="contact-circle me-4 ms-3"><h3 className="text-light">{getInitials(manager.attributes.name)}</h3></div>}
+                                {manager.attributes.thumbnail.data ? <img class="contact-circle me-4 ms-3" src={manager.attributes.thumbnail.data.attributes.url} alt="Contact Thumbnail"/> : <div className="contact-circle me-4 ms-3"><h3 className="text-light">{getInitials(manager.attributes.name)}</h3></div>}
                                 <div className="vstack text-start">
                                     <h3>{manager.attributes.name}</h3>
                                     {manager.attributes.role && <p className="opacity-75">{manager.attributes.role}</p>}
