@@ -64,6 +64,14 @@ function Schedule() {
   const switchSortOrderEventsAsc = () => {    
     setSortOrderEvents('asc');
   };
+  const updateMetaTags = () => {
+    // Update Open Graph meta tags dynamically
+    document.title = "Termine > Eisbuaba Adelberg";
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "Termine > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Termine, Events und Spiele');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/termine');
+    document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+  };
 
   // We want fetchEvents() to be executed everytime sortOrderEvents changes
   useEffect(() => {
@@ -73,6 +81,10 @@ function Schedule() {
   useEffect(() => {
     fetchEisbuabaMatches();
   }, [sortOrderMatches]);
+  // We want updateMetaTags() to be executed everytime App component initially loads
+  useEffect(() => {
+    updateMetaTags();
+  }, []);
   
   return (
     <div className='body-bg'>

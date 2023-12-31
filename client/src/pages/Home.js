@@ -1,16 +1,31 @@
 // client/src/pages/Home.js
 
-import React from "react";
-
+import React, { useEffect } from "react";
 import Header from '../components/Header.js';
 import TextCarousel from '../components/TextCarousel.js';
 import Footer from '../components/Footer.js';
 import HeaderBanner from "../components/HeaderBanner.js";
 import RecentNews from "../components/RecentNews.js";
 import ButtonTile from "../components/ButtonTile.js";
+//import socialImg from "../assets/social-image.png"
 
 function Home() {
    
+  const updateMetaTags = () => {
+    // Update Open Graph meta tags dynamically
+    document.title = "Startseite > Eisbuaba Adelberg";
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "Startseite > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos, Spiele und News rund um den Verein');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/');
+    document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+    //document.querySelector('meta[property="og:image"]').setAttribute('content', socialImg);
+  };
+
+  // We want updateMetaTags() to be executed everytime App component loads
+  useEffect(() => {
+    updateMetaTags();
+  }, []);
+  
   return (
     <div className='body-bg'>
 

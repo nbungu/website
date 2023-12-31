@@ -1,7 +1,6 @@
 // client/src/pages/News.js
 
 import React, { useState, useEffect } from "react";
-
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import NewsTile from '../components/NewsTile';
@@ -45,12 +44,24 @@ function News() {
   const switchSortOrderAsc = () => {    
     setSortOrder('asc');
   };
+  const updateMetaTags = () => {
+    // Update Open Graph meta tags dynamically
+    document.title = "News > Eisbuaba Adelberg";
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "News > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:description"]').setAttribute('content', 'News Übersicht');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/news');
+    document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+  };
 
-  // We want fetchPosts() to be executed everytime App component loads
-  // The effect will run whenever the 'counter' and the 'sortOrder' state changes
+  // We want fetchPosts() to be executed everytime 'counter' and the 'sortOrder' state changes
   useEffect(() => {
     fetchPosts();
   }, [counter, sortOrder]);
+
+  // We want updateMetaTags() to be executed everytime App component initially loads
+  useEffect(() => {
+    updateMetaTags();
+  }, []);
   
   return (
     <div className='body-bg'>

@@ -56,7 +56,9 @@ function NewsPost({ postId }) {
       document.querySelector('meta[property="og:title"]').setAttribute('content', post.attributes.title);
       document.querySelector('meta[property="og:description"]').setAttribute('content', post.attributes.summary);
       document.querySelector('meta[property="og:url"]').setAttribute('content', `https://www.eisbuaba-adelberg.de/news/${post.id}`);
-      document.querySelector('meta[property="og:image"]').setAttribute('content', post.attributes.decorImage?.data ? (post.attributes.decorImage.data.attributes.url) : (post.attributes.titleimage?.data ? post.attributes.titleimage.data.attributes.url : defaultImg));
+      document.querySelector('meta[property="og:image"]').setAttribute('content', post.attributes.decorImage?.data ? (STRAPI_CMS_URL + post.attributes.decorImage.data.attributes.url) : (post.attributes.titleimage?.data ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg));
+      document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
+      document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
       document.querySelector('meta[property="og:type"]').setAttribute('content', 'article');
     }
   };
