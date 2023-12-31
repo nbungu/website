@@ -3,7 +3,7 @@ module.exports = {
     apps: [
         // Runs Node.js server (Build frontend before!)
         {
-            name: 'eisbuaba-adelberg',
+            name: 'eisbuaba-adelberg.de',
             script: 'npm run server:prod',
             instances: 1,
             autorestart: true,
@@ -12,7 +12,7 @@ module.exports = {
         },
         // Runs Strapi CMS server (Build Strapi before!)
         {
-            name: 'strapi-cms',
+            name: 'strapiCMS',
             script: 'npm run start:prod --prefix ../../strapiCMS',
             instances: 1,
             autorestart: true,

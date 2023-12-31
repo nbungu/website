@@ -202,6 +202,7 @@ function EisbuabaCup2024() {
             <h2>Wer gewinnt den Cup?</h2>            
             <div class="list-group d-grid gap-3">
               {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
+                teams.length === 0 ? <p>Teilnehmende Teams werden in Kürze bekannt gegeben...</p> :
                 teams.map((team) => (
                   <label class="list-group-item list-group-item-action rounded d-flex gap-4 border-0">
                   <input class="form-check-input flex-shrink-0 my-auto fs-5" disabled={hasVoted} type="radio" name="listGroupRadios" id="listGroupRadios1" onClick={() => handleRadioChange(team.id, team.attributes.votingCount)}/>
@@ -217,13 +218,15 @@ function EisbuabaCup2024() {
               }
             </div>
 
-            <button type="button" class="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>
+            {!teams && <button type="button" class="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>}
 
           </div> 
 
           <div className="fixed-tile gap-3">
-            <h2>Ergebnisse</h2>
-              {!matches ? <LoadingSpinner message={"Lade Ergebnisse..."}/> : <MatchList matches={matches}/>}
+            <h2>Matches & Ergebnisse</h2>
+              {!matches ? <LoadingSpinner message={"Lade Ergebnisse..."}/> :
+              matches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
+              <MatchList matches={matches}/>}
           </div>
 
         </div>

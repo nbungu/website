@@ -45,7 +45,7 @@ function MatchList({ matches, showExtendedInfos }) {
                                 <div class="d-none d-sm-block col-sm-3 text-center bg-light border rounded p-3">
                                     <p><i class="bi bi-calendar-week mx-1"></i>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
                                     <p><i class="bi bi-geo-alt-fill mx-1"></i>{match.attributes.location}</p>
-                                    {match.attributes.post?.data && <Link to={`/news/${match.attributes.post.data.id}`} className='btn btn-outline-primary btn-sm mt-2'><i className="bi bi-arrow-right pe-2"/>Spielbericht</Link>}
+                                    {match.attributes.post?.data && <Link to={`/news/${match.attributes.post.data.id}`} className='btn btn-outline-primary mt-2'><i className="bi bi-arrow-right pe-2"/>Spielbericht</Link>}
                                 </div>}
                             </div>
                             {match.attributes.infotext && 

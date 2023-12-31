@@ -109,8 +109,6 @@ function NewsPost({ postId }) {
 
       <Footer/>
 
-      <p className="text-center">{queryString}</p>
-
     </div>
   )
 }
