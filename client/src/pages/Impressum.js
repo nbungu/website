@@ -28,11 +28,20 @@ function Impressum() {
         // You can handle the error here, such as displaying an error message to the user
       });
   };
+  const updateMetaTags = () => {
+    // Update Open Graph meta tags dynamically
+    document.title = "Impressum > Eisbuaba Adelberg";
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "Impressum > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Impressum, Datenschutzerklärung und Haftungsausschluss');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/impressum');
+    document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+  };
 
-    // We want fetchPageContent() to be executed everytime App component loads
-    useEffect(() => {
-      fetchPageContent();
-    }, []);
+  // We want fetchPageContent() to be executed everytime App component loads
+  useEffect(() => {
+    fetchPageContent();
+    updateMetaTags();
+  }, []);
   
   return (
     <div className='body-bg'>

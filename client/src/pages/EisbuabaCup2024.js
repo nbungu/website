@@ -117,6 +117,14 @@ function EisbuabaCup2024() {
           // You can handle the error here, such as displaying an error message to the user
         });
     };
+    const updateMetaTags = () => {
+      // Update Open Graph meta tags dynamically
+      document.title = "Eisbuaba Cup 2024 > Eisbuaba Adelberg";
+      document.querySelector('meta[property="og:title"]').setAttribute('content', "Eisbuaba Cup 2024 > Eisbuaba Adelberg");
+      document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos rund um den Eisbuaba Cup 2024');
+      document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/eisbuaba-cup-2024');
+      document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+    };
   
     // We want fetchXY() etc. to be executed everytime App component loads
     useEffect(() => {
@@ -124,6 +132,7 @@ function EisbuabaCup2024() {
       fetchActiveTeams();
       fetchCupMatches();
       fetchHighestVoting();
+      updateMetaTags();
     }, []);
 
   return (

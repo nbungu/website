@@ -28,10 +28,19 @@ function Contact() {
             // You can handle the error here, such as displaying an error message to the user
         });
     };
+    const updateMetaTags = () => {
+        // Update Open Graph meta tags dynamically
+        document.title = "Kontakt > Eisbuaba Adelberg";
+        document.querySelector('meta[property="og:title"]').setAttribute('content', "Kontakt > Eisbuaba Adelberg");
+        document.querySelector('meta[property="og:description"]').setAttribute('content', 'Kontaktpersonene und Anfahrt');
+        document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/kontakt');
+        document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+      };
 
   // We want fetchCarouselBanners() to be executed everytime App component loads
   useEffect(() => {
     fetchManagers();
+    updateMetaTags();
   }, []);
 
   return (

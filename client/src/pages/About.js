@@ -31,10 +31,19 @@ function About() {
           // You can handle the error here, such as displaying an error message to the user
       });
   };
+  const updateMetaTags = () => {
+    // Update Open Graph meta tags dynamically
+    document.title = "Team > Eisbuaba Adelberg";
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "Team > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:description"]').setAttribute('content', '1. Mannschaft der Eisbuaba Adelberg');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/about');
+    document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+  };
 
-// We want fetchCarouselBanners() to be executed everytime App component loads
+// We want fetchPlayers() to be executed everytime App component loads
 useEffect(() => {
   fetchPlayers();
+  updateMetaTags();
 }, []);
   
   return (
@@ -55,11 +64,6 @@ useEffect(() => {
         <div className="tiles-container p-0">
           <img className="d-block img-fluid" src={teamPhoto}></img>
         </div>
-
-
-
-
-        
 
         {/* GOALIE JUMBOTRON */}
         <div class="mt-3">
