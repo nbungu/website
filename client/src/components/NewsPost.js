@@ -29,7 +29,10 @@ function NewsPost({ postId }) {
   const fetchPost = () => {
     return fetch(queryString)
       .then((response) => response.json())
-      .then((result) => setPost(result.data))
+      .then((result) => {
+        setPost(result.data); 
+        updateMetaTags(result.data);
+      })
   }
   const fetchFeaturedPosts = () => {
     return fetch(queryString2)
@@ -45,19 +48,23 @@ function NewsPost({ postId }) {
         // You can handle the error here, such as displaying an error message to the user
       });
   };
+  const updateMetaTags = (post) => {
+    // Update Open Graph meta tags dynamically
+    // Executes if post is truthy
+    if (post) {
+      document.title = post.attributes.title;
+      document.querySelector('meta[property="og:title"]').setAttribute('content', post.attributes.title);
+      document.querySelector('meta[property="og:description"]').setAttribute('content', post.attributes.summary);
+      document.querySelector('meta[property="og:url"]').setAttribute('content', `https://www.eisbuaba-adelberg.de/news/${post.id}`);
+      document.querySelector('meta[property="og:image"]').setAttribute('content', post.attributes.decorImage?.data ? (post.attributes.decorImage.data.attributes.url) : (post.attributes.titleimage?.data ? post.attributes.titleimage.data.attributes.url : defaultImg));
+      document.querySelector('meta[property="og:type"]').setAttribute('content', 'article');
+    }
+  };
 
   // empty dependency array: useEffect will run once, immediately after the component is mounted (the first render of the component)
   useEffect(() => {
     fetchPost();
     fetchFeaturedPosts();
-
-    // Update Open Graph meta tags dynamically
-    document.title = post.attributes.title;
-    document.querySelector('meta[property="og:title"]').setAttribute('content', post.attributes.title);
-    document.querySelector('meta[property="og:description"]').setAttribute('content', post.attributes.summary);
-    document.querySelector('meta[property="og:url"]').setAttribute('content', `https://www.eisbuaba-adelberg.de/news/${post.id}`);
-    document.querySelector('meta[property="og:image"]').setAttribute('content', post.attributes.decorImage?.data ? (post.attributes.decorImage.data.attributes.url) : (post.attributes.titleimage?.data ? post.attributes.titleimage.data.attributes.url : defaultImg));
-    document.querySelector('meta[property="og:type"]').setAttribute('content', 'article');
   }, [selectedPostId]);
 
   return (
