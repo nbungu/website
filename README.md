@@ -344,3 +344,11 @@ Setup a PM2 Configuration file:
 
     pm2 startup
 
+# Additional Stuff
+
+## Optimize Metadata
+
+>website/client/public/index.html
+
+- Facebook Sharing Debugger (https://developers.facebook.com/tools/debug/): to check how your link will appear when shared. WhatsApp often uses the same metadata as Facebook for link previews.
+
