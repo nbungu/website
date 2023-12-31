@@ -50,6 +50,14 @@ function NewsPost({ postId }) {
   useEffect(() => {
     fetchPost();
     fetchFeaturedPosts();
+
+    // Update Open Graph meta tags dynamically
+    document.title = post.attributes.title;
+    document.querySelector('meta[property="og:title"]').setAttribute('content', post.attributes.title);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', post.attributes.summary);
+    document.querySelector('meta[property="og:url"]').setAttribute('content', `https://www.eisbuaba-adelberg.de/news/${post.id}`);
+    document.querySelector('meta[property="og:image"]').setAttribute('content', post.attributes.decorImage?.data ? (post.attributes.decorImage.data.attributes.url) : (post.attributes.titleimage?.data ? post.attributes.titleimage.data.attributes.url : defaultImg));
+    document.querySelector('meta[property="og:type"]').setAttribute('content', 'article');
   }, [selectedPostId]);
 
   return (

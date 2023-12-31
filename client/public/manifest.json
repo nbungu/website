@@ -1,7 +1,8 @@
 {
   "short_name": "Eisbuaba Adelberg",
   "name": "Willkommen bei den Eisbuaba Adelberg!",
-  "icons": [
+  "description": "Website der Eisbuaba Adelberg. Informiert über anstehende Termine, Spiele und News",
+  "icons": [  
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
@@ -21,5 +22,21 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "shortcuts" : [
+    {
+      "name": "News-Beiträge",
+      "url": "/news",
+      "description": "Liste aller Beiträge"
+    },
+    {
+      "name": "Termine und Spiele",
+      "url": "/schedule"
+    },
+    {
+      "name": "Über Uns",
+      "url": "/about"
+    }
+  ],
+  "categories": ["sport", "eishockey", "team", "mannschaft"]  
 }
