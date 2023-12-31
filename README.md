@@ -6,14 +6,11 @@ For comfortable **SSH** and **VSCode Remote Explorer** access, make the IPv4 of 
 'Statisches DHCP - Heimnetzwerk' -> pi: **192.168.0.160**
 > IPv6 address of the Raspberry Pi is not affected of this setting and will most likely change every 1 - 3 days!
 
-## Modify Server Scripts in package.json
-In the following steps we need some server scripts to start the server and the React frontend in different Modes, based on development or produciton stage. PM2 will also be using some of those.
-
 ## When cloning repo of the Website and StrapiCMS
 For each of the following directories, reinstall node_modules, since they are not being tracked by git:
-- website/server (in EisbuabaAdelberg Repo)
-- website/client (in EisbuabaAdelberg Repo)
-- websiteCMS (in strapiCMS Repo)
+- website/server
+- website/client
+- strapiCMS
 
 	npm i
 
@@ -21,6 +18,8 @@ This reinstalls the node modules based on the specified package.json file(s)
 
 ## Install nvm to manage installation of specific Node versions
 
+## Modify Server Scripts in package.json
+In the following steps we need some server scripts to start the server and the React frontend in different Modes, based on development or produciton stage. PM2 will also be using some of those.
 
 > website/server/package.json
 
@@ -32,7 +31,7 @@ This reinstalls the node modules based on the specified package.json file(s)
 	    "client:prod": "NODE_ENV=production npm run build --prefix ../client"
     },
 
-> websiteCMS/package.json
+> strapiCMS/package.json
 
 	"scripts": {
 		"develop": "NODE_ENV=development strapi develop",

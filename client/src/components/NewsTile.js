@@ -8,14 +8,13 @@ import defaultImg from '../assets/default-image.webp'
 
 function NewsTile({ newsPost }) {
   
-  const imgPathRel = newsPost.attributes.titleimage.data?.attributes.url;
-  const img = STRAPI_CMS_URL + imgPathRel;
+  const imgPath = newsPost.attributes.titleimage?.data && STRAPI_CMS_URL + newsPost.attributes.titleimage.data.attributes.url;
 
   return (
     <Link className='news-tile' to={`/news/${newsPost.id}`} key={newsPost.attributes.title}> 
       <div className='news-tile-image'>
         {newsPost.attributes.youtubeurl && <i class="bi bi-youtube"/>}
-        <img class="news-tile-cover" src={imgPathRel ? img : defaultImg} alt='cover'/>
+        <img class="news-tile-cover" src={imgPath ? imgPath : defaultImg} alt='cover'/>
       </div>
       <span class="badge bg-secondary">{formatPublishedAt(newsPost.attributes.publishedAt)}</span>
       <h2>{newsPost.attributes.title}</h2>

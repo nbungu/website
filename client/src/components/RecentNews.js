@@ -1,36 +1,36 @@
 // client/src/components/RecentNewsV2.js
 
 import React, { useState, useEffect } from "react";
-import LoadingSpinner from "./LoadingSpinner.js";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils.js';
 import { Link } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner.js";
 import defaultImg from '../assets/default-image.webp'
 
 function RecentNewsV2() {  
-
-    // fetches the last two most recent posts in sorted order
-    const queryString = STRAPI_CMS_URL + "/api/posts?populate=*&sort=publishedAt:desc&pagination[start]=0&pagination[limit]=2";
-    const [featuredPosts, setFeaturedPosts] = useState(null);
   
-    const fetchFeaturedPosts = () => {
-      return fetch(queryString)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((result) => setFeaturedPosts(result.data))
-        .catch((error) => {
-          console.error('Error fetching featured posts:', error);
-          // You can handle the error here, such as displaying an error message to the user
-        });
-    };
+  // fetches the last two most recent posts in sorted order
+  const queryString = STRAPI_CMS_URL + "/api/posts?populate=*&sort=publishedAt:desc&pagination[start]=0&pagination[limit]=2";
+  const [featuredPosts, setFeaturedPosts] = useState(null);
 
-    // We want fetchPosts() to be executed everytime App component loads
-    useEffect(() => {
-      fetchFeaturedPosts();
-    }, []);
+  const fetchFeaturedPosts = () => {
+    return fetch(queryString)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((result) => setFeaturedPosts(result.data))
+      .catch((error) => {
+        console.error('Error fetching featured posts:', error);
+        // You can handle the error here, such as displaying an error message to the user
+      });
+  };
+
+  // We want fetchPosts() to be executed everytime App component loads
+  useEffect(() => {
+    fetchFeaturedPosts();
+  }, []);
 
   return (
     <div className="tiles-container">
@@ -41,6 +41,7 @@ function RecentNewsV2() {
           <div class="row">
             <div class="col-md-12">
               <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2 shadow h-md-250 position-relative">
+                {/* TEXT COL */}
                 <div class="col p-4 d-flex flex-column position-static">
                   <strong class="d-inline-block mb-2 text-primary-emphasis">{post.attributes.type}</strong>
                   <h3 class="mb-0">{post.attributes.title}</h3>
@@ -51,8 +52,9 @@ function RecentNewsV2() {
                     <i class="bi bi-chevron-right"></i>
                   </Link>
                 </div>
+                {/* IMAGE COL */}
                 <div class="col-auto d-none d-md-block test">
-                  <img src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt="..."/>
+                  <img src={post.attributes.titleimage?.data?.attributes.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt={"News Post " + post.id + " titleimage"}/>
                 </div>
               </div>           
             </div>
