@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { formatPublishedAt, STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Header from './Header';
 import Footer from './Footer';
@@ -12,42 +12,47 @@ import NewsPostContentElement from "./NewsPostContentElement";
 
 import defaultImg from '../assets/default-image.webp'
 
-// Keep onPostClicked for this Component to Re-Render. 
-// necessary to reload this component but with another postId
-// Triggered from within this component by the More Posts List
-function NewsPost({ postId }) {
+function NewsPost() {
 
-  const [selectedPostId, setSelectedPostId] = useState(postId);
+  // Dynamic Routing
+  const params = useParams();
+  // params.id => dynamic value defined as id in route
+  // e.g '/news/1234' -> params.id equals 1234
+
+  const id = params.id;  
   const [post, setPost] = useState(null);
   const [featuredPosts, setFeaturedPosts] = useState(null);
 
   // Returns the currently shown post by id and with media data
-  const queryString = STRAPI_CMS_URL + "/api/posts/" + selectedPostId + "?populate=*";
+  const queryString = STRAPI_CMS_URL + "/api/posts/" + id + "?populate=*";
   // Returns 6 posts including media data sorted by date
   const queryString2 = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*&pagination[start]=0&pagination[limit]=6"
 
   const fetchPost = () => {
     return fetch(queryString)
-      .then((response) => response.json())
-      .then((result) => {
-        setPost(result.data); 
-        updateMetaTags(result.data);
-      })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      } 
+      return response.json();
+    })
+    .then((result) => {
+      setPost(result.data);
+      updateMetaTags(result.data);
+    })
   }
+
   const fetchFeaturedPosts = () => {
     return fetch(queryString2)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
-        } 
+        }
         return response.json();
       })
       .then((result) => {setFeaturedPosts(result.data)})
-      .catch((error) => {
-        console.error('Error fetching featured posts:', error);
-        // You can handle the error here, such as displaying an error message to the user
-      });
   };
+
   const updateMetaTags = (post) => {
     // Update Open Graph meta tags dynamically
     // Executes if post is truthy
@@ -70,7 +75,7 @@ function NewsPost({ postId }) {
   useEffect(() => {
     fetchPost();
     fetchFeaturedPosts();
-  }, [selectedPostId]);
+  }, [id]);
 
   return (
     <div className='body-bg'>
@@ -103,7 +108,7 @@ function NewsPost({ postId }) {
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <Link to={'/news/'+post.id} onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
+                      <Link to={'/news/'+post.id} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
                         <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>

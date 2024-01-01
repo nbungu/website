@@ -7,7 +7,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { STRAPI_CMS_URL, PUBLIC_URL, getInitials } from '../utils/Utils.js';
 
 import shareImg from '../assets/share-image.webp'
-import { Link } from "react-router-dom";
 
 function Contact() {
   
