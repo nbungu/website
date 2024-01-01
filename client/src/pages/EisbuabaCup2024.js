@@ -7,8 +7,9 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import MatchList from "../components/MatchList.js";
 import ProgressBar from "../components/ProgressBar.js";
 
-import { STRAPI_CMS_URL } from '../utils/Utils.js';
+import { STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils.js';
 import defaultImg from '../assets/default-image.webp'
+import shareImg from '../assets/share-image-cup-2024.webp'
 
 
 function EisbuabaCup2024() {
@@ -124,6 +125,9 @@ function EisbuabaCup2024() {
       document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos rund um den Eisbuaba Cup 2024');
       document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/eisbuaba-cup-2024');
       document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+      document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + shareImg);
+      document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
+      document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
     };
   
     // We want fetchXY() etc. to be executed everytime App component loads

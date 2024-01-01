@@ -4,9 +4,10 @@ import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-import { STRAPI_CMS_URL } from '../utils/Utils';
+import { STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils';
 import RichTextBlocks from "../components/RichTextBlocks";
 import LoadingSpinner from "../components/LoadingSpinner";
+import shareImg from '../assets/share-image.webp'
 
 function Impressum() {
   
@@ -35,6 +36,9 @@ function Impressum() {
     document.querySelector('meta[property="og:description"]').setAttribute('content', 'Impressum, Datenschutzerklärung und Haftungsausschluss');
     document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/impressum');
     document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+    document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + shareImg);
+    document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
+    document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
   };
 
   // We want fetchPageContent() to be executed everytime App component loads
