@@ -56,10 +56,6 @@ function Contact() {
 
         <div className='flex-grow-1'>
 
-        <p class="lead">
-              <Link to={'/'} class="btn btn-lg btn-light border-white bg-white m-3">Zurück zur Homepage</Link>
-            </p>
-
             <div className="tiles-container-flex-sm">                
                 <div className="fixed-tile gap-3">
                     <h2>Verein</h2>

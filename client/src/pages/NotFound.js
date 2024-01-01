@@ -15,6 +15,7 @@ function NotFound() {
             <h1>Diese Seite konnte nicht gefunden werden!</h1>
             <p class="lead">Keine Sorge, hier gehts weiter zur Startseite der Eisbuaba Adelberg.</p>
             <p class="lead">
+              {/* Use <a> instead of <Link> to avoid CSP blocking traffic to strapiCMS */}
               <a href={PUBLIC_URL} class="btn btn-lg btn-light border-white bg-white m-3">Zurück zur Homepage</a>
             </p>
           </div>
@@ -36,6 +37,6 @@ After visiting This Page, all Strapi DB requests get blocked by CSP!
 
 Sometimes between switching News Posts 404Page comes up briefly but then interrupts following DB requests.
 
-FIX PENDING!
+FIX DONE!
 
 */

@@ -81,44 +81,24 @@ export default function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/news" element={<News/>}/>
         {postIds && postIds.map((id) => (
-          <Route path={"/news/"+id} element={<NewsPost postId={id}/>}/>
+          <Route path={`/news/${id}`} element={<NewsPost postId={id}/>}/>
         ))}
         <Route path="/termine" element={<Schedule/>}/>
         <Route path="/kontakt" element={<Contact/>}/>
         <Route path="/impressum" element={<Impressum />}/>
         <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024/>}/>
         <Route path="/about" element={<About />}/>
-        <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
   );
 }
 
 /**
+
+  NotFound Route in the END!
+  <Route path="/*" element={<NotFound/>}/>
+
+
 <Route path="/news/:id" element={<NewsPost postId={newsPostId}/>}/>
 <Route path="/*" element={<Home onPostClicked={setNewsPostId} />}/>        
-
-const queryString = STRAPI_CMS_URL + "/api/posts?fields[0]=id";
-        const [postIds, setPostIds] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-
-        const fetchPostIds = () => {
-          return fetch(queryString)
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              return response.json();
-            })
-            .then((result) => setPostIds(result.data))
-            .catch((error) => {
-              console.error('Error fetching post ids:', error);
-              // You can handle the error here, such as displaying an error message to the user
-            });
-        };
-
-        {postIds && postIds.map((id) => (
-          <Route path={"/news/"+id} element={<NewsPost postId={id}/>}/>
-        ))}
-
-        <Route path="/news/:id" element={<NewsPost postId={newsPostId}/>}/>
  */
