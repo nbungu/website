@@ -13,10 +13,10 @@ const path = require("path");
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT;
 
-// Set up rate limiter: maximum of 60 requests per minute
+// Set up rate limiter: maximum of 500 requests per minute
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 1000,
+  max: 500,
 });
 
 // Create the Express application object
@@ -31,11 +31,14 @@ app.use(express.static(path.join(__dirname, '../client/build'))); // Serve stati
 app.use(limiter); // Apply rate limiter to all requests
 app.use(cors());
 app.use(compression()); // Compress all routes
-app.use( 
-  helmet.contentSecurityPolicy({
-    directives: { "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"], },
-  }),
-);
+app.use(helmet.contentSecurityPolicy({ // Use helmet middleware with contentSecurityPolicy
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "code.jquery.com", "cdn.jsdelivr.net"], // Adjust as needed
+    connectSrc: ["'self'", 'eisbuaba-adelberg.de'],
+    imgSrc: ["'self'", 'eisbuaba-adelberg.de'],
+  },
+}));
 
 /* -----ROUTES----- */
 
@@ -62,18 +65,6 @@ app.listen(PORT, () => {
   if (MODE === 'production') console.log(`Server runs in ${MODE} mode and serves static build-files from client folder`);
   else console.log(`Server running in ${MODE} mode. React frontend runs on separate Port (3000)`);
 });
-
-
-/* TEST Content from NODE server
-
-Deprecated: Use Strapi.io as CMS to handle API endpoint requests and serve Content like below
-Strapi has a UI and built in SQLiteDB to store the content
-
-// Creates endpoint for route localhost:3001/api and handles GET requests to that route
-app.get("/api/news", (req, res) => {
-  res.json({ message: newsEntries });
-});
-*/
 
 let status =
   {
