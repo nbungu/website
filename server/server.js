@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, '../client/build'))); // Serve stati
 app.use(limiter); // Apply rate limiter to all requests
 app.use(cors());
 app.use(compression()); // Compress all routes
-app.use(helmet.contentSecurityPolicy({ // Use helmet middleware with contentSecurityPolicy
+app.use(helmet.contentSecurityPolicy({ // Use helmet middleware with contentSecurityPolicy (CSP)
   directives: {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "code.jquery.com", "cdn.jsdelivr.net"], // Adjust as needed

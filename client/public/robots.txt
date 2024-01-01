@@ -1,3 +1,8 @@
 # https://www.robotstxt.org/robotstxt.html
+
 User-agent: *
-Disallow:
+Disallow: /strapi/
+Disallow: /strapi/api/
+Disallow: /strapi/admin/
+
+Sitemap: https://www.eisbuaba-adelberg.de/sitemap.xml
