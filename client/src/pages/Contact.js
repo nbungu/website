@@ -7,6 +7,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { STRAPI_CMS_URL, PUBLIC_URL, getInitials } from '../utils/Utils.js';
 
 import shareImg from '../assets/share-image.webp'
+import { Link } from "react-router-dom";
 
 function Contact() {
   
@@ -54,6 +55,10 @@ function Contact() {
         <Header currentPage={"contact"}/>
 
         <div className='flex-grow-1'>
+
+        <p class="lead">
+              <Link to={'/'} class="btn btn-lg btn-light border-white bg-white m-3">Zurück zur Homepage</Link>
+            </p>
 
             <div className="tiles-container-flex-sm">                
                 <div className="fixed-tile gap-3">

@@ -79,7 +79,6 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/*" element={<NotFound/>}/>
         <Route path="/news" element={<News/>}/>
         {postIds && postIds.map((id) => (
           <Route path={"/news/"+id} element={<NewsPost postId={id}/>}/>
@@ -89,6 +88,7 @@ export default function App() {
         <Route path="/impressum" element={<Impressum />}/>
         <Route path="/eisbuaba-cup-2024" element={<EisbuabaCup2024/>}/>
         <Route path="/about" element={<About />}/>
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
   );

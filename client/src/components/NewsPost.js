@@ -39,7 +39,7 @@ function NewsPost({ postId }) {
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        } 
         return response.json();
       })
       .then((result) => {setFeaturedPosts(result.data)})
@@ -103,13 +103,13 @@ function NewsPost({ postId }) {
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <a href={'/news/'+post.id} onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
+                      <Link to={'/news/'+post.id} onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
                         <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
                         <div class="col-sm-8">
                           <h6 class="mb-0">{post.attributes.title}</h6>
                           <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>
                         </div>
-                      </a>
+                      </Link>
                     ))}
                   </li>
                 }                  
