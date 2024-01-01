@@ -3,14 +3,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import headerLogo from "../assets/eisbuaba-adelberg-logo-192.png";
+import headerLogo from "../assets/eisbuaba-logo-192.webp";
 
 function Header({ currentPage }) {
     
     const active = 'btn btn-light rounded-pill px-4 border border-secondary';
     const regular = 'btn btn-light rounded-pill px-4 border-0 glass-effect';
-    
-    //{currentPage === "news" ? active : regular}
 
     return (
         <header className="navbar navbar-expand-md navbar-light header-bg p-0">

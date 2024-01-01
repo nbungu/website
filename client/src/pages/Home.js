@@ -7,7 +7,9 @@ import Footer from '../components/Footer.js';
 import HeaderBanner from "../components/HeaderBanner.js";
 import RecentNews from "../components/RecentNews.js";
 import ButtonTile from "../components/ButtonTile.js";
-//import socialImg from "../assets/social-image.png"
+import { PUBLIC_URL } from '../utils/Utils.js';
+
+import shareImg from "../assets/share-image.webp"
 
 function Home() {
    
@@ -18,7 +20,9 @@ function Home() {
     document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos, Spiele und News rund um den Verein');
     document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/');
     document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
-    //document.querySelector('meta[property="og:image"]').setAttribute('content', socialImg);
+    document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + shareImg);
+    document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
+    document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
   };
 
   // We want updateMetaTags() to be executed everytime App component loads
@@ -27,7 +31,7 @@ function Home() {
   }, []);
   
   return (
-    <div className='body-bg'>
+    <div className='body-bg'> 
 
       <Header currentPage={"home"}/>
 

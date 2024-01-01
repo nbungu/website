@@ -5,7 +5,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import NewsTile from '../components/NewsTile';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { STRAPI_CMS_URL } from '../utils/Utils.js';
+import { STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils.js';
+
+import shareImg from "../assets/share-image-news.webp"
 
 function News() {
   
@@ -51,6 +53,9 @@ function News() {
     document.querySelector('meta[property="og:description"]').setAttribute('content', 'News Übersicht');
     document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/news');
     document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
+    document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + shareImg);
+    document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
+    document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
   };
 
   // We want fetchPosts() to be executed everytime 'counter' and the 'sortOrder' state changes

@@ -1,6 +1,7 @@
 // client/src/utils/Utils.js
 
 export const STRAPI_CMS_URL = process.env.REACT_APP_STRAPI_BASE_URL;
+export const PUBLIC_URL = process.env.REACT_APP_PUBLIC_URL;
 export const REACT_MODE = process.env.NODE_ENV;
 
 export function formatDate(inputDate) {
