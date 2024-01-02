@@ -7,9 +7,6 @@ import Footer from '../components/Footer.js';
 import HeaderBanner from "../components/HeaderBanner.js";
 import RecentNews from "../components/RecentNews.js";
 import ButtonTile from "../components/ButtonTile.js";
-import { PUBLIC_URL } from '../utils/Utils.js';
-
-import shareImg from "../assets/share-image.webp"
 
 function Home() {
    
@@ -18,11 +15,7 @@ function Home() {
     document.title = "Startseite > Eisbuaba Adelberg";
     document.querySelector('meta[property="og:title"]').setAttribute('content', "Startseite");
     document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos, Spiele und News rund um den Verein');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/');
-    document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
-    document.querySelector('meta[property="og:image"]').setAttribute('content', shareImg);
-    document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
-    document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de');
   };
 
   // We want updateMetaTags() to be executed everytime App component loads

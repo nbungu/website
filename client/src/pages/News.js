@@ -32,7 +32,7 @@ function News() {
         // You can handle the error here, such as displaying an error message to the user
       });
   };
-
+  
   // Function to handle button click
   const showMorePosts = () => {    
     setCounter(counter + 4); // Show 6 more posts
@@ -45,10 +45,22 @@ function News() {
     setSortOrder('asc');
   };
 
+  const updateMetaTags = () => {
+    // Update Open Graph meta tags dynamically
+    document.title = "News > Eisbuaba Adelberg";
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "News");
+    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Alle News und Updates der Eisbuaba');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/news');
+  };
+
   // We want fetchPosts() to be executed everytime 'counter' and the 'sortOrder' state changes
   useEffect(() => {
     fetchPosts();
   }, [counter, sortOrder]);
+  // We want updateMetaTags() to be executed everytime App component initially loads
+  useEffect(() => {
+    updateMetaTags();
+  }, []);
   
   return (
     <div className='body-bg'>

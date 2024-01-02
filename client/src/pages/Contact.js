@@ -4,9 +4,7 @@ import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingSpinner from "../components/LoadingSpinner";
-import { STRAPI_CMS_URL, PUBLIC_URL, getInitials } from '../utils/Utils.js';
-
-import shareImg from '../assets/share-image.webp'
+import { STRAPI_CMS_URL, getInitials } from '../utils/Utils.js';
 
 function Contact() {
   
@@ -36,10 +34,6 @@ function Contact() {
         document.querySelector('meta[property="og:title"]').setAttribute('content', "Kontakt");
         document.querySelector('meta[property="og:description"]').setAttribute('content', 'Kontaktpersonene und Anfahrt');
         document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/kontakt');
-        document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
-        document.querySelector('meta[property="og:image"]').setAttribute('content', shareImg);
-        document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
-        document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
       };
 
   // We want fetchCarouselBanners() to be executed everytime App component loads

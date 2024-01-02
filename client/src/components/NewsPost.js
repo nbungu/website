@@ -57,17 +57,10 @@ function NewsPost() {
     // Update Open Graph meta tags dynamically
     // Executes if post is truthy
     if (post) {
-      const shareImg = post.attributes.decorImage?.data && STRAPI_CMS_URL + post.attributes.decorImage.data.attributes.url;
-      const titleImg = post.attributes.titleimage?.data && STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url;
-
       document.title = post.attributes.title;
       document.querySelector('meta[property="og:title"]').setAttribute('content', post.attributes.title);
       document.querySelector('meta[property="og:description"]').setAttribute('content', post.attributes.summary);
       document.querySelector('meta[property="og:url"]').setAttribute('content', `https://eisbuaba-adelberg.de/news/${post.id}`);
-      document.querySelector('meta[property="og:type"]').setAttribute('content', 'article');
-      document.querySelector('meta[property="og:image"]').setAttribute('content', shareImg ? shareImg : (titleImg ? titleImg : defaultImg));
-      document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
-      document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
     }
   };
 
@@ -139,15 +132,3 @@ function NewsPost() {
 }
 
 export default NewsPost
-
-/**
-
-<Link to={'/news/'+post.id} onClick={()=>{setSelectedPostId(post.id)}} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
-  <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
-  <div class="col-sm-8">
-    <h6 class="mb-0">{post.attributes.title}</h6>
-    <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>
-  </div>
-</Link>
-
- */
