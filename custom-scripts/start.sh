@@ -26,6 +26,14 @@ elif [ "$choice" == "B2" ]; then
     echo "BUILD Strapi for DEPLOYMENT"
     cd ~/strapiCMS || exit 1
     npm run build
+elif [ "$choice" == "U1" ]; then
+    echo "Update Website from GIT"
+    cd ~/website || exit 1
+    git status && git pull
+elif [ "$choice" == "U2" ]; then
+    echo "Update Strapi from GIT"
+    cd ~/strapiCMS || exit 1
+    git status && git pull
 elif [ "$choice" == "S" ]; then
     echo "DEPLOY Website + Strapi using PM2"
     cd ~/website/server || exit 1
