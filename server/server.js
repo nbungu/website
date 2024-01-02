@@ -4,6 +4,8 @@
 // localhost:3001 is pi.local:3001 (or IP of Raspberry)
 
 const express = require("express");
+const fs = require('fs');
+const cheerio = require('cheerio'); // to modify/update (meta) tags in html from server side
 const cors = require("cors");
 const compression = require("compression"); // reducing the time required for the client to get and load the page
 const helmet = require("helmet"); // Helmet to protect against well known vulnerabilities
@@ -42,17 +44,6 @@ app.use(helmet.contentSecurityPolicy({ // Use helmet middleware with contentSecu
 
 /* -----ROUTES----- */
 
-// Server-Side-Rendering to update Meta Tags of index.html
-app.get('/news', (req, res) => {
-  const htmldata = createHtmlData(
-      'News > Eisbuaba Adelberg',
-      'Alle News und Updates der Eisbuaba Adelberg',
-      '/share-image-news.webp',
-      'https://eisbuaba-adelberg.de/news'
-  );
-  res.send(htmldata);
-})
-
 // Creates endpoint for route localhost:3001/status and handles GET requests to that route
 app.get("/status", (req, res) => {
   res.json({ message: status });
@@ -65,7 +56,28 @@ app.get('/x-forwarded-for', (request, response) => response.send(request.headers
 // Catch all requests that don't match any route
 // For deployment, The entire React application will serve through the entry point 'client/build/index.html'
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  const filePath = path.join(__dirname, '../client/build/index.html');
+  res.sendFile(filePath);
+});
+
+// Server-Side Updating of Meta Tags (in index.html) for SEO and Social Media Sharing
+app.get('/news', (req, res) => {
+  updateMetaTags(
+    'News > Eisbuaba Adelberg',
+    'News',
+    'Alle News und Updates der Eisbuaba',
+    'https://eisbuaba-adelberg.de/news',
+    'https://eisbuaba-adelberg.de/share-image-news.webp'
+  );
+});
+app.get('/eisbuaba-cup-2024', (req, res) => {
+  updateMetaTags(
+    'Eisbuaba Cup 2024 > Eisbuaba Adelberg',
+    'Eisbuaba Cup 2024',
+    'Infos rund um den Eisbuaba Cup 2024',
+    'https://eisbuaba-adelberg.de/eisbuaba-cup-2024',
+    'https://eisbuaba-adelberg.de/share-image-cup-2024.png'
+  );
 });
 
 /* -----LISTEN----- */
@@ -84,39 +96,27 @@ let status =
     frontendBuildPath: path.join(__dirname, '../client/build/index.html'),
   };
 
-// For dynamic Meta-Tags. Changes the default metadata before the page is rendered.
+// For dynamic Meta-Tags we need to change the default metadata before the page is rendered.
 // Otherwise the initial values will always stay the same, even after frontend page change.
 /*
 React is a single-page app, which means the app will have only a single HTML file
 and every route will be loaded into the same HTML file with the help of Javascript.
 */
-function createHtmlData(title, desc, imgPath, url) {
-  return `<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8" />
-      <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
-      <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="description" content="Homepage des Eishockey-Teams der Eisbuaba Adelberg"/>
-      <meta name="keywords" content="Eishockey, Hockey, Adelberg, Eisbuaba, Eisbuaba Adelberg, Hockeyverein, Schorndorf, Schlichten, ASV Schlichten">
-      <meta name="generator" content="Strapi CMS">
-      <title>${title}</title>
-      <meta property="og:title" content=${title}/>
-      <meta property="og:description" content=${desc} />
-      <meta property="og:url" content=${url}/>
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content=${imgPath}/>
-      <meta property="og:image:width" content="1024" /> 
-      <meta property="og:image:height" content="512" />
-      <meta property="og:site_name" content="Eisbuaba Adelberg" />
-      <meta property="og:locale" content="de_DE" />
-      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    </head>
-    <body>
-      <noscript>You need to enable JavaScript to run this app.</noscript>
-      <div id="root"></div>
-    </body>
-  </html>
-`;
+function updateMetaTags(title, titleAlt, desc, url, imgPath) {
+  // Read the index.html file
+  const filePath = path.join(__dirname, '../client/build/index.html');
+  let html = fs.readFileSync(filePath, 'utf-8');
+  // Load the HTML into Cheerio
+  const $ = cheerio.load(html);
+  // Modify specific tags (e.g., title, meta description, etc.)
+  $('title').text(title);
+  $('meta[property="og:title"]').attr('content', titleAlt);
+  $('meta[property="og:description"]').attr('content', desc);
+  $('meta[property="og:url"]').attr('content', url);
+  $('meta[property="og:image"]').attr('content', imgPath);
+
+  // Save the modified HTML back to the file
+  fs.writeFileSync(filePath, $.html(), 'utf-8');
+  // Send the modified HTML as the response
+  res.sendFile(filePath);
 }
