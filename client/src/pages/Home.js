@@ -14,7 +14,7 @@ function Home() {
     // Update Open Graph meta tags dynamically
     document.title = "Startseite > Eisbuaba Adelberg";
     document.querySelector('meta[property="og:title"]').setAttribute('content', "Startseite");
-    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos, Spiele und News rund um den Verein');
+    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos, Spieltermine und News rund um den Verein');
     document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de');
   };
 
