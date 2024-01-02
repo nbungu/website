@@ -42,6 +42,17 @@ app.use(helmet.contentSecurityPolicy({ // Use helmet middleware with contentSecu
 
 /* -----ROUTES----- */
 
+// Server-Side-Rendering to update Meta Tags of index.html
+app.get('/news', (req, res) => {
+  const htmldata = createHtmlData(
+      'News > Eisbuaba Adelberg',
+      'Alle News und Updates der Eisbuaba Adelberg',
+      '/share-image-news.webp',
+      'https://eisbuaba-adelberg.de/news'
+  );
+  res.send(htmldata);
+})
+
 // Creates endpoint for route localhost:3001/status and handles GET requests to that route
 app.get("/status", (req, res) => {
   res.json({ message: status });
@@ -72,3 +83,40 @@ let status =
     serverPort: PORT,
     frontendBuildPath: path.join(__dirname, '../client/build/index.html'),
   };
+
+// For dynamic Meta-Tags. Changes the default metadata before the page is rendered.
+// Otherwise the initial values will always stay the same, even after frontend page change.
+/*
+React is a single-page app, which means the app will have only a single HTML file
+and every route will be loaded into the same HTML file with the help of Javascript.
+*/
+function createHtmlData(title, desc, imgPath, url) {
+  return `<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
+      <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="Homepage des Eishockey-Teams der Eisbuaba Adelberg"/>
+      <meta name="keywords" content="Eishockey, Hockey, Adelberg, Eisbuaba, Eisbuaba Adelberg, Hockeyverein, Schorndorf, Schlichten, ASV Schlichten">
+      <meta name="generator" content="Strapi CMS">
+      <title>${title}</title>
+      <meta property="og:title" content=${title}/>
+      <meta property="og:description" content=${desc} />
+      <meta property="og:url" content=${url}/>
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content=${imgPath}/>
+      <meta property="og:image:width" content="1024" /> 
+      <meta property="og:image:height" content="512" />
+      <meta property="og:site_name" content="Eisbuaba Adelberg" />
+      <meta property="og:locale" content="de_DE" />
+      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    </head>
+    <body>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div id="root"></div>
+    </body>
+  </html>
+`;
+}

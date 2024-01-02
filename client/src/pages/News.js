@@ -5,9 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import NewsTile from '../components/NewsTile';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils.js';
-
-import shareImg from "../assets/share-image-news.webp"
+import { STRAPI_CMS_URL } from '../utils/Utils.js';
 
 function News() {
   
@@ -46,27 +44,11 @@ function News() {
   const switchSortOrderAsc = () => {    
     setSortOrder('asc');
   };
-  const updateMetaTags = () => {
-    // Update Open Graph meta tags dynamically
-    document.title = "News > Eisbuaba Adelberg";
-    document.querySelector('meta[property="og:title"]').setAttribute('content', "News");
-    document.querySelector('meta[property="og:description"]').setAttribute('content', 'News Übersicht');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/news');
-    document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
-    document.querySelector('meta[property="og:image"]').setAttribute('content', shareImg);
-    document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
-    document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
-  };
 
   // We want fetchPosts() to be executed everytime 'counter' and the 'sortOrder' state changes
   useEffect(() => {
     fetchPosts();
   }, [counter, sortOrder]);
-
-  // We want updateMetaTags() to be executed everytime App component initially loads
-  useEffect(() => {
-    updateMetaTags();
-  }, []);
   
   return (
     <div className='body-bg'>
