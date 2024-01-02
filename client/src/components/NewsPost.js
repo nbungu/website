@@ -63,7 +63,7 @@ function NewsPost() {
       document.title = post.attributes.title;
       document.querySelector('meta[property="og:title"]').setAttribute('content', post.attributes.title);
       document.querySelector('meta[property="og:description"]').setAttribute('content', post.attributes.summary);
-      document.querySelector('meta[property="og:url"]').setAttribute('content', `https://www.eisbuaba-adelberg.de/news/${post.id}`);
+      document.querySelector('meta[property="og:url"]').setAttribute('content', `https://eisbuaba-adelberg.de/news/${post.id}`);
       document.querySelector('meta[property="og:type"]').setAttribute('content', 'article');
       document.querySelector('meta[property="og:image"]').setAttribute('content', shareImg ? shareImg : (titleImg ? titleImg : PUBLIC_URL + defaultImg));
       document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');

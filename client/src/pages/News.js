@@ -49,11 +49,11 @@ function News() {
   const updateMetaTags = () => {
     // Update Open Graph meta tags dynamically
     document.title = "News > Eisbuaba Adelberg";
-    document.querySelector('meta[property="og:title"]').setAttribute('content', "News > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "News");
     document.querySelector('meta[property="og:description"]').setAttribute('content', 'News Übersicht');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/news');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/news');
     document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
-    document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + shareImg);
+    document.querySelector('meta[property="og:image"]').setAttribute('content', shareImg);
     document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
     document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
   };
