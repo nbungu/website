@@ -34,9 +34,9 @@ function About() {
   const updateMetaTags = () => {
     // Update Open Graph meta tags dynamically
     document.title = "Team > Eisbuaba Adelberg";
-    document.querySelector('meta[property="og:title"]').setAttribute('content', "Team > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "Team");
     document.querySelector('meta[property="og:description"]').setAttribute('content', '1. Mannschaft der Eisbuaba Adelberg');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/about');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/about');
     document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
     document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + teamPhoto);
     document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');

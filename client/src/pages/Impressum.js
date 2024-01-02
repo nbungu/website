@@ -32,9 +32,9 @@ function Impressum() {
   const updateMetaTags = () => {
     // Update Open Graph meta tags dynamically
     document.title = "Impressum > Eisbuaba Adelberg";
-    document.querySelector('meta[property="og:title"]').setAttribute('content', "Impressum > Eisbuaba Adelberg");
+    document.querySelector('meta[property="og:title"]').setAttribute('content', "Impressum");
     document.querySelector('meta[property="og:description"]').setAttribute('content', 'Impressum, Datenschutzerklärung und Haftungsausschluss');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://www.eisbuaba-adelberg.de/impressum');
+    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/impressum');
     document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
     document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + shareImg);
     document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');

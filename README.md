@@ -350,5 +350,11 @@ Setup a PM2 Configuration file:
 
 >website/client/public/index.html
 
-- Facebook Sharing Debugger (https://developers.facebook.com/tools/debug/): to check how your link will appear when shared. WhatsApp often uses the same metadata as Facebook for link previews.
+Testing Tools to preview and Generate Open Graph Meta Tags for improved social sharing and SEO:
+- Facebook Sharing Debugger: https://developers.facebook.com/tools/debug/
+- Opengraph: https://www.opengraph.xyz/
+
+Customize robots.txt and sitemap.xml
+
+- Google Search Console
 
