@@ -4,8 +4,8 @@
 // localhost:3001 is pi.local:3001 (or IP of Raspberry)
 
 const express = require("express");
-const fs = require('fs');
-const cheerio = require('cheerio'); // to modify/update (meta) tags in html from server side
+//const fs = require('fs');
+//const cheerio = require('cheerio'); // to modify/update (meta) tags in html from server side
 const cors = require("cors");
 const compression = require("compression"); // reducing the time required for the client to get and load the page
 const helmet = require("helmet"); // Helmet to protect against well known vulnerabilities
@@ -61,7 +61,7 @@ app.get('/*', (req, res) => {
 });
 
 // Server-Side Updating of Meta Tags (in index.html) for SEO and Social Media Sharing
-app.get('/news', (req, res) => {
+/*app.get('/news', (req, res) => {
   updateMetaTags(
     'News > Eisbuaba Adelberg',
     'News',
@@ -78,7 +78,7 @@ app.get('/eisbuaba-cup-2024', (req, res) => {
     'https://eisbuaba-adelberg.de/eisbuaba-cup-2024',
     'https://eisbuaba-adelberg.de/share-image-cup-2024.png'
   );
-});
+});*/
 
 /* -----LISTEN----- */
 
@@ -102,7 +102,8 @@ let status =
 React is a single-page app, which means the app will have only a single HTML file
 and every route will be loaded into the same HTML file with the help of Javascript.
 */
-function updateMetaTags(title, titleAlt, desc, url, imgPath) {
+
+/*function updateMetaTags(title, titleAlt, desc, url, imgPath) {
   // Read the index.html file
   const filePath = path.join(__dirname, '../client/build/index.html');
   let html = fs.readFileSync(filePath, 'utf-8');
@@ -119,4 +120,4 @@ function updateMetaTags(title, titleAlt, desc, url, imgPath) {
   fs.writeFileSync(filePath, $.html(), 'utf-8');
   // Send the modified HTML as the response
   res.sendFile(filePath);
-}
+}*/

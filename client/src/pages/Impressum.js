@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-import { STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils';
+import { STRAPI_CMS_URL } from '../utils/Utils';
 import RichTextBlocks from "../components/RichTextBlocks";
 import LoadingSpinner from "../components/LoadingSpinner";
 

@@ -320,8 +320,6 @@ p {
   width: 100%;
   height: 220px;
   object-fit: cover;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 .news-tile-desc {
   position: relative;

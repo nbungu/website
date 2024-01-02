@@ -51,16 +51,15 @@ function ImageGallery({ imagePaths }) {
                             <div className="row align-items-center justify-content-between m-3 g-0">
 
                                 <div className="col-auto">
-                                    <button type="button" className="btn-close px-2" data-bs-dismiss="modal" aria-label="Close" title="Schließen" onClick={closeImageModal}></button>
-                                </div>
-                                
-                                <div className="col-auto">
                                     <div className='hstack gap-3'>
                                         <a className='btn btn-success' href={selectedImage} title="Fullscreen anzeigen"><i className="bi bi-arrows-fullscreen"/></a>
                                     </div>
-                                    
                                 </div>
-
+                                
+                                <div className='col-auto btn py-0 px-2' data-bs-dismiss="modal" aria-label="Close" title='Schließen' onClick={closeImageModal}>
+                                    <i class="bi bi-x-lg fs-4"></i>
+                                </div>
+                                
                             </div>
                             
                             <div className="modal-body py-0">
@@ -71,8 +70,12 @@ function ImageGallery({ imagePaths }) {
 
                             <div className='row align-items-center justify-content-center m-3'>
                                     <div className='col-auto'>
-                                        <button type="button" class='btn btn-outline-dark mx-3' onClick={() => prevImage()}><i className="bi bi-chevron-left"/></button>
-                                        <button type="button" class='btn btn-outline-dark mx-3' onClick={() => nextImage()}><i className="bi bi-chevron-right"/></button>
+                                        <div className='btn  py-0 px-2 mx-3' title='Vorheriges Bild' onClick={() => prevImage()}>
+                                            <i class="bi bi-chevron-left fs-4"></i>
+                                        </div>
+                                        <div className='btn py-0 px-2 mx-3' title='Nächstes Bild' onClick={() => nextImage()}>
+                                            <i class="bi bi-chevron-right fs-4"></i>
+                                        </div>
                                     </div>                                    
                                 </div>
 

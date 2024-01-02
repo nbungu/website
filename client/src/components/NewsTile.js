@@ -11,16 +11,15 @@ function NewsTile({ newsPost }) {
   const imgPath = newsPost.attributes.titleimage?.data && STRAPI_CMS_URL + newsPost.attributes.titleimage.data.attributes.url;
 
   return (
-    <Link className='news-tile' to={`/news/${newsPost.id}`} key={newsPost.attributes.title}> 
+    <Link className='news-tile rounded border-bottom' to={`/news/${newsPost.id}`} key={newsPost.attributes.title}> 
+      <span class="badge rounded-bottom-0 bg-secondary-subtle text-dark">{newsPost.attributes.type}</span>
       <div className='news-tile-image'>
         {newsPost.attributes.youtubeurl && <i class="bi bi-youtube"/>}
         <img class="news-tile-cover" src={imgPath ? imgPath : defaultImg} alt='cover'/>
       </div>
-      <span class="badge bg-secondary">{formatPublishedAt(newsPost.attributes.publishedAt)}</span>
-      <h2>{newsPost.attributes.title}</h2>
-      
-      <p className='news-tile-desc'>{newsPost.attributes.summary}</p>
-      <i class="bi bi-arrow-right fs-5"/>
+      <p className='my-1 opacity-75'>{formatPublishedAt(newsPost.attributes.publishedAt)}</p>
+      <h1>{newsPost.attributes.title}</h1>
+      <p className='news-tile-desc mt-2 mb-3'>{newsPost.attributes.summary}</p>      
     </Link>
   )
 }
