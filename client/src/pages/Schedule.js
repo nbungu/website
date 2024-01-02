@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import EventList from '../components/EventList';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils.js';
+import { STRAPI_CMS_URL } from '../utils/Utils.js';
 import MatchList from "../components/MatchList.js";
 
 function Schedule() { 

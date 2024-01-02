@@ -29,7 +29,9 @@ function PlayerPill({ player, colorTheme, icon }) {
 
               <div class={"modal-header border-bottom-0 bg-" + colorTheme + '-subtle rounded-4 rounded-bottom-0'}>
                 <h1 class="modal-title fs-5">Spielerkarte</h1>
-                <button type="button" className="btn-close m-1" data-bs-dismiss="modal" aria-label="Close" onClick={() => setIsModalOpen(false)}></button>
+                <div className='btn py-0 px-2' data-bs-dismiss="modal" aria-label="Close" title='Schließen' onClick={() => setIsModalOpen(false)}>
+                  <i class="bi bi-x-lg fs-4"></i>
+                </div>
               </div>
               
               <div class="modal-body p-0">
