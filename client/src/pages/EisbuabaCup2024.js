@@ -125,7 +125,7 @@ function EisbuabaCup2024() {
       document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos rund um den Eisbuaba Cup 2024');
       document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/eisbuaba-cup-2024');
       document.querySelector('meta[property="og:type"]').setAttribute('content', 'website');
-      document.querySelector('meta[property="og:image"]').setAttribute('content', PUBLIC_URL + shareImg);
+      document.querySelector('meta[property="og:image"]').setAttribute('content', shareImg);
       document.querySelector('meta[property="og:image:width"]').setAttribute('content', '1024');
       document.querySelector('meta[property="og:image:height"]').setAttribute('content', '512');
     };
