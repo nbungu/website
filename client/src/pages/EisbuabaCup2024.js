@@ -152,7 +152,7 @@ function EisbuabaCup2024() {
                   </>
                   }
                   <div class="row gap-3 p-3 justify-content-center">
-                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} class="col-sm-4 btn btn-danger btn-lg px-4 rounded-pill" type="button">
+                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} class="col-sm-4 btn btn-danger btn-lg px-4 rounded-pill" role="button">
                       Livestream
                       <i className="bi bi-youtube ps-2 fs-4"/>
                     </a>
