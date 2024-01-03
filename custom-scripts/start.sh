@@ -2,14 +2,16 @@
 
 echo "D1. START Website in DEVELOPMENT MODE"
 echo "D2. START Strapi in DEVELOPMENT MODE"
-
+echo "------------------------------------"
 echo "B1. BUILD Website for DEPLOYMENT"
 echo "B2. BUILD Strapi for DEPLOYMENT"
-
+echo "------------------------------------"
 echo "U1. GIT PULL Website"
 echo "U2. GIT PULL Strapi"
-
+echo "------------------------------------"
 echo "S. DEPLOY Website + Strapi using PM2"
+echo "R. RESTART Website + Strapi using PM2"
+echo "------------------------------------"
 
 read -p "Enter your choice: " choice
 
@@ -43,6 +45,10 @@ elif [ "$choice" == "S" ]; then
     echo "DEPLOY Website + Strapi using PM2"
     cd ~/website/server || exit 1
     pm2 start ecosystem.config.js && pm2 save
+elif [ "$choice" == "R" ]; then
+    echo "RESTART Website + Strapi using PM2"
+    pm2 stop all
+    pm2 start all && pm2 save
 else
     echo "Invalid choice!"
 fi
