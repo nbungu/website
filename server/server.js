@@ -35,8 +35,8 @@ app.use(cors());
 app.use(compression()); // Compress all routes
 app.use(helmet.contentSecurityPolicy({ // Use helmet middleware with contentSecurityPolicy (CSP)
   directives: {
-    defaultSrc: ["'self'", "google.com"],
-    scriptSrc: ["'self'", "'nonce-{script value}'", "'strict-dynamic'", "https:", "'unsafe-inline'", "'unsafe-eval'", "code.jquery.com", "cdn.jsdelivr.net", "google.com", "maps.googleapis.com"], // Adjust as needed
+    defaultSrc: ["'self'", "*google.com", "*.googleapis.com"],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https:", "blob:", "code.jquery.com", "cdn.jsdelivr.net", "*.googleapis.com", "*.google.com"], // Adjust as needed
     connectSrc: ["'self'", "eisbuaba-adelberg.de"],
     imgSrc: ["'self'", "eisbuaba-adelberg.de", "data:"],
   },
