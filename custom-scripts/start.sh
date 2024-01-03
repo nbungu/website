@@ -6,6 +6,9 @@ echo "D2. START Strapi in DEVELOPMENT MODE"
 echo "B1. BUILD Website for DEPLOYMENT"
 echo "B2. BUILD Strapi for DEPLOYMENT"
 
+echo "U1. GIT PULL Website"
+echo "U2. GIT PULL Strapi"
+
 echo "S. DEPLOY Website + Strapi using PM2"
 
 read -p "Enter your choice: " choice
@@ -29,10 +32,12 @@ elif [ "$choice" == "B2" ]; then
 elif [ "$choice" == "U1" ]; then
     echo "Update Website from GIT"
     cd ~/website || exit 1
+    git fetch
     git status && git pull
 elif [ "$choice" == "U2" ]; then
     echo "Update Strapi from GIT"
     cd ~/strapiCMS || exit 1
+    git fetch
     git status && git pull
 elif [ "$choice" == "S" ]; then
     echo "DEPLOY Website + Strapi using PM2"
