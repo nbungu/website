@@ -120,6 +120,9 @@ p {
     font-size: 1.25rem;
     line-height: 1.4;
   }
+  .carousel-item {
+    margin-bottom: 0rem;
+  }
 }
 /* When the screen size is 800px or smaller */
 @media (max-width: 800px) {
@@ -136,48 +139,45 @@ p {
   .tiles-container-flex.col2 {
     grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
   }
+  .carousel-item {
+    margin-bottom: 2rem;
+  }
 }
 
 /* TEXT CAROUSEL
 -------------------------------------------------- */
     
-    /* Since positioning the image, we need to help out the caption */
-    .carousel-caption {
-      top: 0.5rem;
-      /*bottom: 1rem; /*3rem*/
-      z-index: 10;
-    }
-    
-    /* Declare heights because of positioning of img element */
-    .carousel-item {
-      height: 10rem; /*32rem*/
-    }
-    .carousel-item img {
-      max-width: 100%;
-      height: 640px;
-      object-fit: cover;
-    }
-    
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  top: 0.5rem;
+  /*bottom: 1rem; /*3rem*/
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 10rem; /*32rem*/
+}
     
 /* FEATURETTES
 -------------------------------------------------- */
     
-    .featurette {
-      justify-content: center; /* Center the grid horizontally */
-      align-content: center; /* Center the grid vertically */
-      margin: 0rem auto; /* Center the grid on the page */
-      padding: 1rem;
-      min-width: 160px;
-      max-width: 960px;
-    }
-    .featurette-image {
-      max-width: 100%;
-      max-height: 240px;
-      object-fit: cover;
-    }
-    .featurette:hover {
-      transform: scale(1.01);
-    }
+.featurette {
+  justify-content: center; /* Center the grid horizontally */
+  align-content: center; /* Center the grid vertically */
+  margin: 0rem auto; /* Center the grid on the page */
+  padding: 1rem;
+  min-width: 160px;
+  max-width: 960px;
+}
+.featurette-image {
+  max-width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+}
+.featurette:hover {
+  transform: scale(1.01);
+}
 
 
 /* TILES CSS
@@ -292,7 +292,6 @@ p {
   transform: scale(1.02);
 }
 
-
 .news-tile-image {
   position: relative;
 }
@@ -378,26 +377,6 @@ p {
   backdrop-filter: blur(10px);
 }
 
-/* TESTING
--------------------------------------------------- */
-.test {
-  width: 280px;
-  height: 250px;
-  overflow: 'hidden';
-}
-
-.test img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.test-img {
-  height: 80px;
-  min-width: 80px;
-  object-fit: cover;
-}
-
 .contact-circle {
   min-width: 56px;
   min-height: 56px;
@@ -458,4 +437,24 @@ p {
   object-fit: cover;
   opacity: 0.6;
   mix-blend-mode:hard-light; /* Use the multiply blend mode for the opacity gradient effect */
+}
+
+/* TESTING
+-------------------------------------------------- */
+.test {
+  width: 280px;
+  height: 250px;
+  overflow: 'hidden';
+}
+
+.test img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.test-img {
+  height: 80px;
+  min-width: 80px;
+  object-fit: cover;
 }

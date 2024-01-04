@@ -70,7 +70,6 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
     updatePost();
 }, [thumbsUpCount, thumbsDownCount]);
 
-
   return (
     
     <div className="row justify-content-between">
@@ -81,7 +80,7 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
 
       <div className="col-auto">
         <div class="btn-group" role="group" aria-label="Basic outlined">
-          <button type="button" class='btn btn-outline-dark' onClick={handleCopyClick} title="Link-Addresse zu diesem Artikel kopieren"><i className="bi bi-link-45deg pe-2"/>{isCopied ? 'Kopiert!' : 'Kopieren'}</button>
+          <button type="button" class='btn btn-outline-dark' onClick={handleCopyClick} title="Link-Addresse zu diesem Artikel kopieren"><i className="bi bi-link-45deg pe-2"/>{isCopied ? 'Kopiert!' : 'Link'}</button>
           <button type="button" class='btn btn-success' onClick={handleThumbsUpClick} title="Schön, dass es dir gefällt!"><i className="bi bi-hand-thumbs-up pe-2"/>{thumbsUpCount}</button>
           <button type="button" class='btn btn-light' onClick={handleThumbsDownClick} title="Wirklich? :("><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
         </div>
