@@ -123,7 +123,7 @@ function EisbuabaCup2024() {
       document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos rund um den Eisbuaba Cup 2024');
       document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/eisbuaba-cup-2024');
     };
-  
+
     // We want fetchXY() etc. to be executed everytime App component loads
     useEffect(() => {
       fetchPageContent();
@@ -198,15 +198,15 @@ function EisbuabaCup2024() {
                     <p className="fs-5">{pageContent.attributes.description3}</p>}
                   </div>
               </div>
-              
+
             </div>
         </div>
 
         {/* VOTING & ERGEBNISSE */}
-        <div className="tiles-container-flex-sm pt-0">      
-           
+        <div className="tiles-container-flex col2 pt-0">
+
           <div className="fixed-tile gap-4">
-            <h2>Wer gewinnt den Cup?</h2>            
+            <h2>Wer gewinnt den Cup?</h2>
             <div class="list-group d-grid gap-3">
               {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
                 teams.length === 0 ? <p>Teilnehmende Teams werden in Kürze bekannt gegeben...</p> :
@@ -227,7 +227,7 @@ function EisbuabaCup2024() {
 
             {!teams && <button type="button" class="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>}
 
-          </div> 
+          </div>
 
           <div className="fixed-tile gap-3">
             <h2>Matches & Ergebnisse</h2>
@@ -238,10 +238,10 @@ function EisbuabaCup2024() {
 
         </div>
 
-      </div>      
+      </div>
 
       <Footer/>
-      
+
     </div>
   )
 }
