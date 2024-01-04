@@ -1,7 +1,7 @@
 // client/src/components/NewsPost.js
 
 import React, { useState, useEffect } from "react";
-import { formatPublishedAt, STRAPI_CMS_URL, PUBLIC_URL } from '../utils/Utils';
+import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
 import { Link, useParams } from "react-router-dom";
 
 import Header from './Header';

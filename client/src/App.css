@@ -106,10 +106,13 @@ p {
 /* @media queries*/
 /* When the screen size is 801px or bigger */
 @media (min-width: 801px) {
-  .tiles-container-flex {
+  .tiles-container-flex.col4 {
     grid-template-columns: repeat(4, 1fr); /* Set the desired even number of columns */
   }
-  .tiles-container-flex-sm {
+  .tiles-container-flex.col3 {
+    grid-template-columns: repeat(3, 1fr); /* Set the desired even number of columns */
+  }
+  .tiles-container-flex.col2 {
     grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
   }
   .carousel-caption p {
@@ -120,19 +123,17 @@ p {
 }
 /* When the screen size is 800px or smaller */
 @media (max-width: 800px) {
-  .tiles-container-flex {
-    grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
-  }
-  .tiles-container-flex-sm {
+  .tiles-container-flex.col4,
+  .tiles-container-flex.col3,
+  .tiles-container-flex.col2  {
     grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
   }
 }
 /* When the screen size is 600px or smaller */
 @media (max-width: 640px) {
-  .tiles-container-flex {
-    grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
-  }
-  .tiles-container-flex-sm {
+  .tiles-container-flex.col4,
+  .tiles-container-flex.col3,
+  .tiles-container-flex.col2 {
     grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
   }
 }
@@ -206,21 +207,7 @@ p {
   min-width: 160px;
   max-width: 960px;
 }
-/* Style for the tiles container */
-.tiles-container-flex-sm {
-  display: grid;
-  gap: 1rem; /* Gap between tiles */
-  justify-content: center; /* Center the grid horizontally */
-  align-content: center; /* Center the grid vertically */
-  margin: 0rem auto; /* Center the grid on the page */
-  padding: 1rem;
-  min-width: 160px;
-  max-width: 960px;
-}
 
-.col1 {
-  grid-template-columns: repeat(1, 1fr);
-}
 .col2 {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -289,23 +276,26 @@ p {
   display: flex;
 }
 
-/* NEWS TILE */
+/* NEWS TILE
+-------------------------------------------------- */
 .news-tile {
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: inherit;
 }
-
 .news-tile h2 {
   margin: 0.5rem 0 0.5rem 0;
   flex: 1;
 }
+.news-tile:hover {
+  transform: scale(1.02);
+}
+
 
 .news-tile-image {
   position: relative;
 }
-
 .news-tile-image i {
   top: 0rem;
   right: 0rem;
@@ -315,12 +305,21 @@ p {
   display: flex;
   padding: 0.5rem;
 }
-
 .news-tile-image img {
   width: 100%;
   height: 220px;
   object-fit: cover;
 }
+.news-tile-image span {
+  top: 0rem;
+  left: 0rem;
+  position: absolute;
+  display: flex;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+
 .news-tile-desc {
   position: relative;
   max-height: 72px;
@@ -332,9 +331,6 @@ p {
   content: '...';
   bottom: 0;
   right: 0.5rem;
-}
-.news-tile:hover {
-  transform: scale(1.02);
 }
 
 /* NEWS POST

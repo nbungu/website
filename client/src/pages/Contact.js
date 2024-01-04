@@ -49,7 +49,7 @@ function Contact() {
 
         <div className='flex-grow-1'>
 
-            <div className="tiles-container-flex-sm">                
+            <div className="tiles-container-flex col2">
                 <div className="fixed-tile gap-3">
                     <h2>Verein</h2>
                     <div className="container-flex">

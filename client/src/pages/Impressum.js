@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import { STRAPI_CMS_URL } from '../utils/Utils';
 import RichTextBlocks from "../components/RichTextBlocks";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 function Impressum() {
   
@@ -59,9 +60,13 @@ function Impressum() {
             {!pageContent ? <LoadingSpinner message={"Lade Datenschutz und Haftungsausschluss..."}/> : <div className="w-100"><RichTextBlocks richtext={pageContent.attributes.datenschutz}/></div>}
           </div>
 
+          <Link className='btn btn-light' to="/"><i className="bi bi-arrow-left pe-2"/>Zur Startseite</Link>
+
         </div>
 
-      </div>   
+
+      </div>
+
       <Footer/>
     </div>
   )

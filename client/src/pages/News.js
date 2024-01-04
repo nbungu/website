@@ -79,7 +79,7 @@ function News() {
         </div>
 
         {!posts ? <LoadingSpinner message={"Lade News..."}/> :
-          <div className="tiles-container-flex">
+          <div className="tiles-container-flex col3">
             {posts.map((post) => (
               <NewsTile newsPost={post}/>
             ))}

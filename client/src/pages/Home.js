@@ -34,7 +34,7 @@ function Home() {
         
         <TextCarousel/>
 
-        <div className="tiles-container-flex mt-3">
+        <div className="tiles-container-flex col4 mt-3">
           <ButtonTile link={"/eisbuaba-cup-2024"} icon={"bi bi-trophy-fill"} iconColor={"orange"} header={"Eisbuaba-Cup"} badgeText={"2024"} text={"Freitag, 01. März 2024, 20:30 Uhr"} z={1}/>
           <ButtonTile link={"/news/9"} icon={"bi bi-person-arms-up"} header={"Nachwuchstraining"} text={"Montags, 18:00 - 19:00 Uhr"}/>
           <ButtonTile link={"/about"} icon={"bi bi-people-fill"} header={"Über Uns"} text={"1. Mannschaft der Eisbuaba"}/>
