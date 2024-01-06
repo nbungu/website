@@ -51,7 +51,7 @@
     fetchAndParseXML(xmlURL, currentURL)
       .then(() => {
         // Access the tag elements
-        //var tabTitle = document.querySelector('title');
+        var tabTitle = document.querySelector('title');
         var title = document.querySelector('meta[property="og:title"]');
         var description = document.querySelector('meta[property="og:description"]');
         var imgPath = document.querySelector('meta[property="og:image"]');
