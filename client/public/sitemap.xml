@@ -14,8 +14,8 @@
       <priority>0.8</priority>
       <lastmod>2024-01-03</lastmod>
       <title>News</title>
-      <descr>Sieh dir den News Post der Eisbuaba Adelberg an!</descr>
-      <image>/share-image-news.webp</image>
+      <descr>Sieh dir die News der Eisbuaba Adelberg an!</descr>
+      <image>/share-image.webp</image>
     </url>
     <url>
       <loc>https://eisbuaba-adelberg.de/termine</loc>
@@ -35,6 +35,9 @@
       <loc>https://eisbuaba-adelberg.de/eisbuaba-cup-2024</loc>
       <changefreq>monthly</changefreq>
       <lastmod>2024-01-03</lastmod>
+      <title>Eisbuaba Cup 2024</title>
+      <descr>Alle Infos zum Eisbuaba Cup2024!</descr>
+      <image>/eisbuaba-cup-header.png</image>
     </url>
     <url>
       <loc>https://eisbuaba-adelberg.de/impressum</loc>
