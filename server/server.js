@@ -33,10 +33,10 @@ app.use(cors());
 app.use(compression()); // Compress all routes
 app.use(helmet.contentSecurityPolicy({ // Use helmet middleware with contentSecurityPolicy (CSP)
   directives: {
-    defaultSrc: ["'self'", "*.google.com", "*.googleapis.com"],
+    defaultSrc: ["'self'", "eisbuaba-adelberg.de", "*.google.com", "*.googleapis.com"],
     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https:", "blob:", "code.jquery.com", "cdn.jsdelivr.net", "*.googleapis.com", "*.google.com"], // Adjust as needed
     connectSrc: ["'self'", "eisbuaba-adelberg.de"],
-    imgSrc: ["'self'", "eisbuaba-adelberg.de", "data:"],
+    imgSrc: ["'self'", "data:", "eisbuaba-adelberg.de", "cdn.jsdelivr.net", "strapi.io"],
   },
 }));
 
