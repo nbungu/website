@@ -29,7 +29,6 @@
 
     <!-- Update <meta> tag on Server Side dynamically -->
     <script>
-      document.title = "TEST";
       document.querySelector('meta[property="og:url"]').setAttribute('content', document.location);
 
       // Create and set the <meta> tag
@@ -47,6 +46,7 @@
       // Append the title tag to the head
       document.getElementsByTagName('head')[0].appendChild(title);*/
     </script>
+    <script src="%PUBLIC_URL%/updateMetaTags.js"></script>
 
     <!--
       manifest.json provides metadata used when your web app is installed on a

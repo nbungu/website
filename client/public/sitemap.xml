@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-      <loc>https://www.eisbuaba-adelberg.de</loc>
+      <loc>https://eisbuaba-adelberg.de</loc>
       <priority>1.0</priority>
       <lastmod>2024-01-03</lastmod>
-      <og:title>Startseite</og:title>
+      <title>Startseite</title>
+      <descr>Infos, News und Mehr</descr>
+      <image>/share-image.webp</image>
     </url>
     <url>
-      <loc>https://www.eisbuaba-adelberg.de/news</loc>
+      <loc>https://eisbuaba-adelberg.de/news</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
       <lastmod>2024-01-03</lastmod>
-      <og:title>News</og:title>
+      <title>News</title>
+      <descr>Sieh dir den News Post der Eisbuaba Adelberg an!</descr>
+      <image>/share-image-news.webp</image>
     </url>
     <url>
-      <loc>https://www.eisbuaba-adelberg.de/termine</loc>
+      <loc>https://eisbuaba-adelberg.de/termine</loc>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
       <lastmod>2024-01-03</lastmod>
-      <og:title>Termine</og:title>
     </url>
     <url>
-      <loc>https://www.eisbuaba-adelberg.de/about</loc>
+      <loc>https://eisbuaba-adelberg.de/about</loc>
       <lastmod>2024-01-03</lastmod>
     </url>
     <url>
-      <loc>https://www.eisbuaba-adelberg.de/kontakt</loc>
+      <loc>https://eisbuaba-adelberg.de/kontakt</loc>
       <lastmod>2024-01-03</lastmod>
     </url>
     <url>
-      <loc>https://www.eisbuaba-adelberg.de/eisbuaba-cup-2024</loc>
+      <loc>https://eisbuaba-adelberg.de/eisbuaba-cup-2024</loc>
       <changefreq>monthly</changefreq>
       <lastmod>2024-01-03</lastmod>
     </url>
     <url>
-      <loc>https://www.eisbuaba-adelberg.de/impressum</loc>
+      <loc>https://eisbuaba-adelberg.de/impressum</loc>
       <lastmod>2024-01-03</lastmod>
     </url>   
 </urlset>
