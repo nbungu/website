@@ -116,13 +116,6 @@ function EisbuabaCup2024() {
           // You can handle the error here, such as displaying an error message to the user
         });
     };
-    const updateMetaTags = () => {
-      // Update Open Graph meta tags dynamically
-      document.title = "Eisbuaba Cup 2024 > Eisbuaba Adelberg";
-      document.querySelector('meta[property="og:title"]').setAttribute('content', "Eisbuaba Cup 2024");
-      document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos rund um den Eisbuaba Cup 2024');
-      document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/eisbuaba-cup-2024');
-    };
 
     // We want fetchXY() etc. to be executed everytime App component loads
     useEffect(() => {
@@ -130,7 +123,7 @@ function EisbuabaCup2024() {
       fetchActiveTeams();
       fetchCupMatches();
       fetchHighestVoting();
-      updateMetaTags();
+      document.title = "Eisbuaba Cup 2024 > Eisbuaba Adelberg";
     }, []);
 
   return (
@@ -141,22 +134,22 @@ function EisbuabaCup2024() {
       <div className='flex-grow-1'>
 
         {/* FULL WIDTH JUMBOTRON */}
-        <div class="mt-5">
-            <div class="text-center bg-body-tertiary shadow p-5">
-                <div class="container">
+        <div className="mt-5">
+            <div className="text-center bg-body-tertiary shadow p-5">
+                <div className="container">
                   {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                   <>
                   <img className='bi p-2' width={200} height={200} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
-                  <h3 class="fs-2 text-body-emphasis p-1">{pageContent.attributes.title}</h3>
-                  <p class="col-lg-8 mx-auto lead p-1">{pageContent.attributes.summary}</p>
+                  <h3 className="fs-2 text-body-emphasis p-1">{pageContent.attributes.title}</h3>
+                  <p className="col-lg-8 mx-auto lead p-1">{pageContent.attributes.summary}</p>
                   </>
                   }
-                  <div class="row gap-3 p-3 justify-content-center">
-                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} class="col-sm-4 btn btn-danger btn-lg px-4 rounded-pill" role="button">
+                  <div className="row gap-3 p-3 justify-content-center">
+                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} className="col-sm-4 btn btn-danger btn-lg px-4 rounded-pill" role="button">
                       Livestream
                       <i className="bi bi-youtube ps-2 fs-4"/>
                     </a>
-                    <button class="col-sm-4 btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
+                    <button className="col-sm-4 btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
                       Spielplan
                       <i className="bi bi-file-earmark-arrow-down ps-2"/>
                     </button>
@@ -166,34 +159,34 @@ function EisbuabaCup2024() {
         </div>
 
         {/* DESCRIPTION */}
-        <div class="container p-5" id="hanging-icons">
-            <div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
-              <div class="col d-flex align-items-start">
-                  <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
-                    <i class="bi bi-clock fs-1"></i>
+        <div className="container p-5" id="hanging-icons">
+            <div className="row g-4 py-3 row-cols-1 row-cols-lg-3">
+              <div className="col d-flex align-items-start">
+                  <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
+                    <i className="bi bi-clock fs-1"></i>
                   </div>
                   <div>
-                    <h3 class="fs-2 text-body-emphasis">Wann und Wo?</h3>
+                    <h3 className="fs-2 text-body-emphasis">Wann und Wo?</h3>
                     {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                     <p className="fs-5">{pageContent.attributes.description1}</p>}
                   </div>
               </div>
-              <div class="col d-flex align-items-start">
-                  <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
-                    <i class="bi bi-pencil-square fs-1"></i>
+              <div className="col d-flex align-items-start">
+                  <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
+                    <i className="bi bi-pencil-square fs-1"></i>
                   </div>
                   <div>
-                    <h3 class="fs-2 text-body-emphasis">Anmeldung</h3>
+                    <h3 className="fs-2 text-body-emphasis">Anmeldung</h3>
                     {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                     <p className="fs-5">{pageContent.attributes.description2}</p>}
                   </div>
               </div>
-              <div class="col d-flex align-items-start">
-                  <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
-                    <i class="bi bi-crosshair fs-1"></i>
+              <div className="col d-flex align-items-start">
+                  <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
+                    <i className="bi bi-crosshair fs-1"></i>
                   </div>
                   <div>
-                    <h3 class="fs-2 text-body-emphasis">Spielmodus</h3>
+                    <h3 className="fs-2 text-body-emphasis">Spielmodus</h3>
                     {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                     <p className="fs-5">{pageContent.attributes.description3}</p>}
                   </div>
@@ -207,12 +200,12 @@ function EisbuabaCup2024() {
 
           <div className="fixed-tile gap-4">
             <h2>Wer gewinnt den Cup?</h2>
-            <div class="list-group d-grid gap-3">
+            <div className="list-group d-grid gap-3">
               {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
                 teams.length === 0 ? <p>Teilnehmende Teams werden in Kürze bekannt gegeben...</p> :
                 teams.map((team) => (
-                  <label class="list-group-item list-group-item-action rounded d-flex gap-4 border-0">
-                  <input class="form-check-input flex-shrink-0 my-auto fs-5" disabled={hasVoted} type="radio" name="listGroupRadios" id="listGroupRadios1" onClick={() => handleRadioChange(team.id, team.attributes.votingCount)}/>
+                  <label className="list-group-item list-group-item-action rounded d-flex gap-4 border-0">
+                  <input className="form-check-input flex-shrink-0 my-auto fs-5" disabled={hasVoted} type="radio" name="listGroupRadios" id="listGroupRadios1" onClick={() => handleRadioChange(team.id, team.attributes.votingCount)}/>
                   <div className="hstack gap-3">
                       <img className="rounded-circle mx-auto" src={!team.attributes.logo.data ? defaultImg : (STRAPI_CMS_URL + team.attributes.logo.data.attributes.url)} width={40} height={40} alt="Team Logo"/>
                       <div className="vstack gap-1">
@@ -225,7 +218,7 @@ function EisbuabaCup2024() {
               }
             </div>
 
-            {!teams && <button type="button" class="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>}
+            {!teams && <button type="button" className="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>}
 
           </div>
 

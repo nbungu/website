@@ -5,9 +5,7 @@ import React from "react";
 function RichTextBlocks({ richtext }) {
   
   return (
-    
-    <div>
-
+    <>
       {richtext && richtext.map(textBlock => {
         if (textBlock.type === 'paragraph') {
           return (
@@ -59,8 +57,7 @@ function RichTextBlocks({ richtext }) {
         }
         })
       } 
-
-    </div>
+    </>
   )
 }
 

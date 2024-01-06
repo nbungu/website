@@ -4,8 +4,6 @@
 // localhost:3001 is pi.local:3001 (or IP of Raspberry)
 
 const express = require("express");
-//const fs = require('fs');
-//const cheerio = require('cheerio'); // to modify/update (meta) tags in html from server side
 const cors = require("cors");
 const compression = require("compression"); // reducing the time required for the client to get and load the page
 const helmet = require("helmet"); // Helmet to protect against well known vulnerabilities
@@ -60,26 +58,6 @@ app.get('/*', (req, res) => {
   res.sendFile(filePath);
 });
 
-// Server-Side Updating of Meta Tags (in index.html) for SEO and Social Media Sharing
-/*app.get('/news', (req, res) => {
-  updateMetaTags(
-    'News > Eisbuaba Adelberg',
-    'News',
-    'Alle News und Updates der Eisbuaba',
-    'https://eisbuaba-adelberg.de/news',
-    'https://eisbuaba-adelberg.de/share-image-news.webp'
-  );
-});
-app.get('/eisbuaba-cup-2024', (req, res) => {
-  updateMetaTags(
-    'Eisbuaba Cup 2024 > Eisbuaba Adelberg',
-    'Eisbuaba Cup 2024',
-    'Infos rund um den Eisbuaba Cup 2024',
-    'https://eisbuaba-adelberg.de/eisbuaba-cup-2024',
-    'https://eisbuaba-adelberg.de/share-image-cup-2024.png'
-  );
-});*/
-
 /* -----LISTEN----- */
 
 // if in production use the port 3000 for server otherwise 3001
@@ -102,22 +80,3 @@ let status =
 React is a single-page app, which means the app will have only a single HTML file
 and every route will be loaded into the same HTML file with the help of Javascript.
 */
-
-/*function updateMetaTags(title, titleAlt, desc, url, imgPath) {
-  // Read the index.html file
-  const filePath = path.join(__dirname, '../client/build/index.html');
-  let html = fs.readFileSync(filePath, 'utf-8');
-  // Load the HTML into Cheerio
-  const $ = cheerio.load(html);
-  // Modify specific tags (e.g., title, meta description, etc.)
-  $('title').text(title);
-  $('meta[property="og:title"]').attr('content', titleAlt);
-  $('meta[property="og:description"]').attr('content', desc);
-  $('meta[property="og:url"]').attr('content', url);
-  $('meta[property="og:image"]').attr('content', imgPath);
-
-  // Save the modified HTML back to the file
-  fs.writeFileSync(filePath, $.html(), 'utf-8');
-  // Send the modified HTML as the response
-  res.sendFile(filePath);
-}*/

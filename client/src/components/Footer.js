@@ -37,18 +37,18 @@ function Footer() {
         </li>
       </ul>
 
-      <div class="row align-items-center m-0">
+      <div className="row align-items-center m-0">
         <div className='col-sm-3'></div>
-        <div class="col-md-6 px-0 py-3 text-center">
+        <div className="col-md-6 px-0 py-3 text-center">
           <p className='text-body-secondary'>© 2024 Eisbuaba Adelberg</p>
           <a href='https://www.asv-schlichten.de/' className='text-body-secondary'><img src={asvFavicon} height={24} alt="ASV Schlichten Wappen" className='m-2'/>ASV-Schlichten</a>
         </div>
-        <div class="col-md-3 text-center">
-          <div>
+        <div className="col-md-3 text-center">
+          
             <a href={instaLink ? instaLink : '#'} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="Instagram"><i className="bi bi-instagram"/></a>
             <a href={youtubeLink ? youtubeLink : '#'} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="YouTube"><i className="bi bi-youtube"/></a>
             <button type="button" onClick={handleCopyClick} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="Email-Addresse kopieren"><i className={isCopied ? "bi bi-clipboard-check" : "bi bi-envelope-at"}/></button>
-          </div>
+          
         </div>
       </div>
 

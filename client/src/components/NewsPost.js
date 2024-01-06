@@ -58,9 +58,6 @@ function NewsPost() {
     // Executes if post is truthy
     if (post) {
       document.title = post.attributes.title;
-      document.querySelector('meta[property="og:title"]').setAttribute('content', post.attributes.title);
-      document.querySelector('meta[property="og:description"]').setAttribute('content', post.attributes.summary);
-      document.querySelector('meta[property="og:url"]').setAttribute('content', `https://eisbuaba-adelberg.de/news/${post.id}`);
     }
   };
 
@@ -80,7 +77,7 @@ function NewsPost() {
         <div className="row g-5">
 
           {/* NEWS POST CONTENT */}
-          <div class="col-lg-9">
+          <div className="col-lg-9">
             {!post ? <LoadingSpinner/> :
               <div className='vstack gap-3'>
                 <NewsPostStartingElement newsPostUpVotes={post.attributes.upvotes} newsPostDownVotes={post.attributes.downvotes} postId={post.id}/>
@@ -94,18 +91,18 @@ function NewsPost() {
           </div>
 
           {/* MORE POSTS LIST */}
-          <div class="col-lg-3">
+          <div className="col-lg-3">
             <div className="position-sticky">
               <h1 className="mb-2">Weitere Beiträge</h1>
-              <ul class="list-unstyled">
+              <ul className="list-unstyled">
                 {!featuredPosts ? <LoadingSpinner/> :
                   <li>
                     {featuredPosts.map((post) => (
-                      <Link to={'/news/'+post.id} class="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
+                      <Link to={'/news/'+post.id} className="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
                         <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
-                        <div class="col-sm-8">
-                          <h6 class="mb-0">{post.attributes.title}</h6>
-                          <small class="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>
+                        <div className="col-sm-8">
+                          <h6 className="mb-0">{post.attributes.title}</h6>
+                          <small className="text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</small>
                         </div>
                       </Link>
                     ))}

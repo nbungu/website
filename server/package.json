@@ -10,19 +10,16 @@
     "client:dev": "NODE_ENV=development npm start --prefix ../client",
     "client:prod": "NODE_ENV=production npm run build --prefix ../client"
   },
-  "proxy": "192.168.0.160:3001",
   "keywords": [],
   "author": "Arne Schunter",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
     "clipboard-copy": "^4.0.1",
     "compression": "^1.7.4",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
-    "helmet": "^7.1.0",
-    "ws": "^8.15.1"
+    "helmet": "^7.1.0"
   }
 }

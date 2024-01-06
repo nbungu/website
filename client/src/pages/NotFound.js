@@ -1,11 +1,16 @@
 // client/src/pages/NotFound.js
 
-import React from 'react';
+import React, { useEffect } from "react";
 import Footer from '../components/Footer';
 import { PUBLIC_URL } from '../utils/Utils.js';
 
 function NotFound() {
   
+  // We want updateMetaTags() to be executed everytime App component loads
+  useEffect(() => {
+    document.title = "Seite nicht gefunden :(";
+  }, []);
+
   return (
     <div className='body-bg'>
 

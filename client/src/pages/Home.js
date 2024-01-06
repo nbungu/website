@@ -10,17 +10,9 @@ import ButtonTile from "../components/ButtonTile.js";
 
 function Home() {
    
-  const updateMetaTags = () => {
-    // Update Open Graph meta tags dynamically
-    document.title = "Startseite > Eisbuaba Adelberg";
-    document.querySelector('meta[property="og:title"]').setAttribute('content', "Startseite");
-    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Infos, Spieltermine und News rund um den Verein');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de');
-  };
-
   // We want updateMetaTags() to be executed everytime App component loads
   useEffect(() => {
-    updateMetaTags();
+    document.title = "Startseite > Eisbuaba Adelberg";
   }, []);
   
   return (

@@ -1,4 +1,4 @@
-// client/src/components/RecentNewsV2.js
+// client/src/components/RecentNews.js
 
 import React, { useState, useEffect } from "react";
 import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils.js';
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.js";
 import defaultImg from '../assets/default-image.webp'
 
-function RecentNewsV2() {  
+function RecentNews() {  
   
   // fetches the last two most recent posts in sorted order
   const queryString = STRAPI_CMS_URL + "/api/posts?populate=*&sort=publishedAt:desc&pagination[start]=0&pagination[limit]=2";
@@ -34,26 +34,26 @@ function RecentNewsV2() {
 
   return (
     <div className="tiles-container">
-      <h1 class="mb-2">Neueste Beiträge</h1>
+      <h1 className="mb-2">Neueste Beiträge</h1>
       
       {!featuredPosts ? <LoadingSpinner message={"Lade News..."}/> :
         featuredPosts.map((post) => (         
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-2 shadow h-md-250 position-relative">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="row g-0 border rounded overflow-hidden flex-md-row mb-2 shadow h-md-250 position-relative">
                 {/* TEXT COL */}
-                <div class="col p-4 d-flex flex-column position-static">
-                  <strong class="d-inline-block mb-2 text-primary-emphasis">{post.attributes.type}</strong>
-                  <h3 class="mb-0">{post.attributes.title}</h3>
-                  <div class="mb-1 text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</div>
-                  <p class="card-text mb-auto">{post.attributes.summary}</p>
-                  <Link to={`/news/${post.id}`} class="icon-link gap-1 icon-link-hover stretched-link">
+                <div className="col p-4 d-flex flex-column position-static">
+                  <strong className="d-inline-block mb-2 text-primary-emphasis">{post.attributes.type}</strong>
+                  <h3 className="mb-0">{post.attributes.title}</h3>
+                  <div className="mb-1 text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</div>
+                  <p className="card-text mb-auto">{post.attributes.summary}</p>
+                  <Link to={`/news/${post.id}`} className="icon-link gap-1 icon-link-hover stretched-link">
                     Weiterlesen
-                    <i class="bi bi-chevron-right"></i>
+                    <i className="bi bi-chevron-right"></i>
                   </Link>
                 </div>
                 {/* IMAGE COL */}
-                <div class="col-auto d-none d-md-block test">
+                <div className="col-auto d-none d-md-block test">
                   <img src={post.attributes.titleimage?.data?.attributes.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt={"News Post " + post.id + " titleimage"}/>
                 </div>
               </div>           
@@ -61,9 +61,9 @@ function RecentNewsV2() {
           </div>
         ))
       }
-      <Link className="btn btn-light" to="/news"><i class="bi bi-arrow-repeat pe-2"/>Mehr News laden</Link>
+      <Link className="btn btn-light" to="/news"><i className="bi bi-arrow-repeat pe-2"/>Mehr News laden</Link>
     </div>    
   )
 }
 
-export default RecentNewsV2
+export default RecentNews

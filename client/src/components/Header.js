@@ -31,13 +31,13 @@ function Header({ currentPage }) {
                 </div>
 
                 {/* Burger menu for small screens */}
-                <div class="dropdown dropstart">
+                <div className="dropdown dropstart">
                     
                     <button className="navbar-toggler glass-effect" type="button" data-toggle="collapse" data-bs-toggle="dropdown" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     
-                    <ul class="dropdown-menu glass-effect text-center mx-3">
+                    <ul className="dropdown-menu glass-effect text-center mx-3">
                         <Link to="/" className='dropdown-item py-3 px-5'><h1>Home</h1></Link>
                         <Link to="/news" className='dropdown-item py-3 px-5'><h1>News</h1></Link>
                         <Link to="/termine" className='dropdown-item py-3 px-5'><h1>Termine</h1></Link>

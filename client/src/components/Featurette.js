@@ -18,7 +18,7 @@ function FeaturetteTeaser({ featuredNewsPost, onPostClicked }) {
         <p>{formatPublishedAt(featuredNewsPost.attributes.publishedAt)}</p>
         <h1>{featuredNewsPost.attributes.title}</h1>
         <div className='clearfix'>
-          <img src={imgPathRel ? img : defaultImg} class="featurette-image rounded col-sm-6 float-md-end ms-md-3 mt-3" alt="..."/>
+          <img src={imgPathRel ? img : defaultImg} className="featurette-image rounded col-sm-6 float-md-end ms-md-3 mt-3" alt="..."/>
           <p className='mt-3'>{featuredNewsPost.attributes.summary}</p>
         </div>
       </Link>

@@ -45,21 +45,14 @@ function News() {
     setSortOrder('asc');
   };
 
-  const updateMetaTags = () => {
-    // Update Open Graph meta tags dynamically
-    document.title = "News > Eisbuaba Adelberg";
-    document.querySelector('meta[property="og:title"]').setAttribute('content', "News");
-    document.querySelector('meta[property="og:description"]').setAttribute('content', 'Alle News und Updates der Eisbuaba');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/news');
-  };
-
   // We want fetchPosts() to be executed everytime 'counter' and the 'sortOrder' state changes
   useEffect(() => {
     fetchPosts();
   }, [counter, sortOrder]);
+  
   // We want updateMetaTags() to be executed everytime App component initially loads
   useEffect(() => {
-    updateMetaTags();
+    document.title = "News > Eisbuaba Adelberg";
   }, []);
   
   return (
@@ -70,11 +63,11 @@ function News() {
       <div className="flex-grow-1">
 
         <div className="tiles-container pb-0">
-          <h1 class="mb-2">Alle Beiträge</h1>
+          <h1 className="mb-2">Alle Beiträge</h1>
 
           <div className="hstack gap-3">
-            <button type="button" class="btn btn-light" onClick={switchSortOrderDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
-            <button type="button" class="btn btn-light" onClick={switchSortOrderAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
+            <button type="button" className="btn btn-light" onClick={switchSortOrderDesc}><i className="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
+            <button type="button" className="btn btn-light" onClick={switchSortOrderAsc}><i className="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
           </div>
         </div>
 
@@ -89,7 +82,7 @@ function News() {
 
       {totalNrOfPosts > counter ?
         <div className="row mx-auto p-3">
-          <button className="btn btn-secondary" onClick={showMorePosts}><i class="bi bi-arrow-repeat pe-2"/>Mehr News laden</button>
+          <button className="btn btn-secondary" onClick={showMorePosts}><i className="bi bi-arrow-repeat pe-2"/>Mehr News laden</button>
         </div>
         :
         <div/>

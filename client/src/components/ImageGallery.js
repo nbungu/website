@@ -57,7 +57,7 @@ function ImageGallery({ imagePaths }) {
                                 </div>
                                 
                                 <div className='col-auto btn py-0 px-2' data-bs-dismiss="modal" aria-label="Close" title='Schließen' onClick={closeImageModal}>
-                                    <i class="bi bi-x-lg fs-4"></i>
+                                    <i className="bi bi-x-lg fs-4"></i>
                                 </div>
                                 
                             </div>
@@ -71,10 +71,10 @@ function ImageGallery({ imagePaths }) {
                             <div className='row align-items-center justify-content-center m-3'>
                                     <div className='col-auto'>
                                         <div className='btn  py-0 px-2 mx-3' title='Vorheriges Bild' onClick={() => prevImage()}>
-                                            <i class="bi bi-chevron-left fs-4"></i>
+                                            <i className="bi bi-chevron-left fs-4"></i>
                                         </div>
                                         <div className='btn py-0 px-2 mx-3' title='Nächstes Bild' onClick={() => nextImage()}>
-                                            <i class="bi bi-chevron-right fs-4"></i>
+                                            <i className="bi bi-chevron-right fs-4"></i>
                                         </div>
                                     </div>                                    
                                 </div>

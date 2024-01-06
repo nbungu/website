@@ -11,7 +11,7 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
   const [votedUp, setVotedUp] = useState(false);
   const [votedDown, setVotedDown] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
-  const copyText = 'https://www.eisbuaba-adelberg.de/news/'+postId;
+  const copyText = document.location; //'https://www.eisbuaba-adelberg.de/news/'+postId;
 
   const handleThumbsUpClick = () => {
     if (!votedUp && !votedDown) {
@@ -79,10 +79,10 @@ function NewsPostStartingElement({ newsPostUpVotes, newsPostDownVotes, postId })
       </div>
 
       <div className="col-auto">
-        <div class="btn-group" role="group" aria-label="Basic outlined">
-          <button type="button" class='btn btn-outline-dark' onClick={handleCopyClick} title="Link-Addresse zu diesem Artikel kopieren"><i className="bi bi-link-45deg pe-2"/>{isCopied ? 'Kopiert!' : 'Link'}</button>
-          <button type="button" class='btn btn-success' onClick={handleThumbsUpClick} title="Schön, dass es dir gefällt!"><i className="bi bi-hand-thumbs-up pe-2"/>{thumbsUpCount}</button>
-          <button type="button" class='btn btn-light' onClick={handleThumbsDownClick} title="Wirklich? :("><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
+        <div className="btn-group" role="group" aria-label="Basic outlined">
+          <button type="button" className='btn btn-outline-dark' onClick={handleCopyClick} title="Link-Addresse zu diesem Artikel kopieren"><i className="bi bi-link-45deg pe-2"/>{isCopied ? 'Kopiert!' : 'Link'}</button>
+          <button type="button" className='btn btn-success' onClick={handleThumbsUpClick} title="Schön, dass es dir gefällt!"><i className="bi bi-hand-thumbs-up pe-2"/>{thumbsUpCount}</button>
+          <button type="button" className='btn btn-light' onClick={handleThumbsDownClick} title="Wirklich? :("><i className="bi bi-hand-thumbs-down pe-2"/>{thumbsDownCount}</button>
         </div>
       </div>
 

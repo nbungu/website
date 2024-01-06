@@ -13,19 +13,40 @@
 
     <!--Open Graph meta tags for Optimized Sharing Appearance-->
 
-    <!-- Initial Open Graph meta tags -->
+    <!-- Initial static Open Graph meta tags -->
     <title>Startseite > Eisbuaba Adelberg</title>
     <meta property="og:title" content="Startseite"/>
-    <meta property="og:description" content="Infos, Spieltermine und News rund um den Verein" />
-    <meta property="og:url" content="https://eisbuaba-adelberg.de"/>
+    <meta property="og:description" content="Infos, Spieltermine und News rund um den Verein" />    
     <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://eisbuaba-adelberg.de"/>
     <meta property="og:image" content="https://eisbuaba-adelberg.de/share-image.webp"/>
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="512" />
 
     <!-- Additional Open Graph Tags (optional) -->
     <meta property="og:site_name" content="Eisbuaba Adelberg" />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content="de_DE"/>
+
+    <!-- Update <meta> tag on Server Side dynamically -->
+    <script>
+      document.title = "TEST";
+      document.querySelector('meta[property="og:url"]').setAttribute('content', document.location);
+
+      // Create and set the <meta> tag
+      /*var link = document.createElement('meta');
+      link.setAttribute('property', 'og:url');
+      link.content = document.location;
+      // Append the title tag to the <head> tag
+      document.getElementsByTagName('head')[0].appendChild(link); 
+
+
+      // Create and set the title tag
+      var title = document.createElement('title');
+      title.textContent = document.location;
+
+      // Append the title tag to the head
+      document.getElementsByTagName('head')[0].appendChild(title);*/
+    </script>
 
     <!--
       manifest.json provides metadata used when your web app is installed on a

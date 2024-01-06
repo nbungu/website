@@ -1,49 +1,23 @@
 // client/src/pages/About.js
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PlayerPill from '../components/PlayerPill';
-import { STRAPI_CMS_URL } from '../utils/Utils.js';
+import { usePlayers } from '../utils/fetchContent.js';
 import LoadingSpinner from "../components/LoadingSpinner";
+
 
 import teamPhoto from '../assets/team-photo.jpg'
 
 function About() {
   
-  // Returns all posts including media data sorted by date
-  const queryString = STRAPI_CMS_URL + "/api/players?populate=thumbnail&pagination[pageSize]=100";
-
-  // GET Request to STRAPI server (backend) at endpoint /api/posts
-  const [players, setPlayers] = useState(null);
-
-  const fetchPlayers = () => {
-      return fetch(queryString)
-      .then((response) => {
-          if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-      })
-      .then((result) => setPlayers(result.data))
-      .catch((error) => {
-          console.error('Error fetching players:', error);
-          // You can handle the error here, such as displaying an error message to the user
-      });
-  };
-  const updateMetaTags = () => {
-    // Update Open Graph meta tags dynamically
+  const players = usePlayers();
+    
+  // We want fetchPlayers() to be executed everytime App component loads
+  useEffect(() => {
     document.title = "Team > Eisbuaba Adelberg";
-    document.querySelector('meta[property="og:title"]').setAttribute('content', "Team");
-    document.querySelector('meta[property="og:description"]').setAttribute('content', '1. Mannschaft der Eisbuaba Adelberg');
-    document.querySelector('meta[property="og:url"]').setAttribute('content', 'https://eisbuaba-adelberg.de/about');
-  };
-
-// We want fetchPlayers() to be executed everytime App component loads
-useEffect(() => {
-  fetchPlayers();
-  updateMetaTags();
-}, []);
+  }, []);
   
   return (
     <div className='body-bg'>

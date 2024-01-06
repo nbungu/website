@@ -14,8 +14,8 @@ function NewsTile({ newsPost }) {
     <Link className='news-tile bg-light rounded border shadow' to={`/news/${newsPost.id}`} key={newsPost.attributes.title}> 
       {/* IMAGE */}
       <div className='news-tile-image'>
-        <span class="badge bg-light text-dark">{newsPost.attributes.type}</span>
-        {newsPost.attributes.youtubeurl && <i class="bi bi-youtube"/>}
+        <span className="badge bg-light text-dark">{newsPost.attributes.type}</span>
+        {newsPost.attributes.youtubeurl && <i className="bi bi-youtube"/>}
         <img className='rounded rounded-bottom-0' src={imgPath ? imgPath : defaultImg} alt={`News Post ${newsPost.id} Cover`}/>
       </div>
       {/* CONTENT */}
