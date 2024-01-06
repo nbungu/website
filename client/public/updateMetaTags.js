@@ -1,5 +1,4 @@
 
-  var tags;
 
   // Function to fetch and parse XML from a file
   function fetchAndParseXML(xmlUrl, documentUrl) {
@@ -40,6 +39,12 @@
       }
     }
   }
+
+  var tags = {
+    title: "",
+    descr: "",
+    image: ""
+  };
 
   // Wait for the DOM to be fully loaded
   document.addEventListener('DOMContentLoaded', function () {
