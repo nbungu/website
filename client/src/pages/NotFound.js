@@ -14,14 +14,14 @@ function NotFound() {
   return (
     <div className='body-bg'>
 
-        <div class="container d-flex w-100 h-100 p-3 mx-auto my-auto flex-column">
+        <div className="container d-flex w-100 h-100 p-3 mx-auto my-auto flex-column">
 
-          <div class="px-3 text-center">
+          <div className="px-3 text-center">
             <h1>Diese Seite konnte nicht gefunden werden!</h1>
-            <p class="lead">Keine Sorge, hier gehts weiter zur Startseite der Eisbuaba Adelberg.</p>
-            <p class="lead">
+            <p className="lead">Keine Sorge, hier gehts weiter zur Startseite der Eisbuaba Adelberg.</p>
+            <p className="lead">
               {/* Use <a> instead of <Link> to avoid CSP blocking traffic to strapiCMS */}
-              <a href={PUBLIC_URL} class="btn btn-lg btn-light border-white bg-white m-3">Zurück zur Homepage</a>
+              <a href={PUBLIC_URL} className="btn btn-lg btn-light border-white bg-white m-3">Zurück zur Homepage</a>
             </p>
           </div>
         </div>

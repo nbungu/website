@@ -35,13 +35,13 @@ function Contact() {
                                     <p>73614 Schorndorf-Schlichten</p>
                                 </div>
 
-                                <div class="input-group flex-nowrap mb-3">
-                                    <span class="input-group-text"><i class="bi bi-envelope"/></span>
-                                    <span class="input-group-text w-100">eis-buaba@asv-schlichten.de</span>
+                                <div className="input-group flex-nowrap mb-3">
+                                    <span className="input-group-text"><i className="bi bi-envelope"/></span>
+                                    <span className="input-group-text w-100">eis-buaba@asv-schlichten.de</span>
                                 </div>
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text"><i class="bi bi-globe2"/></span>
-                                    <span class="input-group-text w-100"><a className="text-start text-primary" href="https://asv-schlichten.de/">https://asv-schlichten.de</a></span>
+                                <div className="input-group flex-nowrap">
+                                    <span className="input-group-text"><i className="bi bi-globe2"/></span>
+                                    <span className="input-group-text w-100"><a className="text-start text-primary" href="https://asv-schlichten.de/">https://asv-schlichten.de</a></span>
                                 </div>
                             </div>
                         </div>
@@ -55,12 +55,12 @@ function Contact() {
                             {managers.map((manager) => (
                             <div className="list-group-item list-group-item-action p-2" aria-current="true">
                                 <div className="hstack">
-                                    {manager.attributes.thumbnail.data ? <img class="contact-circle me-4 ms-3" src={manager.attributes.thumbnail.data.attributes.url} alt="Contact Thumbnail"/> : <div className="contact-circle me-4 ms-3"><h3 className="text-light">{getInitials(manager.attributes.name)}</h3></div>}
+                                    {manager.attributes.thumbnail.data ? <img className="contact-circle me-4 ms-3" src={manager.attributes.thumbnail.data.attributes.url} alt="Contact Thumbnail"/> : <div className="contact-circle me-4 ms-3"><h3 className="text-light">{getInitials(manager.attributes.name)}</h3></div>}
                                     <div className="vstack text-start">
                                         <h3>{manager.attributes.name}</h3>
                                         {manager.attributes.role && <p className="opacity-75">{manager.attributes.role}</p>}
-                                        {manager.attributes.mail && <p><i class="bi bi-envelope pe-2"/>{manager.attributes.mail}</p>} 
-                                        {manager.attributes.infotext && <p className='text-primary'><i class="bi bi-info-circle pe-2"/>{manager.attributes.infotext}</p>}
+                                        {manager.attributes.mail && <p><i className="bi bi-envelope pe-2"/>{manager.attributes.mail}</p>} 
+                                        {manager.attributes.infotext && <p className='text-primary'><i className="bi bi-info-circle pe-2"/>{manager.attributes.infotext}</p>}
                                     </div>
                                 </div>
                                 

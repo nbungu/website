@@ -88,14 +88,14 @@ function Schedule() {
         <div className="tiles-container pb-0">
           <h1 className="mb-2">Termine</h1>
           <div className="hstack gap-3">
-            <button type="button" class="btn btn-light" onClick={switchSortOrderEventsDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
-            <button type="button" class="btn btn-light" onClick={switchSortOrderEventsAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
+            <button type="button" className="btn btn-light" onClick={switchSortOrderEventsDesc}><i className="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
+            <button type="button" className="btn btn-light" onClick={switchSortOrderEventsAsc}><i className="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
           </div>
           {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={events} showExtendedInfos={true}/>}
           <h1 className="my-2">Spiele</h1>
           <div className="hstack gap-3">
-            <button type="button" class="btn btn-light" onClick={switchSortOrderMatchesDesc}><i class="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
-            <button type="button" class="btn btn-light" onClick={switchSortOrderMatchesAsc}><i class="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
+            <button type="button" className="btn btn-light" onClick={switchSortOrderMatchesDesc}><i className="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
+            <button type="button" className="btn btn-light" onClick={switchSortOrderMatchesAsc}><i className="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
           </div>
           {!matches ? <LoadingSpinner message={"Lade Matches..."}/> : <MatchList matches={matches} showExtendedInfos={true}/>}
         </div>
