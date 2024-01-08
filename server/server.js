@@ -96,26 +96,34 @@ function modifyTagsInHtml(filePath, requestPath) {
   let title = "";
   let descr = "";
   let imagePath = "";
-  switch (requestPath) {
-    case "/news":
-      console.log('Found /news');
-      title = "News";
-      descr = "Alle News und Beiträge der Eisbuaba Adelberg";
-      imagePath = "/share-image.webp";
-      break;
-    case "/eisbuaba-cup-2024":
-      console.log('Found /eisbuaba-cup-2024');
-      title = "Eisbuaba Cup 2024";
-      descr = "Spielstände und Infos zum Eisbuaba Cup 2024";
-      imagePath = "/eisbuaba-cup-header.png";
-      break;
-    default:
-      title = "Startseite";
-      descr = "Homepage der Eisbuaba Adelberg";
-      imagePath = "/share-image.webp";
+
+  const regexPattern = /^\/news\/.$/;
+  if (regexPattern.test(requestPath)){
+    title = "News-Beitrag";
+    descr = "Sieh dir diesen News-Beitrag der Eisbuaba an!";
+    imagePath = "/share-image.webp";
+  }
+  else if (requestPath == "/news") {
+    title = "News";
+    descr = "Alle News und Beiträge der Eisbuaba Adelberg";
+    imagePath = "/share-image.webp";
+  }
+  else if (requestPath == "/eisbuaba-cup-2024") {
+    title = "Eisbuaba Cup 2024";
+    descr = "Spielstände und Infos zum Eisbuaba Cup 2024";
+    imagePath = "/eisbuaba-cup-header.png";
+  }
+  else {
+    title = "Startseite";
+    descr = "Homepage der Eisbuaba Adelberg";
+    imagePath = "/share-image.webp";
   }
   //const modifiedHtml = originalHtml.replace('<!-- REPLACE_ME -->', requestPath);
   let modifiedHtml = originalHtml.replace(
+    '<meta property="og:url" content="https://eisbuaba-adelberg.de"/>',
+    `<meta property="og:url" content="${requestURL}"/>`,
+  );
+  modifiedHtml = modifiedHtml.replace(
     '<meta property="og:title" content="Startseite"/>',
     `<meta property="og:title" content="${title}"/>`
   );
@@ -127,10 +135,6 @@ function modifyTagsInHtml(filePath, requestPath) {
     '<meta property="og:image" content="/share-image.webp"/>',
     `<meta property="og:image" content="${imagePath}"/>`
   ); 
-  modifiedHtml = modifiedHtml.replace(
-    '<meta property="og:url" content="https://eisbuaba-adelberg.de"/>',
-    `<meta property="og:url" content="${requestURL}"/>`,
-  );
   return modifiedHtml;
 
 }
