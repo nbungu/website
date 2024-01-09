@@ -13,7 +13,7 @@ function ProgressBar({ currentVal, maxVal }) {
         aria-valuenow={currentVal || 0}
         aria-valuemin="0"
         aria-valuemax={maxVal}>
-          <p className='text-end text-light pe-2'>{currentVal}</p>
+          <p className='text-end text-light px-2'>{currentVal}</p>
         </div>
     </div>
   )

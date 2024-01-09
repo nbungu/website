@@ -136,25 +136,13 @@ function EisbuabaCup2024() {
         {/* FULL WIDTH JUMBOTRON */}
         <div className="mt-5">
             <div className="text-center bg-body-tertiary shadow p-5">
-                <div className="container">
                   {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
-                  <>
-                  <img className='bi p-2' width={200} height={200} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
-                  <h3 className="fs-2 text-body-emphasis p-1">{pageContent.attributes.title}</h3>
-                  <p className="col-lg-8 mx-auto lead p-1">{pageContent.attributes.summary}</p>
-                  </>
-                  }
-                  <div className="row gap-3 p-3 justify-content-center">
-                    <a href={pageContent?.attributes.livestreamlink ? pageContent.attributes.livestreamlink : '#'} className="col-sm-4 btn btn-danger btn-lg px-4 rounded-pill" role="button">
-                      Livestream
-                      <i className="bi bi-youtube ps-2 fs-4"/>
-                    </a>
-                    <button className="col-sm-4 btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
-                      Spielplan
-                      <i className="bi bi-file-earmark-arrow-down ps-2"/>
-                    </button>
+                  <div className="container">
+                    <img className='bi p-2' width={200} height={200} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
+                    <h1 className="text-body-emphasis p-1">{pageContent.attributes.title}</h1>
+                    <p className="col-lg-8 mx-auto lead p-1">{pageContent.attributes.summary}</p>
                   </div>
-                </div>
+                  }
             </div>
         </div>
 
@@ -165,31 +153,34 @@ function EisbuabaCup2024() {
                   <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
                     <i className="bi bi-clock fs-1"></i>
                   </div>
-                  <div>
-                    <h3 className="fs-2 text-body-emphasis">Wann und Wo?</h3>
-                    {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
-                    <p className="fs-5">{pageContent.attributes.description1}</p>}
-                  </div>
+                  {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+                    <div>
+                      <h1 className="text-body-emphasis my-2">{pageContent.attributes.descriptionHeader1}</h1>
+                      <p className="fs-5">{pageContent.attributes.description1}</p>
+                    </div>
+                  }
               </div>
               <div className="col d-flex align-items-start">
                   <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
                     <i className="bi bi-pencil-square fs-1"></i>
                   </div>
-                  <div>
-                    <h3 className="fs-2 text-body-emphasis">Turnierablauf</h3>
-                    {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
-                    <p className="fs-5">{pageContent.attributes.description2}</p>}
-                  </div>
+                  {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+                    <div>
+                      <h1 className="text-body-emphasis my-2">{pageContent.attributes.descriptionHeader2}</h1>
+                      <p className="fs-5">{pageContent.attributes.description2}</p>
+                    </div>
+                  }
               </div>
               <div className="col d-flex align-items-start">
                   <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
                     <i className="bi bi-crosshair fs-1"></i>
                   </div>
-                  <div>
-                    <h3 className="fs-2 text-body-emphasis">Spielregeln</h3>
-                    {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
-                    <p className="fs-5">{pageContent.attributes.description3}</p>}
-                  </div>
+                  {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+                    <div>
+                      <h1 className="text-body-emphasis my-2">{pageContent.attributes.descriptionHeader3}</h1>
+                      <p className="fs-5">{pageContent.attributes.description3}</p>
+                    </div>
+                  }
               </div>
 
             </div>
@@ -199,7 +190,7 @@ function EisbuabaCup2024() {
         <div className="tiles-container-flex col2 pt-0">
 
           <div className="fixed-tile gap-4">
-            <h2>Wer gewinnt den Cup?</h2>
+            <h1>Team-Votings</h1>
             <div className="list-group d-grid gap-3">
               {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
                 teams.length === 0 ? <p>Teilnehmende Teams werden in Kürze bekannt gegeben...</p> :
@@ -216,17 +207,18 @@ function EisbuabaCup2024() {
                   </label>
                 ))
               }
+              {teams?.length < 4 && <p>Weitere teilnehmende Teams werden in Kürze bekannt gegeben...</p>}
             </div>
 
-            {!teams && <button type="button" className="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>}
+            <button type="button" className="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>
 
           </div>
 
           <div className="fixed-tile gap-3">
-            <h2>Matches & Ergebnisse</h2>
-              {!matches ? <LoadingSpinner message={"Lade Ergebnisse..."}/> :
-              matches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
-              <MatchList matches={matches}/>}
+            <h1>Spiele & Ergebnisse</h1>
+            {!matches ? <LoadingSpinner message={"Lade Ergebnisse..."}/> :
+            matches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
+            <MatchList matches={matches}/>}
           </div>
 
         </div>

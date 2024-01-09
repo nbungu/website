@@ -129,7 +129,7 @@ async function modifyTagsInHtml(filePath, requestPath) {
   }
   else if (requestPath == "/eisbuaba-cup-2024") {
     replacementTags.title = "Eisbuaba Cup 2024";
-    replacementTags.descr = "Spielplan, Livestream und Ergebnisse des Eisbuaba Cups 2024";
+    replacementTags.descr = "Spielplan und Ergebnisse des Eisbuaba Cups 2024";
     replacementTags.imagePath = "/share-image-eisbuaba-cup.webp";
     modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
