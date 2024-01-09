@@ -176,7 +176,7 @@ function EisbuabaCup2024() {
                     <i className="bi bi-pencil-square fs-1"></i>
                   </div>
                   <div>
-                    <h3 className="fs-2 text-body-emphasis">Anmeldung</h3>
+                    <h3 className="fs-2 text-body-emphasis">Turnierablauf</h3>
                     {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                     <p className="fs-5">{pageContent.attributes.description2}</p>}
                   </div>
@@ -186,7 +186,7 @@ function EisbuabaCup2024() {
                     <i className="bi bi-crosshair fs-1"></i>
                   </div>
                   <div>
-                    <h3 className="fs-2 text-body-emphasis">Spielmodus</h3>
+                    <h3 className="fs-2 text-body-emphasis">Spielregeln</h3>
                     {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
                     <p className="fs-5">{pageContent.attributes.description3}</p>}
                   </div>
