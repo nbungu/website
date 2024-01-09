@@ -13,6 +13,7 @@ const path = require("path");
 
 const MODE = process.env.NODE_ENV;
 const PORT = process.env.PORT;
+const STRAPI_CMS_URL = process.env.REACT_APP_STRAPI_BASE_URL;
 
 let requestURL = "";
 let requestPath = ""
@@ -57,15 +58,22 @@ app.get('/x-forwarded-for', (request, response) => response.send(request.headers
 
 // Catch all requests that don't match any route
 // For deployment, The entire React application will serve through the entry point 'client/build/index.html'
-app.get('/*', (req, res) => {
-  requestURL = `${req.protocol}://${req.hostname}${req.originalUrl}`;
-  requestPath = req.path;
-  const filePath = path.join(__dirname, '../client/build/index.html');
-  console.log(`Requested URL: ${requestURL}, Requested Path: ${requestPath}`);
+app.get('/*', async (req, res) => {
+  try {
+    requestURL = `${req.protocol}://${req.hostname}${req.originalUrl}`;
+    requestPath = req.path;
+    console.log(`Request URL: ${requestURL}, Request Path: ${requestPath}`);
 
-  const modifiedHtml = modifyTagsInHtml(filePath, requestPath)
-  res.send(modifiedHtml);
+    const filePath = path.join(__dirname, '../client/build/index.html');
+    const modifiedHtml = await modifyTagsInHtml(filePath, requestPath);
+
+    if (modifiedHtml) res.send(modifiedHtml);
+    else res.sendFile(filePath);
+  } catch (error) {
+    console.error("Error processing request: ", error);
+  }
 });
+
 
 /* -----LISTEN----- */
 
@@ -85,56 +93,89 @@ let status = {
 // For dynamic Meta-Tags we need to change the default metadata before the page is rendered.
 // Otherwise the initial values will always stay the same, even after frontend page change.
 /*
-React is a single-page app, which means the app will have only a single HTML file
+React is a single-page app (SPA), which means the app will have only a single HTML file
 and every route will be loaded into the same HTML file with the help of Javascript.
 */
 
-function modifyTagsInHtml(filePath, requestPath) {
-  console.log('Start modifyTagsInHtml()');
-
+async function modifyTagsInHtml(filePath, requestPath) {
   const originalHtml = fs.readFileSync(filePath, 'utf-8');
-  let title = "";
-  let descr = "";
-  let imagePath = "";
+  let modifiedHtml = null;
+  let replacementTags = {
+    title: "",
+    descr: "",
+    imagePath: ""
+  };
 
-  const regexPattern = /^\/news\/.$/;
-  if (regexPattern.test(requestPath)){
-    title = "News-Beitrag";
-    descr = "Sieh dir diesen News-Beitrag der Eisbuaba an!";
-    imagePath = "/share-image.webp";
+  const regexPattern = /^\/news\/(.+)$/;
+  const match = requestPath.match(regexPattern);
+  if (match) {
+    const fetchedContent = await fetchFromStrapi(STRAPI_CMS_URL + "/api/posts/" + match[1] + "?populate=*");
+    replacementTags.title = fetchedContent.title;
+    replacementTags.descr = "Sieh dir diesen News-Beitrag der Eisbuaba Adelberg an!";
+    replacementTags.imagePath = fetchedContent.imagePath;
+    modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
   else if (requestPath == "/news") {
-    title = "News";
-    descr = "Alle News und Beiträge der Eisbuaba Adelberg";
-    imagePath = "/share-image.webp";
+    replacementTags.title = "News";
+    replacementTags.descr = "Übersicht aller News-Beiträge der Eisbuaba Adelberg";
+    replacementTags.imagePath = "/share-image-news.webp";
+    modifiedHtml = modifyHTML(originalHtml, replacementTags);
+  }
+  else if (requestPath == "/about") {
+    replacementTags.title = "Unsere Mannschaft";
+    replacementTags.descr = "Spieler, Positionen und unser Team";
+    replacementTags.imagePath = "/share-image.webp";
+    modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
   else if (requestPath == "/eisbuaba-cup-2024") {
-    title = "Eisbuaba Cup 2024";
-    descr = "Spielstände und Infos zum Eisbuaba Cup 2024";
-    imagePath = "/eisbuaba-cup-header.png";
+    replacementTags.title = "Eisbuaba Cup 2024";
+    replacementTags.descr = "Teilnehmer und Ergebnisse des Eisbuaba Cups 2024";
+    replacementTags.imagePath = "/share-image-eisbuaba-cup.webp";
+    modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
   else {
-    title = "Startseite";
-    descr = "Homepage der Eisbuaba Adelberg";
-    imagePath = "/share-image.webp";
+    replacementTags.title = "Startseite";
+    replacementTags.descr = "Homepage der Eisbuaba Adelberg";
+    replacementTags.imagePath = "/share-image.webp";
+    modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
-  //const modifiedHtml = originalHtml.replace('<!-- REPLACE_ME -->', requestPath);
+  return modifiedHtml;
+}
+
+function modifyHTML(originalHtml, replacementTags) {
   let modifiedHtml = originalHtml.replace(
     '<meta property="og:url" content="https://eisbuaba-adelberg.de"/>',
     `<meta property="og:url" content="${requestURL}"/>`,
   );
   modifiedHtml = modifiedHtml.replace(
     '<meta property="og:title" content="Startseite"/>',
-    `<meta property="og:title" content="${title}"/>`
+    `<meta property="og:title" content="${replacementTags.title}"/>`
   );
   modifiedHtml = modifiedHtml.replace(
     '<meta property="og:description" content="Homepage der Eisbuaba Adelberg"/>',
-    `<meta property="og:description" content="${descr}"/>`
+    `<meta property="og:description" content="${replacementTags.descr}"/>`
   );
   modifiedHtml = modifiedHtml.replace(
     '<meta property="og:image" content="/share-image.webp"/>',
-    `<meta property="og:image" content="${imagePath}"/>`
+    `<meta property="og:image" content="${replacementTags.imagePath}"/>`
   ); 
   return modifiedHtml;
+}
 
+const fetchFromStrapi = async (queryString) => { 
+  try {
+    console.log(`Start fetching from Strapi: ${queryString}`);
+    const response = await fetch(queryString);
+    const result = await response.json();
+    let replacementTags = {
+      title: result.data.attributes.title,
+      descr: result.data.attributes.summary,
+      imagePath: STRAPI_CMS_URL + result.data.attributes.titleimage.data.attributes.url
+    }
+    console.log(`returning title: ${replacementTags.title}, descr: ${replacementTags.descr}, imagePath: ${replacementTags.imagePath}`);
+    return replacementTags;
+  } catch (error) {
+    console.error("Error fetching content:", error);
+    throw error; // Re-throw the error to be caught in the outer catch block
+  }
 }

@@ -1,36 +1,18 @@
 // client/src/components/RecentNews.js
 
-import React, { useState, useEffect } from "react";
-import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils.js';
+import React from "react";
 import { Link } from "react-router-dom";
+
 import LoadingSpinner from "./LoadingSpinner.js";
 import defaultImg from '../assets/default-image.webp'
 
+import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils.js';
+import { usePosts } from "../utils/fetchContent";
+
 function RecentNews() {  
   
-  // fetches the last two most recent posts in sorted order
-  const queryString = STRAPI_CMS_URL + "/api/posts?populate=*&sort=publishedAt:desc&pagination[start]=0&pagination[limit]=2";
-  const [featuredPosts, setFeaturedPosts] = useState(null);
-
-  const fetchFeaturedPosts = () => {
-    return fetch(queryString)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((result) => setFeaturedPosts(result.data))
-      .catch((error) => {
-        console.error('Error fetching featured posts:', error);
-        // You can handle the error here, such as displaying an error message to the user
-      });
-  };
-
-  // We want fetchPosts() to be executed everytime App component loads
-  useEffect(() => {
-    fetchFeaturedPosts();
-  }, []);
+  const maxNumberOfPosts = 2;
+  const featuredPosts = usePosts(maxNumberOfPosts);
 
   return (
     <div className="tiles-container">
@@ -61,7 +43,7 @@ function RecentNews() {
           </div>
         ))
       }
-      <Link className="btn btn-light" to="/news"><i className="bi bi-arrow-repeat pe-2"/>Mehr News laden</Link>
+      <Link className="btn btn-light" to="/news"><i className="bi bi-arrow-repeat pe-2"/>Alle News anzeigen</Link>
     </div>    
   )
 }

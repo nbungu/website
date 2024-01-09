@@ -1,7 +1,6 @@
 // client/src/components/NewsPost.js
 
-import React, { useState, useEffect } from "react";
-import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Header from './Header';
@@ -12,60 +11,20 @@ import NewsPostContentElement from "./NewsPostContentElement";
 
 import defaultImg from '../assets/default-image.webp'
 
+import { usePosts, usePost } from "../utils/fetchContent";
+import { formatPublishedAt, STRAPI_CMS_URL } from '../utils/Utils';
+
 function NewsPost() {
 
   // Dynamic Routing
   const params = useParams();
-  // params.id => dynamic value defined as id in route
-  // e.g '/news/1234' -> params.id equals 1234
-
-  const id = params.id;  
-  const [post, setPost] = useState(null);
-  const [featuredPosts, setFeaturedPosts] = useState(null);
-
-  // Returns the currently shown post by id and with media data
-  const queryString = STRAPI_CMS_URL + "/api/posts/" + id + "?populate=*";
-  // Returns 6 posts including media data sorted by date
-  const queryString2 = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:desc&populate=*&pagination[start]=0&pagination[limit]=6"
-
-  const fetchPost = () => {
-    return fetch(queryString)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      } 
-      return response.json();
-    })
-    .then((result) => {
-      setPost(result.data);
-      updateMetaTags(result.data);
-    })
-  }
-
-  const fetchFeaturedPosts = () => {
-    return fetch(queryString2)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((result) => {setFeaturedPosts(result.data)})
-  };
-
-  const updateMetaTags = (post) => {
-    // Update Open Graph meta tags dynamically
-    // Executes if post is truthy
-    if (post) {
-      document.title = post.attributes.title;
-    }
-  };
-
+  // params.id => dynamic value defined as id in route ('/news/1234' -> params.id equals 1234)
   
-  useEffect(() => {
-    fetchPost();
-    fetchFeaturedPosts();
-  }, [id]);
+  const id = params.id;
+  const post = usePost(id);
+
+  const maxNumberOfPosts = 6;
+  const featuredPosts = usePosts(maxNumberOfPosts);
 
   return (
     <div className='body-bg'>

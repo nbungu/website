@@ -5,38 +5,15 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import NewsTile from '../components/NewsTile';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { STRAPI_CMS_URL } from '../utils/Utils.js';
+
+import { usePosts } from "../utils/fetchContent";
 
 function News() {
-  
-  const [posts, setPosts] = useState(null);
-  const [totalNrOfPosts, setTotalNrOfPosts] = useState(0);
+
+  const maxNumberOfPosts = 50;
   const [sortOrder, setSortOrder] = useState('desc');
-  const [counter, setCounter] = useState(6); // Initial State for the counter: Show 9 Posts
-
-  // Returns all posts including media data sorted by date
-  const queryString = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:"+sortOrder+"&populate=*&pagination[start]=0&pagination[limit]=" + counter;
-
-  // GET Request to STRAPI server (backend) at endpoint /api/posts
-  const fetchPosts = () => {
-    return fetch(queryString)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((result) => {setPosts(result.data); setTotalNrOfPosts(result.meta.pagination.total)})
-      .catch((error) => {
-        console.error('Error fetching featured posts:', error);
-        // You can handle the error here, such as displaying an error message to the user
-      });
-  };
-  
-  // Function to handle button click
-  const showMorePosts = () => {    
-    setCounter(counter + 4); // Show 6 more posts
-  };
+  const posts = usePosts(maxNumberOfPosts, sortOrder);
+    
   // Function to handle button click
   const switchSortOrderDesc = () => {    
     setSortOrder('desc');
@@ -45,11 +22,6 @@ function News() {
     setSortOrder('asc');
   };
 
-  // We want fetchPosts() to be executed everytime 'counter' and the 'sortOrder' state changes
-  useEffect(() => {
-    fetchPosts();
-  }, [counter, sortOrder]);
-  
   // We want updateMetaTags() to be executed everytime App component initially loads
   useEffect(() => {
     document.title = "News > Eisbuaba Adelberg";
@@ -79,14 +51,6 @@ function News() {
           </div>
         }
       </div>
-
-      {totalNrOfPosts > counter ?
-        <div className="row mx-auto p-3">
-          <button className="btn btn-secondary" onClick={showMorePosts}><i className="bi bi-arrow-repeat pe-2"/>Mehr News laden</button>
-        </div>
-        :
-        <div/>
-      }
 
       <Footer/>
 
