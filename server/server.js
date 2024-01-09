@@ -122,14 +122,14 @@ async function modifyTagsInHtml(filePath, requestPath) {
     modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
   else if (requestPath == "/about") {
-    replacementTags.title = "Unsere Mannschaft";
-    replacementTags.descr = "Spieler, Positionen und unser Team";
+    replacementTags.title = "Unser Eishockey-Team";
+    replacementTags.descr = "Aktive Spieler und Spielerinnen der Eisbuaba Adelberg";
     replacementTags.imagePath = "/share-image.webp";
     modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
   else if (requestPath == "/eisbuaba-cup-2024") {
     replacementTags.title = "Eisbuaba Cup 2024";
-    replacementTags.descr = "Teilnehmer und Ergebnisse des Eisbuaba Cups 2024";
+    replacementTags.descr = "Spielplan, Livestream und Ergebnisse des Eisbuaba Cups 2024";
     replacementTags.imagePath = "/share-image-eisbuaba-cup.webp";
     modifiedHtml = modifyHTML(originalHtml, replacementTags);
   }
@@ -159,6 +159,10 @@ function modifyHTML(originalHtml, replacementTags) {
     '<meta property="og:image" content="/share-image.webp"/>',
     `<meta property="og:image" content="${replacementTags.imagePath}"/>`
   ); 
+  modifiedHtml = modifiedHtml.replace(
+    '<meta name="description" content="Homepage der Eisbuaba Adelberg"/>',
+    `<meta name="description" content="${replacementTags.descr}"/>`
+  );
   return modifiedHtml;
 }
 
