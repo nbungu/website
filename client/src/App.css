@@ -106,13 +106,13 @@ p {
 /* @media queries*/
 /* When the screen size is 801px or bigger */
 @media (min-width: 801px) {
-  .tiles-container-flex.col4 {
+  .tiles-container.col4 {
     grid-template-columns: repeat(4, 1fr); /* Set the desired even number of columns */
   }
-  .tiles-container-flex.col3 {
+  .tiles-container.col3 {
     grid-template-columns: repeat(3, 1fr); /* Set the desired even number of columns */
   }
-  .tiles-container-flex.col2 {
+  .tiles-container.col2 {
     grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
   }
   .carousel-caption p {
@@ -126,17 +126,17 @@ p {
 }
 /* When the screen size is 800px or smaller */
 @media (max-width: 800px) {
-  .tiles-container-flex.col4,
-  .tiles-container-flex.col3,
-  .tiles-container-flex.col2  {
+  .tiles-container.col4,
+  .tiles-container.col3,
+  .tiles-container.col2  {
     grid-template-columns: repeat(2, 1fr); /* Set the desired even number of columns */
   }
 }
 /* When the screen size is 600px or smaller */
 @media (max-width: 640px) {
-  .tiles-container-flex.col4,
-  .tiles-container-flex.col3,
-  .tiles-container-flex.col2 {
+  .tiles-container.col4,
+  .tiles-container.col3,
+  .tiles-container.col2 {
     grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
   }
   .carousel-item {
@@ -186,28 +186,18 @@ p {
 /* Style for the tiles container */
 .tiles-container {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Two columns in the grid */
   gap: 1rem; /* Gap between tiles */
   justify-content: center; /* Center the grid horizontally */
   align-content: center; /* Center the grid vertically */
   margin: 0rem auto; /* Center the grid on the page */
   padding: 1rem;
-  min-width: 160px;
-  max-width: 960px; /* Limit the maximum width of the grid */
+  min-width: 12rem;
+  max-width: 80rem;
 }
 
-/* Style for the tiles container */
-.tiles-container-flex {
-  display: grid;
-  gap: 1rem; /* Gap between tiles */
-  justify-content: center; /* Center the grid horizontally */
-  align-content: center; /* Center the grid vertically */
-  margin: 0rem auto; /* Center the grid on the page */
-  padding: 1rem;
-  min-width: 160px;
-  max-width: 960px;
+.col1 {
+  grid-template-columns: repeat(1, 1fr);
 }
-
 .col2 {
   grid-template-columns: repeat(2, 1fr);
 }
@@ -377,9 +367,17 @@ p {
   backdrop-filter: blur(10px);
 }
 
-.contact-circle {
+.team-logo-circle {
   min-width: 56px;
   min-height: 56px;
+  max-width: 72px;
+  max-height: 72px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+.player-circle {
+  width: 48px;
+  height: 48px;
   background-color: var(--bg-light-gray);
   border-radius: 50%;
   display: flex;
@@ -387,9 +385,9 @@ p {
   justify-content: center;
   object-fit: cover;
 }
-.player-circle {
-  width: 48px;
-  height: 48px;
+.contact-circle {
+  min-width: 56px;
+  min-height: 56px;
   background-color: var(--bg-light-gray);
   border-radius: 50%;
   display: flex;
@@ -441,20 +439,14 @@ p {
 
 /* TESTING
 -------------------------------------------------- */
-.test {
+.recent-news-img {
   width: 280px;
   height: 250px;
   overflow: 'hidden';
 }
 
-.test img {
+.recent-news-img img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
-}
-
-.test-img {
-  height: 80px;
-  min-width: 80px;
   object-fit: cover;
 }

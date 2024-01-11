@@ -187,7 +187,7 @@ function EisbuabaCup2024() {
         </div>
 
         {/* VOTING & ERGEBNISSE */}
-        <div className="tiles-container-flex col2 pt-0">
+        <div className="tiles-container col2 pt-0">
 
           <div className="fixed-tile gap-4">
             <h1>Team-Votings</h1>

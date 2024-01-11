@@ -34,7 +34,7 @@ function About() {
           </div>
           <div className="product-device shadow-sm d-none d-md-block"></div>
         </div>
-        <div className="tiles-container p-0">
+        <div className="tiles-container col1 p-0">
           <img className="d-block img-fluid" src={teamPhoto}></img>
         </div>
 

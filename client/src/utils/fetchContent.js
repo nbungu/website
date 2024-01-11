@@ -49,6 +49,22 @@ export const useImpressum = () => {
     return pageContent;
 };
 
+export const useCarouselBanners = () => {
+    const [bannerContent, setBannerContent] = useState(null);
+    const queryString = STRAPI_CMS_URL + "/api/header-text-slider";
+    
+    useEffect(() => {
+        const fetchContent = async () => {
+            const response = await fetch(queryString);
+            const result = await response.json();
+            setBannerContent(result.data);
+        };
+        fetchContent();
+    }, []);
+
+    return bannerContent;
+};
+
 // added id as a dependency in the useEffect dependency array to ensure that the effect is re-run whenever the id changes
 export const usePost = (id) => {
     const [post, setPost] = useState(null);
@@ -68,12 +84,12 @@ export const usePost = (id) => {
     return post;
 };
 
-export const usePosts = (maxNumberOfPosts, sortOrder) => {
-    if (!maxNumberOfPosts) maxNumberOfPosts = 50;
+export const usePosts = (paginationLimit, sortOrder) => {
+    if (!paginationLimit) paginationLimit = 50;
     if (!sortOrder) sortOrder = "desc";
 
     const [posts, setPosts] = useState(null);
-    const queryString = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:" + sortOrder + "&populate=*&pagination[start]=0&pagination[limit]=" + maxNumberOfPosts;
+    const queryString = STRAPI_CMS_URL + "/api/posts?sort=publishedAt:" + sortOrder + "&populate=*&pagination[start]=0&pagination[limit]=" + paginationLimit;
     
     useEffect(() => {
         const fetchContent = async () => {
@@ -82,7 +98,48 @@ export const usePosts = (maxNumberOfPosts, sortOrder) => {
             setPosts(result.data);
         };
         fetchContent();
-    }, [maxNumberOfPosts, sortOrder]);
+    }, [paginationLimit, sortOrder]);
 
     return posts;
+};
+
+export const useEvents = () => {
+    const [events, setEvents] = useState(null);
+    const queryString = STRAPI_CMS_URL + "/api/events?populate=*&sort=date:asc";
+    
+    useEffect(() => {
+        const fetchContent = async () => {
+            const response = await fetch(queryString);
+            const result = await response.json();
+            setEvents(result.data);
+        };
+        fetchContent();
+    }, []);
+    const reversedEvents = events ? [...events].reverse() : null;
+    return { events, reversedEvents };
+};
+
+export const useMatches = (showOnlyEisbuabaMatches, showOnlyFinishedMatches, paginationLimit) => {
+    if (!paginationLimit) paginationLimit = 50;
+    const [matches, setMatches] = useState(null);
+    
+    const queryString = STRAPI_CMS_URL + "/api/matches?populate[teamHome][populate][0]=logo&populate[teamAway][populate][0]=logo&pagination[start]=0&pagination[limit]="+paginationLimit+"&populate[post][fields][0]=id&sort=faceoffTime:desc";
+
+    useEffect(() => {
+        const fetchContent = async () => {
+            const response = await fetch(queryString);
+            const result = await response.json();
+            let filteredData = result.data;
+            if (showOnlyEisbuabaMatches) {
+                filteredData = filteredData.filter(entry => entry.attributes.teamHome.data.attributes.name === 'Eisbuaba Adelberg' || entry.attributes.teamAway.data.attributes.name === 'Eisbuaba Adelberg');
+            }
+            if (showOnlyFinishedMatches) {
+                filteredData = filteredData.filter(entry => entry.attributes.hasFinished);
+            }            
+            setMatches(filteredData);
+        };
+        fetchContent();
+    }, []);
+    const reversedMatches = matches ? [...matches].reverse() : null;
+    return { matches, reversedMatches };
 };

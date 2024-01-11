@@ -4,6 +4,7 @@ export const STRAPI_CMS_URL = process.env.REACT_APP_STRAPI_BASE_URL;
 export const PUBLIC_URL = process.env.REACT_APP_PUBLIC_URL;
 export const REACT_MODE = process.env.NODE_ENV;
 
+// 2023-10-31 -> 31.10.2023
 export function formatDate(inputDate) {
   const dateParts = inputDate.split('-');
   if (dateParts.length !== 3) {
@@ -19,6 +20,23 @@ export function formatDate(inputDate) {
   return `${day}.${month}.${year}`;
 }
 
+// 2023-10-31 -> 10/2023
+export function formatDateShort(inputDate) {
+  const dateParts = inputDate.split('-');
+  if (dateParts.length !== 3) {
+    // Invalid input date format
+    return 'Invalid Date';
+  }
+
+  const year = dateParts[0];
+  const month = dateParts[1];
+  const day = dateParts[2];
+
+  // Create a new formatted date string
+  return `${month}/${year}`;
+}
+
+// publishedAt -> 02.12.2023
 export function formatPublishedAt(inputDateString) {
   const inputDate = new Date(inputDateString);
   

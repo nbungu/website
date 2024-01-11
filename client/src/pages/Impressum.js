@@ -24,7 +24,7 @@ function Impressum() {
 
       <div className='flex-grow-1'>
 
-        <div className="tiles-container">
+        <div className="tiles-container col1">
               
           <div className="fixed-tile">
             {!pageContent ? <LoadingSpinner message={"Lade Impressum..."}/> : <div className="w-100"><RichTextBlocks richtext={pageContent.attributes.impressum}/></div>}

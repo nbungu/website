@@ -13,7 +13,7 @@ function News() {
   const maxNumberOfPosts = 50;
   const [sortOrder, setSortOrder] = useState('desc');
   const posts = usePosts(maxNumberOfPosts, sortOrder);
-    
+
   // Function to handle button click
   const switchSortOrderDesc = () => {    
     setSortOrder('desc');
@@ -34,7 +34,7 @@ function News() {
 
       <div className="flex-grow-1">
 
-        <div className="tiles-container pb-0">
+        <div className="tiles-container col1 pb-0">
           <h1 className="mb-2">Alle Beiträge</h1>
 
           <div className="hstack gap-3">
@@ -44,7 +44,7 @@ function News() {
         </div>
 
         {!posts ? <LoadingSpinner message={"Lade News..."}/> :
-          <div className="tiles-container-flex col3">
+          <div className="tiles-container col3">
             {posts.map((post) => (
               <NewsTile newsPost={post}/>
             ))}
