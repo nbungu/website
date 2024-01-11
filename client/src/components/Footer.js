@@ -8,8 +8,7 @@ import asvFavicon from '../assets/asv-schlichten-favicon.ico'
 function Footer() {
   
   const [isCopied, setIsCopied] = useState(false);
-  const instaLink = 'https://www.instagram.com/';
-  const youtubeLink = 'https://www.youtube.com/';
+  const facebookLink = 'https://www.facebook.com/people/ASV-Schlichten-eV/100057550986024/';
   const copyText = 'eis-buaba@asv-schlichten.de';
 
   // onClick handler function for the copy button
@@ -45,9 +44,8 @@ function Footer() {
         </div>
         <div className="col-md-3 text-center">
           
-            <a href={instaLink ? instaLink : '#'} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="Instagram"><i className="bi bi-instagram"/></a>
-            <a href={youtubeLink ? youtubeLink : '#'} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="YouTube"><i className="bi bi-youtube"/></a>
-            <button type="button" onClick={handleCopyClick} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="Email-Addresse kopieren"><i className={isCopied ? "bi bi-clipboard-check" : "bi bi-envelope-at"}/></button>
+          <a href={facebookLink ? facebookLink : '#'} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="Facebook"><i className="bi bi-facebook"/></a> 
+          <button type="button" onClick={handleCopyClick} className="btn btn-secondary rounded-circle ms-2 p-2 lh-1" title="Email-Addresse kopieren"><i className={isCopied ? "bi bi-clipboard-check" : "bi bi-envelope-at"}/></button>
           
         </div>
       </div>

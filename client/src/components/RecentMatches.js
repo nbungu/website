@@ -26,7 +26,7 @@ function RecentMatches({ matches }) {
         <Link className="icon-link gap-1 icon-link-hover pb-1" to={"/termine"}>Alle Spiele<i className="bi bi-chevron-right"></i></Link>
       </div>
 
-      <div className="row justify-content-center g-3 g-sm-5">
+      <div className="row w-100 mx-auto justify-content-center g-3 g-sm-5">
         {matches.map((match, index) => (
           <div className="col-auto text-center" key={index}>
             <div className="vstack">
