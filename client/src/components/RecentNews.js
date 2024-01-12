@@ -15,8 +15,8 @@ function RecentNews({ recentNews }) {
         <Link className="icon-link gap-1 icon-link-hover" to={"/news"}>Alle News<i className="bi bi-chevron-right"></i></Link>
       </div>
 
-      {recentNews.map((post) => (         
-        <div className="row">
+      {recentNews.map((post, index) => (         
+        <div className="row" key={index}>
           <div className="col-md-12">
             <div className="row g-0 border rounded overflow-hidden flex-md-row mb-2 shadow h-md-250 position-relative">
               {/* TEXT COL */}

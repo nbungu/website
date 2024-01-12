@@ -45,7 +45,7 @@ function About() {
               <div className="container py-3 px-0">        
                 {!players ? <LoadingSpinner message={"Lade Spieler..."}/> : 
                   <div className="d-flex row gap-2 g-0 justify-content-center">
-                    {players.filter((player) => player.attributes.position === 'Goalie').map((player) => (<div className="col-auto"><PlayerPill player={player} colorTheme={'dark'} icon={'bi-bricks'}/></div>))}              
+                    {players.filter((player) => player.attributes.position === 'Goalie').map((player, index) => (<div className="col-auto" key={index}><PlayerPill player={player} colorTheme={'dark'} icon={'bi-bricks'}/></div>))}              
                   </div>
                 }
               </div>
@@ -58,7 +58,7 @@ function About() {
               <div className="container py-3 px-0">
                 {!players ? <LoadingSpinner message={"Lade Spieler..."}/> : 
                   <div className="d-flex row gap-2 g-0 justify-content-center">
-                    {players.filter((player) => player.attributes.position === 'Defence').map((player) => (<div className="col"><PlayerPill player={player} colorTheme={'warning'} icon={'bi-shield-shaded'}/></div>))}              
+                    {players.filter((player) => player.attributes.position === 'Defence').map((player, index) => (<div className="col" key={index}><PlayerPill player={player} colorTheme={'warning'} icon={'bi-shield-shaded'}/></div>))}              
                   </div>
                 }
               </div>
@@ -71,7 +71,7 @@ function About() {
               <div className="container py-3 px-0">
                 {!players ? <LoadingSpinner message={"Lade Spieler..."}/> : 
                   <div className="d-flex row gap-2 g-0 justify-content-center">
-                    {players.filter((player) => player.attributes.position === 'Forward').map((player) => (<div className="col"><PlayerPill player={player} colorTheme={'success'} icon={'bi-crosshair'}/></div>))}              
+                    {players.filter((player) => player.attributes.position === 'Forward').map((player, index) => (<div className="col" key={index}><PlayerPill player={player} colorTheme={'success'} icon={'bi-crosshair'}/></div>))}              
                   </div>
                 }
               </div>

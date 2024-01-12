@@ -23,9 +23,9 @@ function NewsPost() {
   const id = params.id;
   const post = usePost(id);
 
-  const paginationLimitPosts = 6;
+  const paginationLimit = 6;
   const sortOrder = "desc";
-  const { featuredPosts } = usePosts(paginationLimitPosts, sortOrder);
+  const { posts } = usePosts(paginationLimit, sortOrder);
 
   return (
     <div className='body-bg'>
@@ -55,10 +55,10 @@ function NewsPost() {
             <div className="position-sticky">
               <h1 className="mb-2">Weitere Beiträge</h1>
               <ul className="list-unstyled">
-                {!featuredPosts ? <LoadingSpinner/> :
+                {!posts ? <LoadingSpinner/> :
                   <li>
-                    {featuredPosts.map((post) => (
-                      <Link to={'/news/'+post.id} className="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom">
+                    {posts.map((post, index) => (
+                      <Link to={'/news/'+post.id} className="d-flex flex-column flex-sm-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-bottom" key={index}>
                         <img className="col d-none d-sm-block test-img rounded" src={post.attributes.titleimage?.data?.attributes?.url ? STRAPI_CMS_URL + post.attributes.titleimage.data.attributes.url : defaultImg} alt=""/>
                         <div className="col-sm-8">
                           <h6 className="mb-0">{post.attributes.title}</h6>

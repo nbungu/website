@@ -41,8 +41,8 @@ function News() {
 
         {!posts ? <LoadingSpinner message={"Lade News..."}/> :
           <div className="tiles-container col3">
-            {(isFirstState ? posts : reversedPosts).map((post) => (
-              <NewsTile newsPost={post}/>
+            {(isFirstState ? posts : reversedPosts).map((post, index) => (
+              <NewsTile newsPost={post} key={index}/>
             ))}
           </div>
         }

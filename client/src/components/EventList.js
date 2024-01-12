@@ -21,8 +21,8 @@ function EventList({ events, showExtendedInfos }) {
     return (
         <div className="list-group w-100">
             {
-                events.map((event) => (
-                    <div className="list-group-item list-group-item-action p-2" aria-current="true">
+                events.map((event, index) => (
+                    <div className="list-group-item list-group-item-action p-2" aria-current="true" key={index}>
                         <div className="container-flex">
                             <div className="row mx-auto align-items-center">
 

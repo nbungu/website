@@ -33,7 +33,7 @@ function RecentMatches({ matches }) {
               <p className="opacity-75">{formatDateShort(match.attributes.faceoffTime.slice(0,10))}</p>
               <img className="team-logo-circle mx-auto my-3" src={getOpponentTeamLogoPath(match)} alt='Opponent Team Logo'/>
               {match.attributes.hasFinished ?
-                <h1 className="bg-dark text-light rounded rounded-bottom-0 p-2"><span className={isAdelbergHomeTeam(match) && 'fw-bold'}>{match.attributes.goalsHome}</span> : <span className={!isAdelbergHomeTeam(match) && 'fw-bold'}>{match.attributes.goalsAway}</span></h1>
+                <h1 className="bg-dark text-light rounded rounded-bottom-0 p-2"><span className={isAdelbergHomeTeam(match) ? 'fw-bold' : ''}>{match.attributes.goalsHome}</span> : <span className={!isAdelbergHomeTeam(match) ? 'fw-bold' : ''}>{match.attributes.goalsAway}</span></h1>
                  : <h1>vs.</h1>}
               {match.attributes.hasFinished ? (haveEisbuabaWon(match) ? <span className="badge rounded-top-0 bg-success">W</span> : <span className="badge rounded-top-0 bg-danger">L</span>) : <span className="badge bg-warning">?</span>}
             </div>

@@ -9,8 +9,8 @@ function MatchList({ matches, showExtendedInfos }) {
     return (
         <div className="list-group w-100">
             {
-                matches.map((match) => (
-                    <div className="list-group-item list-group-item-action p-2" aria-current="true">
+                matches.map((match, index) => (
+                    <div className="list-group-item list-group-item-action p-2" aria-current="true" key={index}>
                         
                         <div className="container-flex">
 
