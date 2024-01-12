@@ -146,8 +146,43 @@ function EisbuabaCup2024() {
             </div>
         </div>
 
+        {/* VOTING & ERGEBNISSE */}
+        <div className="tiles-container col2 mt-5 pt-0">
+
+          <div className="fixed-tile gap-4">
+            <h1>Wer gewinnt den Cup?</h1>
+            <div className="list-group d-grid gap-3">
+              {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
+                teams.length === 0 ? <p>Teilnehmende Teams werden in Kürze bekannt gegeben...</p> :
+                teams.map((team) => (
+                  <label className="list-group-item list-group-item-action rounded d-flex gap-4 border-0">
+                  <input className="form-check-input flex-shrink-0 my-auto fs-5" disabled={hasVoted} type="radio" name="listGroupRadios" id="listGroupRadios1" onClick={() => handleRadioChange(team.id, team.attributes.votingCount)}/>
+                  <div className="hstack gap-3">
+                      <img className="rounded-circle mx-auto" src={!team.attributes.logo.data ? defaultImg : (STRAPI_CMS_URL + team.attributes.logo.data.attributes.url)} width={40} height={40} alt="Team Logo"/>
+                      <div className="vstack gap-1">
+                        <p className="text-start">{team.attributes.name}</p>
+                        <ProgressBar currentVal={team.attributes.votingCount} maxVal={highestVoting}/>
+                      </div>
+                  </div>
+                  </label>
+                ))
+              }
+              {teams?.length < 4 && <p>Weitere teilnehmende Teams werden in Kürze bekannt gegeben...</p>}
+            </div>
+            <button type="button" className="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>
+          </div>
+
+          <div className="fixed-tile gap-3">
+            <h1>Spiele & Ergebnisse</h1>
+            {!matches ? <LoadingSpinner message={"Lade Ergebnisse..."}/> :
+            matches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
+            <MatchList matches={matches}/>}
+          </div>
+
+        </div>
+
         {/* DESCRIPTION */}
-        <div className="container p-5" id="hanging-icons">
+        <div className="container p-4" id="hanging-icons">
             <div className="row g-4 py-3 row-cols-1 row-cols-lg-3">
               <div className="col d-flex align-items-start">
                   <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
@@ -186,42 +221,7 @@ function EisbuabaCup2024() {
             </div>
         </div>
 
-        {/* VOTING & ERGEBNISSE */}
-        <div className="tiles-container col2 pt-0">
-
-          <div className="fixed-tile gap-4">
-            <h1>Team-Votings</h1>
-            <div className="list-group d-grid gap-3">
-              {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
-                teams.length === 0 ? <p>Teilnehmende Teams werden in Kürze bekannt gegeben...</p> :
-                teams.map((team) => (
-                  <label className="list-group-item list-group-item-action rounded d-flex gap-4 border-0">
-                  <input className="form-check-input flex-shrink-0 my-auto fs-5" disabled={hasVoted} type="radio" name="listGroupRadios" id="listGroupRadios1" onClick={() => handleRadioChange(team.id, team.attributes.votingCount)}/>
-                  <div className="hstack gap-3">
-                      <img className="rounded-circle mx-auto" src={!team.attributes.logo.data ? defaultImg : (STRAPI_CMS_URL + team.attributes.logo.data.attributes.url)} width={40} height={40} alt="Team Logo"/>
-                      <div className="vstack gap-1">
-                        <p className="text-start">{team.attributes.name}</p>
-                        <ProgressBar currentVal={team.attributes.votingCount} maxVal={highestVoting}/>
-                      </div>
-                  </div>
-                  </label>
-                ))
-              }
-              {teams?.length < 4 && <p>Weitere teilnehmende Teams werden in Kürze bekannt gegeben...</p>}
-            </div>
-
-            <button type="button" className="btn btn-lg btn-success w-100" disabled={hasVoted} onClick={handleVoteButtonClick}>{hasVoted ? "Sie haben abgestimmt!" : "Jetzt Abstimmen!"}</button>
-
-          </div>
-
-          <div className="fixed-tile gap-3">
-            <h1>Spiele & Ergebnisse</h1>
-            {!matches ? <LoadingSpinner message={"Lade Ergebnisse..."}/> :
-            matches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
-            <MatchList matches={matches}/>}
-          </div>
-
-        </div>
+        
 
       </div>
 

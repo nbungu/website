@@ -10,11 +10,11 @@ function RecentNews({ recentNews }) {
   
   return (
     <>
-      <div className="hstack justify-content-between">
-        <h1 className="mb-2">Neueste Beiträge</h1>
-        <Link className="icon-link gap-1 icon-link-hover pb-1" to={'/news'}>Alle News<i className="bi bi-chevron-right"></i></Link>
+      <div className="hstack justify-content-between align-items-center mb-2 z-1">
+        <h1>Neueste Beiträge</h1>
+        <Link className="icon-link gap-1 icon-link-hover" to={"/news"}>Alle News<i className="bi bi-chevron-right"></i></Link>
       </div>
-      
+
       {recentNews.map((post) => (         
         <div className="row">
           <div className="col-md-12">
@@ -39,6 +39,8 @@ function RecentNews({ recentNews }) {
         </div>
       ))
       }
+      
+      
     </>
   )
 }

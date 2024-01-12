@@ -20,9 +20,10 @@ function Home() {
   const { matches } = useMatches(showOnlyEisbuabaMatches, showOnlyFinishedMatches, paginationLimitMatches);
 
   const paginationLimitPosts = 2;
-  const posts = usePosts(paginationLimitPosts);
+  const sortOrder = "desc";
+  const { posts } = usePosts(paginationLimitPosts, sortOrder);
 
-  const bannerContent = useCarouselBanners(paginationLimitPosts);
+  const bannerContent = useCarouselBanners();
 
   // We want updateMetaTags() to be executed everytime App component loads
   useEffect(() => {

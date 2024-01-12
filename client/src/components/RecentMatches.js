@@ -21,9 +21,9 @@ function RecentMatches({ matches }) {
 
   return (
     <>
-      <div className="hstack justify-content-between">
-        <h1 className="mb-2">Vergangene Spiele</h1>
-        <Link className="icon-link gap-1 icon-link-hover pb-1" to={"/termine"}>Alle Spiele<i className="bi bi-chevron-right"></i></Link>
+      <div className="hstack justify-content-between align-items-center mb-2 z-1">
+        <h1>Vergangene Spiele</h1>
+        <Link className="icon-link gap-1 icon-link-hover" to={"/termine"}>Alle Spiele<i className="bi bi-chevron-right"></i></Link>
       </div>
 
       <div className="row w-100 mx-auto justify-content-center g-3 g-sm-5">

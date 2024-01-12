@@ -99,8 +99,9 @@ export const usePosts = (paginationLimit, sortOrder) => {
         };
         fetchContent();
     }, [paginationLimit, sortOrder]);
-
-    return posts;
+    const reversedPosts = posts ? [...posts].reverse() : null;
+    
+    return { posts, reversedPosts };
 };
 
 export const useEvents = () => {

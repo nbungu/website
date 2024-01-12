@@ -10,16 +10,14 @@ import { usePosts } from "../utils/fetchContent";
 
 function News() {
 
-  const maxNumberOfPosts = 50;
-  const [sortOrder, setSortOrder] = useState('desc');
-  const posts = usePosts(maxNumberOfPosts, sortOrder);
+  const [isFirstState, setIsFirstState] = useState(true);
 
-  // Function to handle button click
-  const switchSortOrderDesc = () => {    
-    setSortOrder('desc');
-  };
-  const switchSortOrderAsc = () => {    
-    setSortOrder('asc');
+  const paginationLimit = 50;
+  const sortOrder = "desc";
+  const { posts, reversedPosts } = usePosts(paginationLimit, sortOrder);
+
+  const switchSortOrder = () => {  
+    setIsFirstState(!isFirstState);
   };
 
   // We want updateMetaTags() to be executed everytime App component initially loads
@@ -36,16 +34,14 @@ function News() {
 
         <div className="tiles-container col1 pb-0">
           <h1 className="mb-2">Alle Beiträge</h1>
-
-          <div className="hstack gap-3">
-            <button type="button" className="btn btn-light" onClick={switchSortOrderDesc}><i className="bi bi-arrow-up pe-2"/>Neueste zuerst</button>
-            <button type="button" className="btn btn-light" onClick={switchSortOrderAsc}><i className="bi bi-arrow-down pe-2"/>Älteste zuerst</button>
+          <div className="row w-100 mx-auto gap-2">
+            <button type="button" className="col-auto btn btn-light" onClick={switchSortOrder}><i className={isFirstState ? 'bi bi-arrow-down pe-2' : 'bi bi-arrow-up pe-2'}/>{isFirstState ? 'Zeige neueste zuerst' : 'Zeige älteste zuerst'}</button>
           </div>
         </div>
 
         {!posts ? <LoadingSpinner message={"Lade News..."}/> :
           <div className="tiles-container col3">
-            {posts.map((post) => (
+            {(isFirstState ? posts : reversedPosts).map((post) => (
               <NewsTile newsPost={post}/>
             ))}
           </div>
