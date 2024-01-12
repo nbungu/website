@@ -23,8 +23,9 @@ function NewsPost() {
   const id = params.id;
   const post = usePost(id);
 
-  const maxNumberOfPosts = 6;
-  const featuredPosts = usePosts(maxNumberOfPosts);
+  const paginationLimitPosts = 6;
+  const sortOrder = "desc";
+  const { featuredPosts } = usePosts(paginationLimitPosts, sortOrder);
 
   return (
     <div className='body-bg'>
