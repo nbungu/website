@@ -40,15 +40,15 @@ function Schedule() {
       <div className='flex-grow-1'>
 
         <div className="tiles-container col1 pb-0">
-          
+
           <h1 className="mb-2">Termine</h1>
-          <div className="row w-100 mx-auto gap-2">
+          <div className="row w-100 mx-auto">
             <button type="button" className="col-auto btn btn-light" onClick={switchSortOrderEvents}><i className={isFirstStateEvents ? 'bi bi-arrow-down pe-2' : 'bi bi-arrow-up pe-2'}/>{isFirstStateEvents ? 'Zeige neueste zuerst' : 'Zeige älteste zuerst'}</button>
           </div>
           {!events ? <LoadingSpinner message={"Lade Termine..."}/> : <EventList events={isFirstStateEvents ? events : reversedEvents} showExtendedInfos={true}/>}
-          
-          <h1 className="my-2">Spiele</h1>
-          <div className="row w-100 mx-auto gap-2">
+
+          <h1 className="mb-2">Spiele</h1>
+          <div className="row w-100 mx-auto">
             <button type="button" className="col-auto btn btn-light" onClick={switchSortOrderMatches}><i className={isFirstStateMatches ? 'bi bi-arrow-up pe-2' : 'bi bi-arrow-down pe-2'}/>{isFirstStateMatches ? 'Zeige älteste zuerst' : 'Zeige neueste zuerst'}</button>
           </div>
           {!matches ? <LoadingSpinner message={"Lade Matches..."}/> : <MatchList matches={isFirstStateMatches ? matches : reversedMatches} showExtendedInfos={true}/>}

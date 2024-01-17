@@ -22,15 +22,13 @@ function EventList({ events, showExtendedInfos }) {
         <div className="list-group w-100">
             {
                 events.map((event, index) => (
-                    <div className="list-group-item list-group-item-action p-2" aria-current="true" key={index}>
+                    <div className="list-group-item list-group-item-action p-0" aria-current="true" key={index}>
                         <div className="container-flex">
-                            <div className="row mx-auto align-items-center">
-
+                            <div className="row mx-auto align-items-center p-2">
                                 {/* ICON COL */}
                                 <div className='col-auto'>
                                     <i className={getIcon(event.attributes.type)}/>
                                 </div>
-
                                 {/* CONTENT COL */}
                                 <div className='col'>
                                     {event.attributes.date ?
@@ -46,12 +44,11 @@ function EventList({ events, showExtendedInfos }) {
                                     </div>
                                     }
                                 </div>
-
                                 {/* EXTENDED INFOS COL */}
-                                <div className='d-none d-sm-block col-sm-3 text-center bg-light border rounded p-3'>
+                                <div className='d-none d-sm-block col-sm-3 text-center border-start p-1'>
                                     <p><i className="bi bi-clock-history mx-1"></i>{event.attributes.startingtime?.slice(0, -7)} - {event.attributes.endtime?.slice(0, -7)}</p>
                                     <p><i className="bi bi-geo-alt-fill mx-1"></i>{event.attributes.location}</p>
-                                    {event.attributes.post?.data && <Link to={`/news/${event.attributes.post.data.id}`} className='btn btn-outline-primary mt-2'><i className="bi bi-arrow-right pe-2"/>Zum Artikel</Link>}
+                                    {event.attributes.post?.data && <Link className="icon-link gap-1 icon-link-hover" to={`/news/${event.attributes.post.data.id}`}>Zum Artikel<i className="bi bi-chevron-right"></i></Link>}
                                 </div>
                             </div>
 

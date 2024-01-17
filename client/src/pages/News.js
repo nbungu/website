@@ -34,8 +34,8 @@ function News() {
 
         <div className="tiles-container col1 pb-0">
           <h1 className="mb-2">Alle Beiträge</h1>
-          <div className="row w-100 mx-auto gap-2">
-            <button type="button" className="col-auto btn btn-light" onClick={switchSortOrder}><i className={isFirstState ? 'bi bi-arrow-down pe-2' : 'bi bi-arrow-up pe-2'}/>{isFirstState ? 'Zeige neueste zuerst' : 'Zeige älteste zuerst'}</button>
+          <div className="row w-100 mx-auto">
+            <button type="button" className="col-auto btn btn-light" onClick={switchSortOrder}><i className={isFirstState ? 'bi bi-arrow-down pe-2' : 'bi bi-arrow-up pe-2'}/>{isFirstState ? 'Zeige älteste zuerst' : 'Zeige neueste zuerst'}</button>
           </div>
         </div>
 

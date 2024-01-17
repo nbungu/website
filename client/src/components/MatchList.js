@@ -10,21 +10,21 @@ function MatchList({ matches, showExtendedInfos }) {
         <div className="list-group w-100">
             {
                 matches.map((match, index) => (
-                    <div className="list-group-item list-group-item-action p-2" aria-current="true" key={index}>
+                    <div className="list-group-item list-group-item-action p-0" aria-current="true" key={index}>
                         
                         <div className="container-flex">
 
-                            <Link to={match.attributes.post?.data && `/news/${match.attributes.post?.data.id}`} className={`row mx-auto align-items-center justify-content-between text-decoration-none ${!match.attributes.post?.data && 'pe-none'}`}>
+                            <Link to={match.attributes.post?.data && `/news/${match.attributes.post?.data.id}`} className={`row mx-auto align-items-center justify-content-between text-decoration-none p-2 ${!match.attributes.post?.data && 'pe-none'}`}>
                                 {/* HOME TEAM COL */}
                                 <div className="col text-center">
                                     <img className="team-logo-circle mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
-                                    <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamHome.data.attributes.name}</h3>
-                                    <h3 className='d-sm-none pt-2'>{match.attributes.teamHome.data.attributes.shortname}</h3>
+                                    <h3 className='d-none d-sm-block pt-1'>{match.attributes.teamHome.data.attributes.name}</h3>
+                                    <h3 className='d-sm-none pt-1'>{match.attributes.teamHome.data.attributes.shortname}</h3>
                                 </div>
                                 {/* CENTER COL */}
                                 <div className="col-auto text-center">
-                                    <p className={showExtendedInfos ? 'd-sm-none opacity-75 pb-2' : 'opacity-75 pb-2'}>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
-                                    {match.attributes.hasFinished ? <h1 className='bg-dark text-light p-2 rounded'>{match.attributes.goalsHome} : {match.attributes.goalsAway}</h1> : <h1>vs.</h1>}
+                                    <p className={`${showExtendedInfos && 'd-sm-none'} opacity-75 pb-1`}>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
+                                    {match.attributes.hasFinished ? <h1 className='bg-dark text-light p-1 rounded'>{match.attributes.goalsHome} : {match.attributes.goalsAway}</h1> : <h1>vs.</h1>}
                                     <div className="row align-items-top justify-content-center pt-2">
                                         <div className='col-auto'>
                                             {match.attributes.isCancelled ? <span className="badge rounded-pill text-bg-danger opacity-75">Abgesagt</span> : 
@@ -34,21 +34,21 @@ function MatchList({ matches, showExtendedInfos }) {
                                                 )
                                             }
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 {/* AWAY TEAM COL */}
                                 <div className="col text-center">
                                     <img className="team-logo-circle mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
-                                    <h3 className='d-none d-sm-block pt-2'>{match.attributes.teamAway.data.attributes.name}</h3>
-                                    <h3 className='d-sm-none pt-2'>{match.attributes.teamAway.data.attributes.shortname}</h3>
+                                    <h3 className='d-none d-sm-block pt-1'>{match.attributes.teamAway.data.attributes.name}</h3>
+                                    <h3 className='d-sm-none pt-1'>{match.attributes.teamAway.data.attributes.shortname}</h3>
                                 </div>
                                 {/* EXTRA INFO COL */}
                                 {showExtendedInfos && 
-                                <div className="d-none d-sm-block col-sm-3 text-center bg-light border rounded p-3">
+                                <div className="d-none d-sm-block col-sm-3 text-center border-start p-1">
                                     <p className='opacity-75'>{match.attributes.matchtype}</p>
                                     <p><i className="bi bi-calendar-week mx-1"></i>{formatDate(match.attributes.faceoffTime.slice(0,10))}</p>
                                     <p><i className="bi bi-geo-alt-fill mx-1"></i>{match.attributes.location}</p>
-                                    {match.attributes.post?.data && <Link to={`/news/${match.attributes.post?.data.id}`} className='btn btn-outline-primary mt-2'><i className="bi bi-arrow-right pe-2"/>Spielbericht</Link>}
+                                    {match.attributes.post?.data && <Link className="icon-link gap-1 icon-link-hover" to={`/news/${match.attributes.post?.data.id}`}>Spielbericht<i className="bi bi-chevron-right"></i></Link>}
                                 </div>}
                             </Link>
 

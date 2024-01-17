@@ -29,13 +29,13 @@ function Contact() {
                         <div className="container-flex">
                             
                             <div className="col">
-                                <div className="vstack gap-1 mb-3">
+                                <div className="vstack gap-1 mb-2 text-start">
                                     <p>1. Athletiksportverein Schlichten e.V.</p>
                                     <p>Grabäckerstr. 5</p>
                                     <p>73614 Schorndorf-Schlichten</p>
                                 </div>
 
-                                <div className="input-group flex-nowrap mb-3">
+                                <div className="input-group flex-nowrap mb-2">
                                     <span className="input-group-text"><i className="bi bi-envelope"/></span>
                                     <span className="input-group-text w-100">eis-buaba@asv-schlichten.de</span>
                                 </div>
