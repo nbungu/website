@@ -419,7 +419,7 @@ h1, h2, h3, p {
   max-width: 72px;
   max-width: 72px;
   border-radius: 50%;
-  background-color: transparent;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;

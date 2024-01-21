@@ -140,16 +140,13 @@ function EisbuabaCup2024() {
       <div className='flex-grow-1'>
 
         {/* FULL WIDTH JUMBOTRON */}
-        <div className="bg-secondary">
-            <div className="text-center p-4">
-                  {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
-                  <div className="container">
-                    <img className='bi p-2' width={200} height={200} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
-                    <h1 className="text-light p-1">{pageContent.attributes.title}</h1>
-                    <p className="col-lg-8 mx-auto lead text-light p-1">{pageContent.attributes.summary}</p>
-                  </div>
-                  }
-            </div>
+        <div className="text-center p-4">
+          {!pageContent ? <LoadingSpinner message={"Lade Content..."}/> : 
+          <div className="container">
+            <img className='bi p-2' width={200} height={200} src={STRAPI_CMS_URL + pageContent.attributes.logo.data.attributes.url} alt="Eisbuaba-Cup Logo"/>
+            <h1 className="p-1">{pageContent.attributes.title}</h1>
+            <p className="col-lg-8 mx-auto p-1">{pageContent.attributes.summary}</p>
+          </div>}
         </div>
 
         {/* TEAMS */}
@@ -159,10 +156,10 @@ function EisbuabaCup2024() {
             {!teams ? <LoadingSpinner message={"Lade Teams..."}/> :
                     teams.length === 0 ? <p>Teilnehmende Teams werden in Kürze bekannt gegeben...</p> :
                     teams.map((team) => (
-                      <div className="col-6 col-md-3 p-3 p-md-2">
+                      <div className="col-6 col-md-3 p-3 p-lg-2">
                         <div className="row g-0 gap-2 align-items-top">
                           <div className="col-auto mx-auto mx-sm-start">
-                            <img className="team-logo-circle rounded-3 bg-light p-1" src={!team.attributes.logo.data ? defaultImg : (STRAPI_CMS_URL + team.attributes.logo.data.attributes.url)} width={40} height={40} alt="Team Logo"/>
+                            <img className="team-logo-circle rounded-3 p-1" src={!team.attributes.logo.data ? defaultImg : (STRAPI_CMS_URL + team.attributes.logo.data.attributes.url)} width={40} height={40} alt="Team Logo"/>
                           </div>
                           <div className="col-12 col-sm my-auto text-sm-start text-center">
                             <h3>{team.attributes.name}</h3>
@@ -176,8 +173,8 @@ function EisbuabaCup2024() {
         </div>
 
         {/* DESCRIPTION */}
-        <div className="container px-3 py-5" id="hanging-icons">
-            <div className="row g-4 row-cols-1 row-cols-lg-3">
+        <div className="container p-5" id="hanging-icons">
+            <div className="row g-3 row-cols-1 row-cols-lg-3">
               <div className="col d-flex align-items-start">
                   <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
                     <i className="bi bi-clock fs-1"></i>
@@ -215,7 +212,7 @@ function EisbuabaCup2024() {
           </div>
 
         {/* MATCHES */}
-        <div className="tiles-container col2">
+        <div className="tiles-container col2 pt-0">
 
           <div className="fixed-tile gap-3">
             <h1>Vorrundenspiele</h1>
