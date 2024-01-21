@@ -34,7 +34,7 @@ function NewsPost() {
 
       <div className="container-sm p-3">
 
-        <div className="row g-5">
+        <div className="row g-4">
 
           {/* NEWS POST CONTENT */}
           <div className="col-lg-9">

@@ -17,7 +17,7 @@ function MatchList({ matches, showExtendedInfos }) {
                             <Link to={match.attributes.post?.data && `/news/${match.attributes.post?.data.id}`} className={`row mx-auto align-items-center justify-content-between text-decoration-none p-2 ${!match.attributes.post?.data && 'pe-none'}`}>
                                 {/* HOME TEAM COL */}
                                 <div className="col text-center">
-                                    <img className="team-logo-circle mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
+                                    <img className="team-logo-circle rounded-3 mx-auto" src={STRAPI_CMS_URL + match.attributes.teamHome.data.attributes.logo.data.attributes.url} alt='Home Team Logo'/>
                                     <h3 className='d-none d-sm-block pt-1'>{match.attributes.teamHome.data.attributes.name}</h3>
                                     <h3 className='d-sm-none pt-1'>{match.attributes.teamHome.data.attributes.shortname}</h3>
                                 </div>
@@ -36,9 +36,10 @@ function MatchList({ matches, showExtendedInfos }) {
                                         </div>
                                     </div>
                                 </div>
+                                
                                 {/* AWAY TEAM COL */}
                                 <div className="col text-center">
-                                    <img className="team-logo-circle mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
+                                    <img className="team-logo-circle rounded-3 mx-auto" src={STRAPI_CMS_URL + match.attributes.teamAway.data.attributes.logo.data.attributes.url} alt='Away Team Logo'/>
                                     <h3 className='d-none d-sm-block pt-1'>{match.attributes.teamAway.data.attributes.name}</h3>
                                     <h3 className='d-sm-none pt-1'>{match.attributes.teamAway.data.attributes.shortname}</h3>
                                 </div>
@@ -52,13 +53,7 @@ function MatchList({ matches, showExtendedInfos }) {
                                 </div>}
                             </Link>
 
-                            {match.attributes.infotext && 
-                                <div className="row align-items-center pt-1">
-                                    <div className='col-12 text-start'>
-                                        <p className='text-primary'><i className="bi bi-info-circle pe-2"/>{match.attributes.infotext}</p>
-                                    </div>
-                                </div>
-                            }
+                            
                         </div>
 
                     </div>

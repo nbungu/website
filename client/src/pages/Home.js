@@ -16,8 +16,7 @@ function Home() {
 
   const showOnlyEisbuabaMatches = true;
   const showOnlyFinishedMatches = true;
-  const paginationLimitMatches = 8;
-  const { matches } = useMatches(showOnlyEisbuabaMatches, showOnlyFinishedMatches, paginationLimitMatches);
+  const { matches } = useMatches(showOnlyEisbuabaMatches, showOnlyFinishedMatches);
 
   const paginationLimitPosts = 2;
   const sortOrder = "desc";
@@ -39,7 +38,7 @@ function Home() {
 
       <div className="flex-grow-1">
         
-        <div className="tiles-container col1">
+        <div className="tiles-container col1 p-0 p-lg-3">
           {!bannerContent ? <LoadingSpinner message={"Lade CarouselBanner..."}/> : <TextCarousel bannerContent={bannerContent}/>}
         </div>        
 

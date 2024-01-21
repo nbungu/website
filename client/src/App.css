@@ -1,5 +1,4 @@
 /* 16px = 1rem = p-3 / m-3 */
-
 :root {
   --bg-main-gray:#2a2a2a;
   --bg-light-gray:#2a2a2a7c;
@@ -12,36 +11,90 @@
   --easing-easeInOut: cubic-bezier(0.65,0,0.35,1);
 }
 
-/* GENERAL BODY
--------------------------------------------------- */
-h1, h2, h3, p {
-  margin: 0;
-  padding: 0;
-}
+/* 
+Extra small devices (portrait phones, less than 544px) 
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
 h1 {
-  font-size: 28px;
+  font-size: 1.6rem; /*1.5rem = 24px*/
   letter-spacing: -.05rem;
   font-weight: 400;
   line-height: 1.1;
   color: var(--bg-main-gray);
-}
+} 
 h2 {
-  font-size: 20px;
+  font-size: 1.2rem; 
   letter-spacing: 0rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   color: var(--bg-main-gray);
 }
 h3 {
-  font-size: 18px;
+  font-size: 1.1rem;
   letter-spacing: 0rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
   color: var(--bg-main-gray);
 }
 p {
   color: black;
   font-size: 16px;
+}
+/*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+ 
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Bootstrap 4 breakpoints
+*/
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 544px) {  
+  h1 {font-size:1.6rem;} /*1rem = 16px*/
+  h2 {font-size:1.25rem;}
+  .team-logo-tile {
+    width: 64px;
+    height: 64px;
+  }
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+  h1 {font-size:1.7rem;} /*1rem = 16px*/
+  h2 {font-size:1.3rem;}
+  .team-logo-tile {
+    width: 72px;
+    height: 72px;
+  }
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  h1 {font-size:1.8rem;} /*1rem = 16px*/
+  h2 {font-size:1.35rem;}
+  .team-logo-tile {
+    width: 80px;
+    height: 80px;
+  }
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+  h1 {font-size:1.8rem;} /*1rem = 16px*/
+  h2 {font-size:1.35rem;}
+  .team-logo-tile {
+    width: 80px;
+    height: 80px;
+  }
+}
+ 
+/* GENERAL BODY
+-------------------------------------------------- */
+h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
 }
 
 .body-bg {
@@ -120,9 +173,6 @@ p {
     font-size: 1.25rem;
     line-height: 1.4;
   }
-  .carousel-item {
-    margin-bottom: 0rem;
-  }
 }
 /* When the screen size is 800px or smaller */
 @media (max-width: 800px) {
@@ -138,9 +188,6 @@ p {
   .tiles-container.col3,
   .tiles-container.col2 {
     grid-template-columns: repeat(1, 1fr); /* Set the desired even number of columns */
-  }
-  .carousel-item {
-    margin-bottom: 2rem;
   }
 }
 
@@ -281,7 +328,6 @@ p {
 .news-tile:hover {
   transform: scale(1.02);
 }
-
 .news-tile-image {
   position: relative;
 }
@@ -371,9 +417,13 @@ p {
   min-width: 56px;
   min-height: 56px;
   max-width: 72px;
-  max-height: 72px;
+  max-width: 72px;
   border-radius: 50%;
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
 }
 .player-circle {
   width: 48px;
