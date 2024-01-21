@@ -22,7 +22,7 @@ function RecentNews({ recentNews }) {
               {/* TEXT COL */}
               <div className="col p-4 d-flex flex-column position-static">
                 <strong className="d-inline-block mb-2 text-primary-emphasis">{post.attributes.type}</strong>
-                <h2 className="fw-bold mb-0">{post.attributes.title}</h2>
+                <h2 className="mb-0">{post.attributes.title}</h2>
                 <div className="mb-1 text-body-secondary">{formatPublishedAt(post.attributes.publishedAt)}</div>
                 <p className="card-text mb-auto">{post.attributes.summary}</p>
                 <Link to={`/news/${post.id}`} className="icon-link gap-1 icon-link-hover stretched-link">

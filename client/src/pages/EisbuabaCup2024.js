@@ -175,29 +175,9 @@ function EisbuabaCup2024() {
           </div>
         </div>
 
-        {/* MATCHES */}
-        <div className="tiles-container col2 mt-5">
-
-          <div className="fixed-tile gap-3">
-            <h1>Vorrundenspiele</h1>
-            {!vorrundenMatches ? <LoadingSpinner message={"Lade Matches..."}/> :
-            vorrundenMatches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
-            <MatchList matches={vorrundenMatches}/>}
-          </div>
-          <div className="fixed-tile gap-3">
-            <h1>Platzierungsspiele</h1>
-            {!playoffMatches ? <LoadingSpinner message={"Lade Matches..."}/> :
-            playoffMatches.length === 0 ? <p className="py-2">Sobald alle Vorrundenspiele beendet sind werden die Platzierungsspiele bekannt gegeben...</p> :
-            <MatchList matches={playoffMatches}/>}
-          </div>
-
-        </div>
-
-        <div className="tiles-container col2 pt-0">
-          
-          {/* DESCRIPTION */}
-          <div className="container px-3" id="hanging-icons">
-            <div className="row g-4 row-cols-1">
+        {/* DESCRIPTION */}
+        <div className="container px-3 py-5" id="hanging-icons">
+            <div className="row g-4 row-cols-1 row-cols-lg-3">
               <div className="col d-flex align-items-start">
                   <div className="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center flex-shrink-0 me-3">
                     <i className="bi bi-clock fs-1"></i>
@@ -234,6 +214,27 @@ function EisbuabaCup2024() {
             </div>
           </div>
 
+        {/* MATCHES */}
+        <div className="tiles-container col2">
+
+          <div className="fixed-tile gap-3">
+            <h1>Vorrundenspiele</h1>
+            {!vorrundenMatches ? <LoadingSpinner message={"Lade Matches..."}/> :
+            vorrundenMatches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
+            <MatchList matches={vorrundenMatches}/>}
+          </div>
+
+          <div className="fixed-tile gap-3">
+            <h1>Platzierungsspiele</h1>
+            {!playoffMatches ? <LoadingSpinner message={"Lade Matches..."}/> :
+            playoffMatches.length === 0 ? <p className="py-2">Sobald alle Vorrundenspiele beendet sind werden die Platzierungsspiele bekannt gegeben...</p> :
+            <MatchList matches={playoffMatches}/>}
+          </div>
+
+        </div>
+
+        <div className="tiles-container col2 pt-0">
+          
           {/* VOTING */}
           <div className="fixed-tile gap-3">
             <h1>Wer gewinnt den Cup?</h1>

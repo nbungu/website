@@ -21,7 +21,7 @@ function NewsTile({ newsPost }) {
       {/* CONTENT */}
       <div className='p-3 pt-2'>
         <p className='opacity-75'>{formatPublishedAt(newsPost.attributes.publishedAt)}</p>
-        <h2 className='mt-2 fw-bold'>{newsPost.attributes.title}</h2>
+        <h2 className='mt-2'>{newsPost.attributes.title}</h2>
         <p className='news-tile-desc mt-2 opacity-75'>{newsPost.attributes.summary}</p>
       </div>          
     </Link>
