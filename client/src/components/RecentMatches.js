@@ -13,6 +13,10 @@ function RecentMatches({ matches }) {
     const opponentLogoPath = isAdelbergHomeTeam(selectedMatch) ? STRAPI_CMS_URL + selectedMatch.attributes.teamAway.data.attributes.logo.data.attributes.url : STRAPI_CMS_URL + selectedMatch.attributes.teamHome.data.attributes.logo.data.attributes.url;
     return opponentLogoPath;
   }
+  function getOpponentTeamName(selectedMatch) {
+    const opponentName = isAdelbergHomeTeam(selectedMatch) ? selectedMatch.attributes.teamAway.data.attributes.name : selectedMatch.attributes.teamHome.data.attributes.name;
+    return opponentName;
+  }
   function haveEisbuabaWon(selectedMatch) {
     const adelbergScore = isAdelbergHomeTeam(selectedMatch) ? selectedMatch.attributes.goalsHome : selectedMatch.attributes.goalsAway;
     const opponentScore = !isAdelbergHomeTeam(selectedMatch) ? selectedMatch.attributes.goalsHome : selectedMatch.attributes.goalsAway;
@@ -28,7 +32,7 @@ function RecentMatches({ matches }) {
 
       <div className="row w-100 mx-auto justify-content-center g-3 g-sm-5">
         {matches.map((match, index) => (
-          <div className="col-auto text-center" key={index}>
+          <div className="col-auto text-center" key={index} title={getOpponentTeamName(match)}>
             <div className="vstack">
               <p className="opacity-75">{formatDateShort(match.attributes.faceoffTime.slice(0,10))}</p>
               <img className="team-logo-circle mx-auto my-3" src={getOpponentTeamLogoPath(match)} alt='Opponent Team Logo'/>

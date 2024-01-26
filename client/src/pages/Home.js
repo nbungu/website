@@ -16,7 +16,8 @@ function Home() {
 
   const showOnlyEisbuabaMatches = true;
   const showOnlyFinishedMatches = true;
-  const { matches } = useMatches(showOnlyEisbuabaMatches, showOnlyFinishedMatches);
+  const maxArrayLength = 8;
+  const { matches } = useMatches(showOnlyEisbuabaMatches, showOnlyFinishedMatches, null, maxArrayLength);
 
   const paginationLimitPosts = 2;
   const sortOrder = "desc";

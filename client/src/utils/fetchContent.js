@@ -120,7 +120,7 @@ export const useEvents = () => {
     return { events, reversedEvents };
 };
 
-export const useMatches = (showOnlyEisbuabaMatches, showOnlyFinishedMatches, paginationLimit) => {
+export const useMatches = (showOnlyEisbuabaMatches, showOnlyFinishedMatches, paginationLimit, maxArrayLength) => {
     if (!paginationLimit) paginationLimit = 50;
     const [matches, setMatches] = useState(null);
     
@@ -136,8 +136,11 @@ export const useMatches = (showOnlyEisbuabaMatches, showOnlyFinishedMatches, pag
             }
             if (showOnlyFinishedMatches) {
                 filteredData = filteredData.filter(entry => entry.attributes.hasFinished);
-            }            
-            setMatches(filteredData);
+            }
+            if (maxArrayLength) setMatches(filteredData.slice(0, maxArrayLength));
+            else setMatches(filteredData);
+            
+            
         };
         fetchContent();
     }, []);
