@@ -4,10 +4,10 @@ import React, { useState, useEffect } from "react";
 
 import YouTubeEmbed from "./YouTubeEmbed";
 import ImageGallery from "./ImageGallery";
-import MatchList from "./MatchList";
 
 import { STRAPI_CMS_URL } from '../utils/Utils';
 import RichTextBlocks from "./RichTextBlocks";
+import MatchListEntry from "./MatchListEntry";
 
 function NewsPostContentElement({ newsPost }) {
   
@@ -36,7 +36,7 @@ function NewsPostContentElement({ newsPost }) {
         }
         return response.json();
       })
-      .then((result) => setLinkedMatch([result.data]))
+      .then((result) => setLinkedMatch(result.data))
       .catch((error) => {
         console.error('Error fetching matches:', error);
         // You can handle the error here, such as displaying an error message to the user
@@ -50,7 +50,7 @@ function NewsPostContentElement({ newsPost }) {
 
   return (
     <div className="container-flex">
-      {linkedMatch && <div className="mt-3"><MatchList matches={linkedMatch}/></div>}
+      {linkedMatch && <div className="mt-3 list-group w-100"><MatchListEntry match={linkedMatch}/></div>}
       {imgPathRel && <img className="img-fluid news-post-image rounded mt-3" src={imgPath} alt=''/>}
       {imgPathRel && imageCaption && <p className="text-body-secondary mt-2">{imageCaption}</p>}
       {fullText && <div className="mt-3"><RichTextBlocks richtext={fullText}/></div>}

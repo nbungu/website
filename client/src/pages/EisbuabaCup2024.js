@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingSpinner from '../components/LoadingSpinner';
-import MatchList from "../components/MatchList.js";
 import ProgressBar from "../components/ProgressBar.js";
 
 import { STRAPI_CMS_URL } from '../utils/Utils.js';
 import defaultImg from '../assets/default-image.webp'
+import MatchListEntry from "../components/MatchListEntry.js";
 
 function EisbuabaCup2024() {
     // fetches the last two most recent posts in sorted order
@@ -218,14 +218,18 @@ function EisbuabaCup2024() {
             <h1>Vorrundenspiele</h1>
             {!vorrundenMatches ? <LoadingSpinner message={"Lade Matches..."}/> :
             vorrundenMatches.length === 0 ? <p className="py-2">Anstehende Matches werden in Kürze bekannt gegeben...</p> :
-            <MatchList matches={vorrundenMatches}/>}
+            <div className="list-group w-100">
+              {vorrundenMatches.map((match) => <MatchListEntry match={match}/>)}
+            </div>}
           </div>
 
           <div className="fixed-tile gap-3">
             <h1>Platzierungsspiele</h1>
             {!playoffMatches ? <LoadingSpinner message={"Lade Matches..."}/> :
             playoffMatches.length === 0 ? <p className="py-2">Sobald alle Vorrundenspiele beendet sind werden die Platzierungsspiele bekannt gegeben...</p> :
-            <MatchList matches={playoffMatches}/>}
+            <div className="list-group w-100">
+              {playoffMatches.map((match) => <MatchListEntry match={match}/>)}
+            </div>}
           </div>
 
         </div>

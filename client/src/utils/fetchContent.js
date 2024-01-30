@@ -139,8 +139,6 @@ export const useMatches = (showOnlyEisbuabaMatches, showOnlyFinishedMatches, pag
             }
             if (maxArrayLength) setMatches(filteredData.slice(0, maxArrayLength));
             else setMatches(filteredData);
-            
-            
         };
         fetchContent();
     }, []);
